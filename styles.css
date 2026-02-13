@@ -1,46 +1,235 @@
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  margin: 0;
-  background-color: #f5f5f5;
-  color: #333;
+/* ---------- Reset ---------- */
+* {
+  box-sizing: border-box;
 }
 
+body {
+  margin: 0;
+  font-family: "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #f4f6f8;
+  color: #111827;
+  line-height: 1.6;
+}
+
+/* ---------- Header ---------- */
 header {
-  background-color: #1f2933;
-  color: white;
-  padding: 20px;
+  background-color: #0b1220;
+  color: #e5e7eb;
+  padding: 64px 24px 48px;
   text-align: center;
 }
 
+header h1 {
+  margin: 0;
+  font-size: 2.4rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+header p {
+  margin-top: 8px;
+  font-size: 1.05rem;
+  color: #9ca3af;
+}
+
+/* ---------- Navigation ---------- */
+nav {
+  margin-top: 28px;
+}
+
 nav a {
-  color: white;
-  margin: 0 10px;
+  color: #e5e7eb;
+  margin: 0 16px;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 500;
+  font-size: 0.95rem;
 }
 
 nav a:hover {
   text-decoration: underline;
 }
 
+/* ---------- Main Container ---------- */
 main {
-  padding: 40px;
-  max-width: 800px;
-  margin: auto;
+  max-width: 1100px;
+  margin: -40px auto 0;
+  padding: 48px 32px 80px;
+  background-color: #ffffff;
+  border-radius: 6px;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
+}
+
+/* ---------- Sections ---------- */
+section {
+  margin-bottom: 90px;
+}
+
+section h2 {
+  font-size: 1.7rem;
+  margin-bottom: 28px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+/* ---------- Project Cards ---------- */
+.project-card {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 28px;
+  padding: 28px;
+  margin-bottom: 36px;
+  border: 1px solid #e5e7eb;
+  background-color: #fbfbfc;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.06);
+}
+
+.project-card img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border: 1px solid #d1d5db;
   background-color: white;
 }
 
-section {
-  margin-bottom: 40px;
+/* ---------- Project Info ---------- */
+.project-info h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 1.35rem;
+  font-weight: 600;
 }
 
-.project {
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 20px;
+.project-info p {
+  margin-bottom: 10px;
+  color: #374151;
 }
 
+.project-meta {
+  font-size: 0.9rem;
+  color: #6b7280;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+.project-info a {
+  display: inline-block;
+  margin-top: 12px;
+  font-weight: 600;
+  color: #1f2937;
+  text-decoration: none;
+}
+
+.project-info a:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Resume ---------- */
+iframe {
+  width: 100%;
+  height: 900px;
+  border: 1px solid #d1d5db;
+}
+
+/* ---------- Footer ---------- */
 footer {
   text-align: center;
-  padding: 15px;
-  background-color: #e5e7eb;
+  padding: 28px;
+  font-size: 0.85rem;
+  color: #6b7280;
 }
+
+/* ---------- Project Groups ---------- */
+.project-group {
+  margin-bottom: 90px;
+}
+
+.project-group-title {
+  position: relative;
+}
+
+.project-group-title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 2px;
+  background: #9ca3af;
+  margin-top: 10px;
+}
+/* Slightly tighten spacing inside cards when grouped */
+.project-card {
+  margin-bottom: 32px;
+}
+
+/* Adjust project titles inside cards */
+.project-info h4 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+/* ---------- Projects Footer ---------- */
+.projects-footer {
+  margin-top: 60px;
+  padding-top: 30px;
+  border-top: 1px solid #e5e7eb;
+  text-align: center;
+}
+
+.projects-footer p {
+  font-size: 0.95rem;
+  color: #6b7280;
+  letter-spacing: 0.04em;
+}
+
+/* ---------- Project Image Hover ---------- */
+.project-card img {
+  transition: transform 0.25s ease;
+}
+
+.project-card img:hover {
+  transform: scale(1.06);
+}
+
+/* ---------- Image Rotator ---------- */
+.project-image-rotator {
+  position: relative;
+  width: 100%;
+}
+
+.project-image-rotator img {
+  width: 100%;
+  height: auto;
+  border: 1px solid #d1d5db;
+  background-color: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.project-image-rotator img:first-child {
+  position: relative;
+  opacity: 1;
+}
+
+/* ---------- Image Rotator + Hover ---------- */
+.image-viewport {
+  position: relative;
+  overflow: hidden;
+}
+
+.image-viewport img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition:
+    opacity 0.6s ease,
+    transform 0.25s ease;
+}
+
+.image-viewport:hover img {
+  transform: scale(1.06);
+}
+

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nathan Lam | Mechanical Engineering Student</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+  <h1>Nathan Lam</h1>
+  <p>Mechanical Engineering Student @ UC Berkeley</p>
+  <nav>
+    <a href="#about">About</a>
+    <a href="resume.html">Resume</a>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ABOUT SECTION -->
+  <section id="about">
+    <h2>About Me</h2>
+    <p>
+      I am a second-year mechanical engineering student interested in mechanical
+      design, manufacturing, and prototyping. I enjoy turning ideas into
+      physical parts through CAD, 3D printing, and iterative testing. Currently, the portfolio remains a work-in-progress.
+    </p>
+  </section>
+
+  <!-- PROJECTS SECTION -->
+<section id="projects">
+  <h2>Projects</h2>
+
+  <!-- COMBAT ROBOTICS -->
+  <div class="project-group">
+    <h3 class="project-group-title">Combat Robotics at Berkeley</h3>
+
+    <div class="project-card">
+      <img src="images/master_oogway_CAD.png" alt="15lb Combat Robot">
+
+      <div class="project-info">
+        <h4>15lb Combat Robot: “Master Oogway”</h4>
+        <p>
+          A combat robot with a 4-wheel drive, a dual-disk spinner weapon, and angled armor to deflect impacts. Won "Coolest Bot" in 2025 at Sacramento Bot Battles.
+        </p>
+        <p class="project-meta">
+          <span class="meta-label">Tools/Skills:</span> Fusion 360 · Mill · Lathe · BOM Management · GD&T
+        </p>
+        <!-- <a href="projects/project1.html">View project →</a> -->
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-image-rotator">
+        <div class="image-viewport">
+          <img src="images/skadoosh.jpg">
+          <img src="images/eggsterminator.png">
+        </div>
+      </div>
+
+
+      <div class="project-info">
+        <h4>1lb Combat Robots: “Skadoosh” and “Eggsterminator”</h4>
+        <p>
+          Eggsterminator is a 1lb plastic combat robot with a 2 wheel drive and angled armor; won "Most Destructive" in an internal competition. 
+          Skadoosh is the second iteration, utilizing an improved weapon while experimenting with unconventional geometry for the front wedge.
+        </p>
+        <p class="project-meta">
+          <span class="meta-label">Tools/Skills:</span> Fusion 360 · 3D Printing · Soldering · GD&T
+        </p>
+        <!-- <a href="projects/project2.html">View project →</a> -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ACADEMIC PROJECTS -->
+  <div class="project-group">
+    <h3 class="project-group-title">Coursework Projects</h3>
+
+    <div class="project-card">
+      <img src="images/course_project1.png" alt="WIP">
+
+      <div class="project-info">
+        <h4>ESP-RESSO 32</h4>
+        <p>
+          An embedded system utilizing ESP-32 microcontrollers, integrating an OLED display,
+          LED, and buzzer for real-time feedback utilizing data obtained from multiple sensors, allowing for consistent and repeatable
+          coffee brewing with a moka pot.
+        </p>
+        <p class="project-meta">
+          <span class="meta-label">Course:</span> ME100: Electronics for IoT
+        </p>
+        <p class="project-meta">
+          <span class="meta-label">Tools/Skills:</span> Python · Fusion 360
+        </p>
+        <!-- <a href="projects/course_project1.html">View project →</a> -->
+      </div>
+    </div>
+
+    <div class="project-card">
+      <img src="images/course_project1.png" alt="WIP">
+
+      <div class="project-info">
+        <h4>Caster Wheel Modular Mounting System</h4>
+        <p>
+          A mechanism to temporarily and non-destructively attach to caster wheels to corners 
+          without the need for drilling or a permanent fastener, with the goal of allowing easier transport of items such as boxes.
+        </p>
+        <p class="project-meta">
+          <span class="meta-label">Course:</span> E29: Manufacturing and Design Communication
+        </p>
+        <p class="project-meta">
+          <span class="meta-label">Tools/Skills:</span> Fusion 360
+        </p>
+        <!-- <a href="projects/course_project1.html">View project →</a> -->
+      </div>
+    </div>
+  </div>
+
+  <div class="projects-footer">
+    <p>Additional projects currently in design and fabrication.</p>
+  </div>
+
+</section>
+</main>
+
+<footer>
+  <p>© 2026 Nathan Lam</p>
+</footer>
+
+<script>
+  const rotators = document.querySelectorAll('.project-image-rotator');
+
+  rotators.forEach(rotator => {
+    const images = rotator.querySelectorAll('img');
+    let index = 0;
+
+    setInterval(() => {
+      images[index].style.opacity = 0;
+      index = (index + 1) % images.length;
+      images[index].style.opacity = 1;
+    }, 3000); // 3 seconds
+  });
+</script>
+
+</body>
+</html>
