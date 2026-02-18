@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Master Oogway</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<div class="sticky-header" id="stickyHeader">
+  <div class="sticky-inner">
+    <a href="../index.html" class="sticky-name">Nathan Lam</a>
+    <nav class="sticky-nav">
+      <a href="../index.html">Home</a>
+      <a href="resume.html">Resume</a>
+    </nav>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="site-name">
+      <a href="../index.html">Nathan Lam</a>
+    </div>
+
+    <nav class="site-nav">
+      <a href="../index.html">Home</a>
+      <a href="../resume.html">Resume</a>
+    </nav>
+  </div>
+
+  <h1 class="page-title">15lb Combat Robot: “Master Oogway”</h1>
+</header>
+
+
+<main>
+<section>
+  <h2>Overview</h2>
+
+  <div class="overview-grid">
+    <p>
+      Master Oogway is a 15 lb combat robot, featuring a belt-driven dual-disk AR500 steel weapon, 
+      4-wheel drive, and angled armor optimized for deflection and survivability. 
+      The design prioritizes modularity, manufacturability, and rapid repair between matches.
+    </p>
+
+    <model-viewer
+      src="../models/master_oogway.glb"
+      camera-controls
+      auto-rotate
+      environment-image="neutral"
+      exposure="0.55"
+      shadow-intensity="0"
+      tone-mapping="neutral"
+      disable-pan
+      style="width:100%; max-width:600px; height:400px; border-radius:6px;">
+    </model-viewer>
+
+  </div>
+</section>
+
+
+  <section>
+<section>
+  <h2>Design Process</h2>
+
+  <div class="project-block">
+    <img src="../images/master_oogway/oogway_block_cad.png" alt="Frame design CAD">
+
+    <div class="project-block-text">
+      <p>
+        As part of the 2nd semester at Combat Robotics at Berkeley, members such as I applied and were accepted to form new teams to design a 15 lb robot, which 
+        greatly expanded the possibilities for what could be designed compared to plastic 1lb robots.
+      </p>
+    </div>
+  </div>
+
+  <div class="project-block reverse">
+    <img src="../images/master_oogway/oogway_armor_setup.png" alt="Armor layout">
+
+    <div class="project-block-text">
+      <p>
+        Due to our limited budget of $1000 dollars and the capabilities student organization's manufacturing sponsors, we were essentially constrained to designing for 2D 
+        manufacturing. The only exception to this was the hub for the dual disks, which itself costed a few hundred due to the complex geometry. Regardless, 
+      </p>
+    </div>
+  </div>
+
+</section>
+
+
+<section>
+  <h2>Outcomes and Performance</h2>
+
+  <div class="project-block">
+    <div class="video-wrapper">
+      <iframe
+        src="https://www.youtube.com/embed/VIDEO_ID_1"
+        title="Match Example"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+    <div class="project-block-text">
+      <p>
+        match explanations 
+      </p>
+    </div>
+  </div>
+
+  <div class="project-block reverse">
+    <img src="../images/master_oogway/last_match.jpg" alt="Final Match">
+
+    <div class="project-block-text">
+      <p>
+        explain results, lessons learned
+        In our final match, the robot suffered immense damage but wasn't knocked out; we were able to demonstrate controlled motion until the very end. 
+        The angled armor deflected impacts that would have otherwise torn apart the bot.
+        etc etc finish this soon
+      </p>
+    </div>
+  </div>
+
+</section>
+
+</main>
+
+<footer>
+  <p>© 2026 Nathan Lam</p>
+</footer>
+
+<script>
+  const stickyHeader = document.getElementById('stickyHeader');
+  const hero = document.querySelector('.site-header');
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > hero.offsetHeight) {
+      stickyHeader.classList.add('visible');
+    } else {
+      stickyHeader.classList.remove('visible');
+    }
+  });
+</script>
+
+
+<script type="module"
+  src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js">
+</script>
+
+</body>
+</html>

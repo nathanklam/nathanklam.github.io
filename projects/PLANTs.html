@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Plastic Antweights</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<div class="sticky-header" id="stickyHeader">
+  <div class="sticky-inner">
+    <a href="../index.html" class="sticky-name">Nathan Lam</a>
+    <nav class="sticky-nav">
+      <a href="../index.html">Home</a>
+      <a href="resume.html">Resume</a>
+    </nav>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="site-name">
+      <a href="../index.html">Nathan Lam</a>
+    </div>
+
+    <nav class="site-nav">
+      <a href="../index.html">Home</a>
+      <a href="../resume.html">Resume</a>
+    </nav>
+  </div>
+
+  <h1 class="page-title">1 lb Combat Robots</h1>
+</header>
+
+<main>
+  <section id="robots">
+    <h2>Plastic Antweights</h2>
+    <p class="section-intro">
+      Plastic antweights are a 1 lb combat robotics weight class in which all components (frame, weapon, etc.) must be made from 3D-printed plastics, 
+      with non-plastics permitted only for electronics, fasteners, and small functional inserts. This constraint emphasizes design-for-manufacturing and optimized geometry 
+      over raw material strength, while allowing for more experimentation in comparison to heavier weight classes.
+    </p>
+
+    <div class="accordion">
+
+      <!-- Skadoosh -->
+      <div class="accordion-item">
+        <button class="accordion-header">Skadoosh (2026-)</button>
+        <div class="accordion-body">
+
+          <section>
+            <h3>Overview</h3>
+            <div class="overview-grid">
+              <p>Skadoosh is a 1 lb plastic combat robot developed as a direct successor to Eggsterminator, refining its core survivability-focused design. 
+              It features an improved direct-drive asymmetrical vertical spinner, two-wheel drive, and a revised, experimental angled exterior designed to both deflect 
+              opposing weapons and enable limited physical control of opponents without the usage of "forks". The chassis was further optimized for FFF printing, preserving 
+              print-oriented layer alignment for impact resistance while improving the modular armor system to allow faster, localized replacement after damage.</p>
+
+              <model-viewer
+                src="../models/skadoosh.glb"
+                camera-controls
+                auto-rotate
+                environment-image="neutral"
+                exposure="0.55"
+                shadow-intensity="0"
+                tone-mapping="neutral"
+                disable-pan
+                style="width:100%; max-width:600px; height:400px; border-radius:6px;">
+              </model-viewer>
+            </div>
+          </section>
+
+          <section>
+            <h3>Design Process</h3>
+            <div class="project-block reverse">
+              <img src="../images/1lb_bots/skadoosh_wedge_concept.png" alt="Skadoosh CAD">
+              <div class="project-block-text">
+                <p>Drawing upon experience, my teammate and I decided to design the successor to Eggsterminator. We thought that simply improving upon the previous design 
+                would be rather bland, so we decided to experiment with a concave front wedge geometry. The inspiration was from Dorito, a 1lb control bot designed by a team I mentored
+                that joined in the 2025-2026 school year. Their front crescent shape worked better than everyone expected, but had some clear downsides, especially in durability. 
+                As such, we planned to utilize a similar concept for the front of our new bot while addressing the downsides.</p>
+                <p>The image on the left demonstrates a quick but crude visualization of our idea, which we iterated upon.</p>
+              </div>
+            </div>
+          </section>
+
+          <section>
+            <h3>Outcomes & Performance</h3>
+            <div class="project-block">
+              <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/VIDEO_ID_SKADOOSH"
+                        title="Skadoosh Match" allowfullscreen></iframe>
+              </div>
+              <div class="project-block-text">
+                <p>Explain lessons learned and show images of damage.</p>
+              </div>
+            </div>
+          </section>
+
+        </div>
+      </div>
+
+      <!-- Eggsterminator -->
+      <div class="accordion-item">
+        <button class="accordion-header">Eggsterminator (2024)</button>
+        <div class="accordion-body">
+
+          <section>
+            <h3>Overview</h3>
+            <div class="overview-grid">
+              <p>
+                Eggsterminator is a 1 lb plastic combat robot designed with survivability as the primary constraint. It features a direct-drive symmetrical vertical 
+                spinning weapon with steel screw inserts, two-wheel drive, and an angled exterior to deflect opposing weapons. The chassis geometry was optimized for FFF 
+                printing, with layer-line orientation chosen to maximize impact resistance and modular armor sections that enable localized replacement after damage 
+                rather than requiring a full chassis spare.
+              </p>
+
+              <model-viewer
+                src="../models/eggsterminator.glb"
+                camera-controls
+                auto-rotate
+                environment-image="neutral"
+                exposure="0.55"
+                shadow-intensity="0"
+                tone-mapping="neutral"
+                disable-pan
+                style="width:100%; max-width:600px; height:400px; border-radius:6px;">
+              </model-viewer>
+            </div>
+          </section>
+
+          <section>
+            <h3>Design Process</h3>
+
+            <div class="project-block reverse">
+              <img src="../images/1lb_bots/eggsterminator_block_cad.png" alt="Eggsterminator Block CAD">
+              <div class="project-block-text">
+                <p>Being new to combat robotics, I designed the first concept without referencing existing bots. After reviewing suggested weapon types from the leads, 
+                and considering the benefits and drawbacks of each type, I settled on a vertical spinner. The first rough CAD reflects this initial concept. 
+                It was presented during the first of three design reviews held by the student organization, where valuable feedback was provided.</p>
+              </div>
+            </div>
+
+            <div class="project-block">
+              <img src="../images/1lb_bots/eggsterminator_dr2.png" alt="Second Design CAD">
+              <div class="project-block-text">
+                <p>With the initial CAD being very rough, a redesign took place, utilizing similar geometry. At this point, the concept of armor modularity was now realized, 
+                    alongside the idea of making all exterior parts angled. Most bots only have an angled wedge in the front; by having angled parts all around, the robot would have
+                    superior protection in comparison to existing designs.
+                    Two slightly different CAD versions were made, with the one chosen being visible on the left.</p>
+              </div>
+            </div>
+
+            <div class="project-block reverse">
+              <img src="../images/1lb_bots/eggsterminator_dr3.png" alt="Final Design Review CAD">
+              <div class="project-block-text">
+                <p>Changes from DR2: thicker weapon rails, all screws modeled, improved weapon rail mounting. Further changes: making the back plate flate to save weight, 
+                    tolerancing all holes and connections to ensure proper fits.</p>
+              </div>
+            </div>
+
+          </section>
+
+          <section>
+            <h3>Outcomes & Performance</h3>
+            <div class="project-block">
+              <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/VIDEO_ID_EGGST"
+                        title="Eggsterminator Match" allowfullscreen></iframe>
+              </div>
+              <div class="project-block-text">
+                <p>Match Video. results, lessons, and next steps.</p>
+                <p>Results: 2nd place, longest winning streak of the competition. Lost due to lack of invertibility; robot was able to drive upside-down, but was unable to 
+                    self-right thus rendering the weapon useless.
+                </p>
+                <p>Lessons: angled geometry was extremely effective; no parts were replaced throughtout the entire competition. Invertibility is extremely important; the unexpected
+                    will inevitably occur, leading to a loss if not planned for.
+                </p>
+                <p>Next Steps: utilize lessons for future bots, possibly revamp robot for future 1 lb competitions.</p>
+              </div>
+            </div>
+          </section>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>© 2026 Nathan Lam</p>
+</footer>
+
+<script>
+  const stickyHeader = document.getElementById('stickyHeader');
+  const hero = document.querySelector('.site-header');
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > hero.offsetHeight) {
+      stickyHeader.classList.add('visible');
+    } else {
+      stickyHeader.classList.remove('visible');
+    }
+  });
+</script>
+
+<script>
+  const headers = document.querySelectorAll('.accordion-header');
+
+  headers.forEach(header => {
+    header.addEventListener('click', () => {
+      const item = header.parentElement;
+      item.classList.toggle('active');
+
+      // close other accordions
+      headers.forEach(h => {
+        if (h !== header) h.parentElement.classList.remove('active');
+      });
+    });
+  });
+</script>
+
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+</body>
+</html>

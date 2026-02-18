@@ -7,13 +7,31 @@
 </head>
 <body>
 
-<header>
-  <h1>Resume</h1>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="resume.html">Resume</a>
-  </nav>
+<div class="sticky-header" id="stickyHeader">
+  <div class="sticky-inner">
+    <a href="index.html" class="sticky-name">Nathan Lam</a>
+    <nav class="sticky-nav">
+      <a href="index.html">Home</a>
+      <a href="resume.html">Resume</a>
+    </nav>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="site-name">
+      <a href="index.html">Nathan Lam</a>
+    </div>
+
+    <nav class="site-nav">
+      <a href="index.html">Home</a>
+      <a href="resume.html">Resume</a>
+    </nav>
+  </div>
+
+  <h1 class="page-title">Resume</h1>
 </header>
+
 
 <main>
   <section>
@@ -30,6 +48,20 @@
 <footer>
   <p>© 2026 Nathan Lam</p>
 </footer>
+
+<script>
+  const stickyHeader = document.getElementById('stickyHeader');
+  const hero = document.querySelector('.site-header');
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > hero.offsetHeight) {
+      stickyHeader.classList.add('visible');
+    } else {
+      stickyHeader.classList.remove('visible');
+    }
+  });
+</script>
+
 
 </body>
 </html>
