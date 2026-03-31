@@ -36,13 +36,37 @@
 <main>
 <section>
   <h2>Overview</h2>
-
   <div class="overview-grid">
-    <p>
-      Master Oogway is a 15 lb combat robot, featuring a belt-driven dual-disk AR500 steel weapon, 
-      4-wheel drive, and angled armor optimized for deflection and survivability. 
-      The design prioritizes modularity, manufacturability, and rapid repair between matches.
-    </p>
+    <div class="overview-specs">
+      <ul class="spec-list">
+        <li>
+          <span class="spec-label">Budget</span>
+          <span class="spec-value">
+            $1000
+          </span>
+        </li>
+        <li>
+          <span class="spec-label">Weapon</span>
+          <span class="spec-value">Asymmetric dual-disk AR500 steel vertical spinner; 1.8 kJ of energy after 2 seconds of spin-up.</span>
+        </li>
+        <li>
+          <span class="spec-label">Weapon Drive</span>
+          <span class="spec-value">PROPDRIVE v2 4258 500KV, 1.4:1 belt reduction</span>
+        </li>
+        <li>
+          <span class="spec-label">Drive</span>
+          <span class="spec-value">PROPDRIVE v2 3536 910KV; 16:1 gear reduction, belted 4-wheel drive</span>
+        </li>
+        <li>
+          <span class="spec-label">Armor</span>
+          <span class="spec-value">Angled aluminum and steel plates optimized for impact deflection</span>
+        </li>
+        <li>
+          <span class="spec-label">Design Priorities</span>
+          <span class="spec-value">Modularity, durability, manufacturability, rapid serviceability</span>
+        </li>
+      </ul>
+    </div>
 
     <model-viewer
       src="../models/master_oogway.glb"
@@ -59,18 +83,22 @@
   </div>
 </section>
 
-
-  <section>
 <section>
   <h2>Design Process</h2>
 
   <div class="project-block">
-    <img src="../images/master_oogway/oogway_block_cad.png" alt="Frame design CAD">
-
+    <figure class="project-figure">
+      <img src="../images/master_oogway/oogway_block_cad.png" alt="Frame design CAD">
+      <figcaption>Initial CAD, showing general layout.</figcaption>
+    </figure>
     <div class="project-block-text">
       <p>
-        As part of the 2nd semester at Combat Robotics at Berkeley, members such as I applied and were accepted to form new teams to design a 15 lb robot, which 
-        greatly expanded the possibilities for what could be designed compared to plastic 1lb robots.
+        As part of the 2nd semester at Combat Robotics at Berkeley, my teammates and I were tasked with designing a 15 lb robot, which 
+        greatly expanded upon the possibilities available compared to our first projects: the 1 lb plastic antweights.
+
+        mention the ideas from our meetings and how that shows up as the image
+          desired a 4wd and thus resulted in a more square shape, a dual disk to differentiate ourselves from an previous bot from the club, belted drive and weapon
+          (no hub motor) and an angled exterior to deflect weapon impacts, which we presented during our first design review
       </p>
     </div>
   </div>
@@ -81,7 +109,23 @@
     <div class="project-block-text">
       <p>
         Due to our limited budget of $1000 dollars and the capabilities student organization's manufacturing sponsors, we were essentially constrained to designing for 2D 
-        manufacturing. The only exception to this was the hub for the dual disks, which itself costed a few hundred due to the complex geometry. Regardless, 
+        manufacturing. The only exception to this was the hub for the dual disks, which itself costed a few hundred due to the complex geometry. Regardless, everything had 
+        to be flat plates.
+
+      </p>
+    </div>
+  </div>
+
+  <div class="project-block">
+    <img src="../images/master_oogway/oogway_dr3.png" alt="Frame design CAD">
+
+    <div class="project-block-text">
+      <p>
+        WIP AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        good amount of cheesing to save weight
+
+        during assembly, still overweight
+        aggressive milling of the back plate, removal of middle armor supports
       </p>
     </div>
   </div>
@@ -114,9 +158,22 @@
     <div class="project-block-text">
       <p>
         explain results, lessons learned
+        3-2 win loss ratio
+
+        First match, heavy damage, but was able to fix and make it operational again
+
+        matches in between: no real issues other than drive 
+
         In our final match, the robot suffered immense damage but wasn't knocked out; we were able to demonstrate controlled motion until the very end. 
         The angled armor deflected impacts that would have otherwise torn apart the bot.
         etc etc finish this soon
+
+        should have had belt tensioners for the drive, it kind of struggled to drive well
+        needed better front wheel mounts
+        needed drive motors to be mounted to bottom plate
+        needed bot to be smaller to not have to cheese back plate so much, and allow for more mounting supports for armor
+        needed proper ID pulley for weapon
+        needed to do electronics from scratch to make managing electronics easier
       </p>
     </div>
   </div>

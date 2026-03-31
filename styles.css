@@ -150,6 +150,7 @@ nav a:hover {
 /* ---------- Anchor Offset for Sticky Header ---------- */
 section {
   scroll-margin-top: 80px; /* prevents sticky header from covering headings */
+  margin-bottom: 90px; /* default section spacing */
 }
 
 /* ---------- Main Container & Sections ---------- */
@@ -160,10 +161,6 @@ main {
   background-color: #ffffff;
   border-radius: 6px;
   box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
-}
-
-section {
-  margin-bottom: 90px;
 }
 
 section h2 {
@@ -210,17 +207,39 @@ section h2 {
   margin-bottom: 32px; /* spacing for grouped cards */
 }
 
-.project-card img {
+/* shared image defaults for project images */
+.project-card img,
+.project-figure img,
+.project-block img,
+.project-image-rotator img,
+.image-viewport img {
   width: 100%;
   height: auto;
-  object-fit: cover;
   border: 1px solid #d1d5db;
   background-color: white;
+  display: block;
+  object-fit: cover;
   transition: transform 0.25s ease;
 }
 
-.project-card img:hover {
+.project-card img:hover,
+.image-viewport:hover img {
   transform: scale(1.06);
+}
+
+.project-image-placeholder {
+  width: 100%;
+  max-width: 420px; /* match your image width */
+  aspect-ratio: 4 / 3; /* keeps consistent height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #f3f4f6;
+  border: 1px dashed #d1d5db;
+  color: #6b7280;
+  font-size: 0.9rem;
+  text-align: center;
 }
 
 /* ---------- Project Image Rotator ---------- */
@@ -230,10 +249,6 @@ section h2 {
 }
 
 .project-image-rotator img {
-  width: 100%;
-  height: auto;
-  border: 1px solid #d1d5db;
-  background-color: white;
   position: absolute;
   top: 0;
   left: 0;
@@ -258,18 +273,12 @@ section h2 {
   transition: opacity 0.6s ease, transform 0.25s ease;
 }
 
-.image-viewport:hover img {
-  transform: scale(1.06);
-}
-
 /* ---------- Image Captions ---------- */
 .project-figure {
   margin: 0;
 }
 
 .project-figure img {
-  width: 100%;
-  height: auto;
   display: block;
 }
 
@@ -323,47 +332,58 @@ section h2 {
 .project-info a:hover {
   text-decoration: underline;
 }
-
 /* ---------- Detailed Project Blocks ---------- */
 .project-block {
   display: grid;
-  grid-template-columns: 1fr 1.2fr;
+  grid-template-columns: minmax(0, 420px) 1fr; /* image column capped */
   gap: 32px;
   align-items: start;
   margin: 48px 0;
 }
 
+/* Image / figure container */
 .project-block img {
   width: 100%;
   height: auto;
+  max-width: 420px;              /* cohesion across blocks */
   border: 1px solid #d1d5db;
   background-color: white;
 }
 
+/* Text */
 .project-block-text p {
   margin: 0;
   color: #374151;
 }
 
-/* Reverse layout for alternating images */
+/* ---------- Reverse layout for alternating blocks ---------- */
 .project-block.reverse {
-  grid-template-columns: 1.2fr 1fr;
+  grid-template-columns: 1fr minmax(0, 420px);
 }
 
+/* Move image/figure to the right */
+.project-block.reverse figure,
 .project-block.reverse img {
   order: 2;
 }
 
+/* ---------- Mobile ---------- */
 @media (max-width: 768px) {
   .project-block,
   .project-block.reverse {
     grid-template-columns: 1fr;
   }
 
+  .project-block img {
+    max-width: 100%;
+  }
+
+  .project-block.reverse figure,
   .project-block.reverse img {
     order: 0;
   }
 }
+
 
 /* ---------- Video Embeds ---------- */
 .video-wrapper {
@@ -516,7 +536,48 @@ footer {
 
 /* ---------- Model Viewer Styling ---------- */
 model-viewer {
-  background-color: #f3f4f6; /* light gray CAD background */
+  background-color: #0b1220; /* light gray CAD background */
   outline: 1px solid #d1d5db;
 }
 
+/* ---------- Overview Specs ---------- */
+.overview-specs p {
+  margin-top: 0;
+  margin-bottom: 16px;
+  color: #374151;
+}
+
+.spec-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.spec-list li {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 16px;
+  padding: 8px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.spec-list li:last-child {
+  border-bottom: none;
+}
+
+.spec-label {
+  font-weight: 600;
+  color: #111827;
+}
+
+.spec-value {
+  color: #374151;
+}
+
+/* Mobile: stack labels above values */
+@media (max-width: 600px) {
+  .spec-list li {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}

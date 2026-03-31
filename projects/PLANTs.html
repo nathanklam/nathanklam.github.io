@@ -38,11 +38,10 @@
     <p class="section-intro">
       Plastic antweights are a 1 lb combat robotics weight class in which all components (frame, weapon, etc.) must be made from 3D-printed plastics, 
       with non-plastics permitted only for electronics, fasteners, and small functional inserts. This constraint emphasizes design-for-manufacturing and optimized geometry 
-      over raw material strength, while allowing for more experimentation in comparison to heavier weight classes.
+      over raw material strength, while allowing for more experimentation in comparison to heavier weight classes due to the lower investment cost.
     </p>
 
     <div class="accordion">
-
       <!-- Skadoosh -->
       <div class="accordion-item">
         <button class="accordion-header">Skadoosh (2026-)</button>
@@ -51,10 +50,34 @@
           <section>
             <h3>Overview</h3>
             <div class="overview-grid">
-              <p>Skadoosh is a 1 lb plastic combat robot developed as a direct successor to Eggsterminator, refining its core survivability-focused design. 
-              It features an improved direct-drive asymmetrical vertical spinner, two-wheel drive, and a revised, experimental angled exterior designed to both deflect 
-              opposing weapons and enable limited physical control of opponents without the usage of "forks". The chassis was further optimized for FFF printing, preserving 
-              print-oriented layer alignment for impact resistance while improving the modular armor system to allow faster, localized replacement after damage.</p>
+                <div class="overview-specs">
+                    <p>Skadoosh is developed as the direct successor to Eggsterminator, refining its design. 
+                    It features an improved direct-drive asymmetrical vertical spinner, two-wheel drive, and a revised, experimental angled exterior designed to both deflect 
+                    opposing weapons and enable limited physical control of opponents without the usage of "forks". The chassis remains optimized for FFF printing, preserving 
+                    print-oriented layer alignment for impact resistance while improving the modular armor system to allow faster, localized replacement after damage.</p>
+                    <ul class="spec-list">
+                        <li>
+                        <span class="spec-label">Budget</span>
+                        <span class="spec-value">$100</span>
+                        </li>
+                        <li>
+                        <span class="spec-label">Weapon</span>
+                        <span class="spec-value">88.62 g asymmetric vertical spinner; 124 J of energy after 2 seconds of spin-up</span>
+                        </li>
+                        <li>
+                        <span class="spec-label">Weapon Drive</span>
+                        <span class="spec-value">D2826 1400KV 2-3S, direct drive</span>
+                        </li>
+                        <li>
+                        <span class="spec-label">Drive</span>
+                        <span class="spec-value">N20 800RPM motor, direct driven 2-wheel drive</span>
+                        </li>
+                        <li>
+                        <span class="spec-label">Design Priorities</span>
+                        <span class="spec-value">Modularity, survivability, opponent control, offensive capabilities</span>
+                        </li>
+                    </ul>
+                </div>                  
 
               <model-viewer
                 src="../models/skadoosh.glb"
@@ -73,8 +96,9 @@
           <section>
             <h3>Design Process</h3>
             <div class="project-block reverse">
-              <img src="../images/1lb_bots/skadoosh_wedge_concept.png" alt="Skadoosh CAD">
-              <div class="project-block-text">
+                <img src="../images/1lb_bots/skadoosh_wedge_concept.png" alt="Skadoosh CAD">
+                <div class="project-block-text">
+                
                 <p>Drawing upon experience, my teammate and I decided to design the successor to Eggsterminator. We thought that simply improving upon the previous design 
                 would be rather bland, so we decided to experiment with a concave front wedge geometry. The inspiration was from Dorito, a 1lb control bot designed by a team I mentored
                 that joined in the 2025-2026 school year. Their front crescent shape worked better than everyone expected, but had some clear downsides, especially in durability. 
@@ -93,6 +117,9 @@
               </div>
               <div class="project-block-text">
                 <p>Explain lessons learned and show images of damage.</p>
+                <p>Fortunately, the armor worked quite well, as we did not have to use any spares. Unfortunately, too much material was allocated to the armor, and as such, the 
+                  frame itself couldn't handle impacts.
+                </p>
               </div>
             </div>
           </section>
@@ -108,12 +135,34 @@
           <section>
             <h3>Overview</h3>
             <div class="overview-grid">
-              <p>
-                Eggsterminator is a 1 lb plastic combat robot designed with survivability as the primary constraint. It features a direct-drive symmetrical vertical 
-                spinning weapon with steel screw inserts, two-wheel drive, and an angled exterior to deflect opposing weapons. The chassis geometry was optimized for FFF 
-                printing, with layer-line orientation chosen to maximize impact resistance and modular armor sections that enable localized replacement after damage 
-                rather than requiring a full chassis spare.
-              </p>
+                <div class="overview-specs">
+                    <p>Eggsterminator is a 1 lb plastic combat robot designed with survivability as the primary constraint. It features a direct-drive symmetrical vertical 
+                    spinning weapon with steel screw inserts, two-wheel drive, and an angled exterior to deflect opposing weapons. The chassis geometry was optimized for FFF 
+                    printing, with layer-line orientation chosen to maximize impact resistance and modular armor sections that enable localized replacement after damage 
+                    rather than requiring a full chassis spare.</p>
+                    <ul class="spec-list">
+                        <li>
+                        <span class="spec-label">Budget</span>
+                        <span class="spec-value">$100</span>
+                        </li>
+                        <li>
+                        <span class="spec-label">Weapon</span>
+                        <span class="spec-value">57 g symmetrical spinner with steel screw impactors; 99 joules after 2 seconds of spin-up</span>
+                        </li>
+                        <li>
+                        <span class="spec-label">Weapon Drive</span>
+                        <span class="spec-value">D2826 1400KV 2-3S, direct drive</span>
+                        </li>
+                        <li>
+                        <span class="spec-label">Drive</span>
+                        <span class="spec-value">N20 800RPM motor, direct driven 2-wheel drive</span>
+                        </li>
+                        <li>
+                        <span class="spec-label">Design Priorities</span>
+                        <span class="spec-value">Modularity, survivability, subsystem integration</span>
+                        </li>
+                    </ul>
+                </div>                  
 
               <model-viewer
                 src="../models/eggsterminator.glb"
@@ -133,26 +182,36 @@
             <h3>Design Process</h3>
 
             <div class="project-block reverse">
+            <figure class="project-figure">
               <img src="../images/1lb_bots/eggsterminator_block_cad.png" alt="Eggsterminator Block CAD">
+              <figcaption>Rough CAD for the first Design Review</figcaption>
+              </figure>
               <div class="project-block-text">
                 <p>Being new to combat robotics, I designed the first concept without referencing existing bots. After reviewing suggested weapon types from the leads, 
                 and considering the benefits and drawbacks of each type, I settled on a vertical spinner. The first rough CAD reflects this initial concept. 
                 It was presented during the first of three design reviews held by the student organization, where valuable feedback was provided.</p>
               </div>
             </div>
+            
 
             <div class="project-block">
-              <img src="../images/1lb_bots/eggsterminator_dr2.png" alt="Second Design CAD">
-              <div class="project-block-text">
+            <figure class="project-figure">
+                <img src="../images/1lb_bots/eggsterminator_dr2.png" alt="Second Design CAD">
+                </figure>
+                <div class="project-block-text">
                 <p>With the initial CAD being very rough, a redesign took place, utilizing similar geometry. At this point, the concept of armor modularity was now realized, 
                     alongside the idea of making all exterior parts angled. Most bots only have an angled wedge in the front; by having angled parts all around, the robot would have
                     superior protection in comparison to existing designs.
+
+                    explain the armor modularity as to allow printing in a way to prevent shear loading parallel to the layers from expected loads
+
                     Two slightly different CAD versions were made, with the one chosen being visible on the left.</p>
               </div>
             </div>
-
             <div class="project-block reverse">
+            <figure class="project-figure">
               <img src="../images/1lb_bots/eggsterminator_dr3.png" alt="Final Design Review CAD">
+              </figure>
               <div class="project-block-text">
                 <p>Changes from DR2: thicker weapon rails, all screws modeled, improved weapon rail mounting. Further changes: making the back plate flate to save weight, 
                     tolerancing all holes and connections to ensure proper fits.</p>
@@ -213,10 +272,10 @@
       const item = header.parentElement;
       item.classList.toggle('active');
 
-      // close other accordions
+/*       // close other accordions
       headers.forEach(h => {
         if (h !== header) h.parentElement.classList.remove('active');
-      });
+      }); */
     });
   });
 </script>
