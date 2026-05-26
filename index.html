@@ -12,19 +12,36 @@
     <a href="index.html" class="sticky-name">Nathan Lam</a>
     <nav class="sticky-nav">
       <a href="#about">About</a>
-      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <div class="nav-dropdown">
+        <a href="#projects" class="nav-dropdown-trigger">Projects</a>
+        <div class="nav-dropdown-menu">
+          <a href="#combat-robotics">Combat Robotics</a>
+          <a href="#academic-projects">Academic Projects</a>
+        </div>
+      </div>
       <a href="resume.html">Resume</a>
+      <div class="nav-dropdown">
+        <span class="nav-dropdown-trigger">Links</span>
+        <div class="nav-dropdown-menu">
+          <a href="#">GitHub</a>
+          <a href="https://www.linkedin.com/in/nathanklam/">LinkedIn</a>
+          <a href="mailto:nathan_lam@berkeley.edu">Email</a>
+        </div>
+      </div>
     </nav>
   </div>
 </div>
 
-<header>
+<header class="hero-header">
   <h1>Nathan Lam</h1>
   <p>Mechanical Engineering Student @ UC Berkeley</p>
   <nav>
     <a href="#about">About</a>
+    <a href="#skills">Skills</a>
     <a href="#projects">Projects</a>
     <a href="resume.html">Resume</a>
+    <a href="#">Email</a>
   </nav>
 </header>
 
@@ -33,212 +50,399 @@
   <!-- ABOUT SECTION -->
   <section id="about">
     <h2>About Me</h2>
-    <p>I am a second-year undergraduate student majoring in Mechanical Engineering with a minor in Electrical Engineering and Computer Science. 
-    My interests lie in mechanical design, manufacturing, and prototyping, and how these intersect with electronics.</p>
-    <p>My project work emphasizes design-for-manufacturing, modularity, and learning through iterative testing while accounting for weight, manufacturing, 
-    and budgetary constraints. This is especially evident for my projects regarding combat robotics, where designs are forced to prove themselves quickly.</p>
-  </section>
+    <div class="about-grid">
 
-  <!-- PROJECTS SECTION -->
-<section id="projects">
-  <h2>Projects</h2>
-
-  <!-- COMBAT ROBOTICS -->
-  <section id="combat-robotics">
-    <div class="project-group">
-      <h3 class="project-group-title">Combat Robotics at Berkeley</h3>
-        <p class="project-group-subtitle">
-          Team Lead, 1 lb Project Manager
-        </p>
-      <div class="project-card">
-        <img src="images/main_page/master_oogway_CAD.png" alt="15lb Combat Robot">
-
-        <div class="project-info">
-          <h4>“Master Oogway” (Spring 2025)</h4>
-          <p>
-            A 15 lb combat robot developed with a $1000 budget under my leadership, featuring a four-wheel drive system and a dual-disk spinner optimized for 
-            reliability and serviceability. Led mechanical design and manufacturing, focusing on survivability and durability; awarded Coolest Bot at 
-            Sacramento Bot Battles 2025, ranked highest in comparison to other Berkeley teams.
-          </p>
-          <p class="project-meta">
-            <span class="meta-label">Tools/Skills:</span> Fusion 360 · Mill · Lathe · BOM Management · Geometric Dimensioning & Tolerancing
-          </p>
-          <a> View Project (Coming Soon) →</a> 
-          <!--<a href="projects/master_oogway.html">View project →</a>-->
-        </div>
+      <div class="about-text">
+        <p>I am a second-year undergraduate student majoring in Mechanical Engineering with a minor in Electrical Engineering and Computer Science.
+        My interests lie in mechanical design, manufacturing, and prototyping, and how these intersect with electronics.</p>
+        <p>My project work emphasizes design-for-manufacturing, modularity, and learning through iterative testing while accounting for weight, manufacturing,
+        and budgetary constraints. This is especially evident for my projects regarding combat robotics, where designs are forced to prove themselves quickly.</p>
       </div>
 
-      <div class="project-card">
+      <div class="about-images" style="--about-img-w: 300px; --about-img-h: 290px;">
         <div class="project-image-rotator">
           <div class="image-viewport">
-            <img src="images/main_page/skadoosh.jpg">
-            <img src="images/main_page/eggsterminator.png">
+            <img src="images/about/WW.png" alt="Winter Wreckage competition"       data-caption="Winter Wreckage (2026)"     style="object-position: center 40%;">
+            <img src="images/about/CatC.png" alt="Carnage at the Cube competition" data-caption="Carnage at the Cube (2026)" style="object-position: center 40%;">
+            <div class="image-caption-overlay"></div>
+            <div class="carousel-controls">
+              <button class="carousel-btn carousel-prev" aria-label="Previous image">&#8249;</button>
+              <div class="carousel-dots">
+                <span class="carousel-dot"></span>
+                <span class="carousel-dot"></span>
+              </div>
+              <button class="carousel-btn carousel-next" aria-label="Next image">&#8250;</button>
+            </div>
           </div>
-        </div>
-        <div class="project-info">
-          <h4>"Skadoosh” (Spring 2026-), “Eggsterminator” (Fall 2024)</h4>
-          <p>
-            Eggsterminator was a 1 lb plastic combat robot focused on survivability through angled geometry and print-oriented design, earning Most Destructive in an 
-            internal competition. Skadoosh builds on this foundation with an improved weapon system and experimental front-wedge geometry to add controlled 
-            engagement and opponent manipulation capabilities. The second iteration is in development.
-          </p>
-          <p class="project-meta">
-            <span class="meta-label">Tools/Skills:</span> Fusion 360 · 3D Printing · Soldering · Geometric Dimensioning & Tolerancing
-          </p>
-          <a> View Projects (Coming Soon) →</a>
-          <!-- <a href="projects/PLANTs.html">View projects →</a>  -->
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div class="project-image-rotator">
-          <div class="image-viewport">
-            <img src="images/main_page/malware.png">
-            <img src="images/main_page/syntax_terror.png">
-          </div>
-        </div>
-        <div class="project-info">
-          <h4>Project Contributions: "Malware" (Fall 2025-), "Syntax Terror" (Fall 2025-) </h4>
-          <p>
-            Contributed to the mechanical design and fabrication of multiple team robots, including the student organization's flagship 30 lb robot with a high-energy spinner 
-            and a 3 lb robot exploring shuffling swerve locomotion. Focused on manufacturing support and subsystem integration across differing design philosophies.
-          </p>
-          <p class="project-meta">
-            <span class="meta-label">Tools/Skills:</span> Onshape · Mill · Lathe
-          </p>
-          <a> View Contributions (Coming Soon) →</a>
-          <!-- <a href="projects/contributions.html">View contributions →</a> -->
         </div>
       </div>
 
     </div>
   </section>
 
-  <!-- ACADEMIC PROJECTS -->
-  <section id="academic-projects">
-    <div class="project-group">
-      <h3 class="project-group-title">Coursework Projects</h3>
+  <!-- SKILLS SECTION -->
+  <section id="skills">
+    <h2>Skills &amp; Tools</h2>
+    <div class="skills-grid">
+
+      <div class="skill-category">
+        <h4 class="skill-category-title">CAD &amp; Design</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Fusion 360</span>
+          <span class="skill-tag">SolidWorks</span>
+          <span class="skill-tag">Onshape</span>
+        </div>
+      </div>
+
+      <div class="skill-category">
+        <h4 class="skill-category-title">Manufacturing</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Mill</span>
+          <span class="skill-tag">Lathe</span>
+          <span class="skill-tag">Drill Press</span>
+          <span class="skill-tag">3D Printing (FDM)</span>
+          <span class="skill-tag">Soldering</span>
+          <span class="skill-tag">GD&amp;T</span>
+        </div>
+      </div>
+
+      <div class="skill-category">
+        <h4 class="skill-category-title">Programming</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">Java</span>
+          <span class="skill-tag">MATLAB</span>
+          <span class="skill-tag">ROS2</span>
+          <span class="skill-tag">HTML &amp; CSS</span>
+        </div>
+      </div>
+
+      <div class="skill-category">
+        <h4 class="skill-category-title">Analysis &amp; Simulation</h4>
+        <div class="skill-tags">
+          <span class="skill-tag">Ansys</span>
+          <span class="skill-tag">Simulink</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PROJECTS SECTION -->
+  <section id="projects">
+    <h2>Projects</h2>
+
+    <!-- COMBAT ROBOTICS -->
+    <section id="combat-robotics">
+      <div class="project-group">
+        <h3 class="project-group-title">Combat Robotics at Berkeley</h3>
+        <p class="project-group-subtitle">VP Education (2026-2027), 1 lb Project Manager (2025-2026), Team Lead </p>
+
+        <!-- Master Oogway — converted to carousel using existing images -->
+        <div class="project-card">
+          <div class="project-card-image">
+            <img src="images/main_page/master_oogway_CAD.png"    alt="Master Oogway CAD overview"    data-caption="Overview CAD">
+          </div>
+          <div class="project-info">
+            <h4>"Master Oogway" (Spring 2025)</h4>
+            <p>
+              A 15 lb combat robot developed with a $1000 budget under my leadership, featuring a four-wheel drive system and a dual-disk spinner optimized for
+              reliability and serviceability. Led mechanical design and manufacturing, focusing on survivability and durability; awarded Coolest Bot at
+              Sacramento Bot Battles 2025, ranked highest in comparison to other Berkeley teams.
+            </p>
+            <p class="project-meta">
+              <span class="meta-label">Tools/Skills:</span> Fusion 360 · Mill · Lathe · BOM Management · Geometric Dimensioning &amp; Tolerancing
+            </p>
+            <a class="coming-soon-link">View Robot (Coming Soon) →</a>
+            <!--<a href="projects/master_oogway.html">View project →</a>-->
+          </div>
+        </div>
+
+        <!-- Skadoosh / Eggsterminator -->
+        <div class="project-card">
+          <div class="project-card-image">
+            <div class="project-image-rotator">
+              <div class="image-viewport">
+                <img src="images/main_page/skadoosh_v2.jpg"     alt="Skadoosh 1lb robot"       data-caption="Skadoosh v2 (Spring 2026–)">
+                <img src="images/main_page/skadoosh.jpg"        alt="Skadoosh 1lb robot"       data-caption="Skadoosh v1 (Winter 2026)">
+                <img src="images/main_page/eggsterminator.png"  alt="Eggsterminator 1lb robot" data-caption="Eggsterminator (Fall 2024)">
+                <div class="image-caption-overlay"></div>
+                <div class="carousel-controls">
+                  <button class="carousel-btn carousel-prev" aria-label="Previous image">&#8249;</button>
+                  <div class="carousel-dots">
+                    <span class="carousel-dot"></span>
+                    <span class="carousel-dot"></span>
+                    <span class="carousel-dot"></span>
+                  </div>
+                  <button class="carousel-btn carousel-next" aria-label="Next image">&#8250;</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="project-info">
+            <h4>"Skadoosh" (Winter 2026-), "Eggsterminator" (Fall 2024)</h4>
+            <p>
+              Eggsterminator was a 1 lb plastic combat robot focused on survivability through angled geometry and print-oriented design, earning Most Destructive in an
+              internal competition. Skadoosh builds on this foundation with an improved weapon system and experimental front-wedge geometry to add controlled
+              engagement and opponent manipulation capabilities. The second iteration is in development.
+            </p>
+            <p class="project-meta">
+              <span class="meta-label">Tools/Skills:</span> Fusion 360 · 3D Printing · Soldering · Geometric Dimensioning &amp; Tolerancing
+            </p>
+            <a class="coming-soon-link">View Robots (Coming Soon) →</a>
+            <!-- <a href="projects/PLANTs.html">View projects →</a> -->
+          </div>
+        </div>
+
+        <!-- 3lb w/ Emi, 30lb with Certified Robot Builders™ -->
 
         <div class="project-card">
-          <div class="project-image-placeholder">
-            <span>Image Coming Soon, Project in Progress</span>
+          <div class="project-card-image">
+            <div class="project-image-placeholder">
+              <!-- Replace this div with <img src="..."> or a .project-image-rotator once images are available -->
+              <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
+              </svg>
+              <span>Image Coming Soon</span>
+            </div>
+          </div>
+          <div class="project-info">
+            <h4>Future 3 lb and 30 lb (Summer 2026-)</h4>
+            <p>
+              Future robot designs in progress.
+            </p>
+            <p class="project-meta">
+              <span class="meta-label">Tools/Skills:</span> Onshape
+            </p>
+            <a class="coming-soon-link">View Robots (Coming Soon) →</a>
+            <!-- <a href="projects/PLANTs.html">View projects →</a> -->
+          </div>
+        </div>
+
+        <!-- Malware / Syntax Terror -->
+        <div class="project-card">
+          <div class="project-card-image">
+            <div class="project-image-rotator">
+              <div class="image-viewport">
+                <img src="images/main_page/malware.png"        alt="Malware 30lb robot"      data-caption="Malware (30 lb)">
+                <img src="images/main_page/syntax_terror.png"  alt="Syntax Terror 3lb robot" data-caption="Syntax Terror (3 lb)">
+                <div class="image-caption-overlay"></div>
+                <div class="carousel-controls">
+                  <button class="carousel-btn carousel-prev" aria-label="Previous image">&#8249;</button>
+                  <div class="carousel-dots">
+                    <span class="carousel-dot"></span>
+                    <span class="carousel-dot"></span>
+                  </div>
+                  <button class="carousel-btn carousel-next" aria-label="Next image">&#8250;</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="project-info">
+            <h4>Project Contributions: "Malware" (Fall 2025-), "Syntax Terror" (Fall 2025-)</h4>
+            <p>
+              Contributed to the mechanical design and fabrication of multiple team robots, including the student organization's flagship 30 lb robot with a high-energy spinner
+              and a 3 lb robot exploring shuffling swerve locomotion. Focused on manufacturing support and subsystem integration across differing design philosophies. Provided additional
+              manual machining support to multiple robot teams, such as Global Pounding and Traiano (12 lb robots).
+            </p>
+            <p class="project-meta">
+              <span class="meta-label">Tools/Skills:</span> Onshape · Mill · Lathe
+            </p>
+            <a class="coming-soon-link">View Contributions (Coming Soon) →</a>
+            <!-- <a href="projects/contributions.html">View contributions →</a> -->
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ACADEMIC PROJECTS -->
+    <section id="academic-projects">
+      <div class="project-group">
+        <h3 class="project-group-title">Coursework Projects</h3>
+
+        <!-- Culinary Bot — no image yet -->
+        <div class="project-card">
+          <div class="project-card-image">
+            <img src="images/main_page/mec106a.png" alt="MEC106A">
+           <!-- PROJECT IMAGE PLACEHOLDER
+            <div class="project-image-placeholder">
+             Replace this div with <img src="..."> or a .project-image-rotator once images are available
+              <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
+              </svg>
+              <span>Image Coming Soon</span>
+            </div>
+            -->
           </div>
           <div class="project-info">
             <h4>Culinary Bot (Spring 2026)</h4>
             <p>
-              A project in progress, seeking to utilize UR7e robotic arm and camera for the purpose of plating food. We are still in the process of defining the exact 
-              parameters of how and what the final result should appear as.
+              This project presents a robotic culinary plating assistant that uses a UR7e arm with an attached camera to capture a completed dish from multiple 
+              viewpoints and reconstruct a 3D model of the plated arrangement. The system then identifies food items, estimates their poses relative to varying frames, 
+              and generates a pick-and-place plan to recreate the dish.
             </p>
             <p class="project-meta">
-              <span class="meta-label">Course:</span> ME C106A - Introduction to Robotics
+              <span class="meta-label">Course:</span> MEC106A - Introduction to Robotics
             </p>
             <p class="project-meta">
-              <span class="meta-label">Tools/Skills:</span> ROS2 · Python
+              <span class="meta-label">Tools/Skills:</span> ROS2 · YOLO · Python · HTML · CSS
             </p>
-            <a> View Project (Coming Soon) →</a>
+            <a href="https://nchaniel.github.io/106a-Report/project-report-site/index.html">Link to Project Website →</a>
           </div>
         </div>
 
+        <!-- Composite Armor — no image yet -->
         <div class="project-card">
-          <div class="project-image-placeholder">
-            <span>Image Coming Soon, Project in Progress</span>
+          <div class="project-card-image">
+            <img src="images/main_page/me127.png" alt="ME127 Simulations">
           </div>
           <div class="project-info">
-            <h4>Simulation of Composite Materials for Combat Robotics (Spring 2026)</h4>
+            <h4>Composite Armor in Combat Robotics Applications (Spring 2026)</h4>
             <p>
-              A research project in progress, investigating the behavior of composites under medium-velocity impacts (up to 110 m/s) with non-linear 
+              A simulation project, investigating the behavior of composites under medium-velocity impacts (up to 110 m/s) with non-linear
               trajectories and high mass. The goal is to explore and possibly develop alternatives to aluminum 6061 and steel for armor applications in combat robotics.
             </p>
             <p class="project-meta">
               <span class="meta-label">Course:</span> ME127 - Introduction to Composite Materials
             </p>
             <p class="project-meta">
-              <span class="meta-label">Tools/Skills:</span> Ansys · Fusion 360
+              <span class="meta-label">Tools/Skills:</span> Ansys · LS-DYNA · Fusion 360 · LaTeX 
             </p>
-            <a> View Project (Coming Soon) →</a>
+            <a href="projects/ME127.html">View Project Report →</a>
           </div>
         </div>
 
-
-      <div class="project-card">
-        <img src="images/main_page/espresso32.png" alt="ESP32 Project">
-        <!--  <img src="images/main_page/course_project1.png" alt=""> -->
-
-        <div class="project-info">
-          <h4>ESP-RESSO 32 (Fall 2025)</h4>
-          <p>
-            An embedded system using ESP32 microcontrollers to monitor and allow repeatability of moka pot brewing via multiple sensors and real-time feedback. 
-            Prioritized functional reliability over aesthetics.
-          </p>
-          <p class="project-meta">
-            <span class="meta-label">Course:</span> ME100 - Electronics for IoT
-          </p>
-          <p class="project-meta">
-            <span class="meta-label">Tools/Skills:</span> Python · Fusion 360
-          </p>
-          <a> View Project (Coming Soon) →</a>
-          <!-- <a href="projects/course_project1.html">View project →</a> -->
+        <!-- ESP-RESSO 32 — single image, no additional images available -->
+        <div class="project-card">
+          <div class="project-card-image">
+            <img src="images/main_page/espresso32.png" alt="ESP-RESSO 32 embedded system">
+          </div>
+          <div class="project-info">
+            <h4>ESP-RESSO 32 (Fall 2025)</h4>
+            <p>
+              An embedded system using ESP32 microcontrollers to monitor and allow repeatability of moka pot brewing via multiple sensors and real-time feedback.
+              Prioritized functional reliability over aesthetics.
+            </p>
+            <p class="project-meta">
+              <span class="meta-label">Course:</span> ME100 - Electronics for IoT
+            </p>
+            <p class="project-meta">
+              <span class="meta-label">Tools/Skills:</span> Python · Fusion 360
+            </p>
+            <a class="coming-soon-link">View Project (Coming Soon) →</a>
+            <!-- <a href="projects/course_project1.html">View project →</a> -->
+          </div>
         </div>
-      </div>
 
-      <div class="project-card">
-        <img src="images/main_page/e29_corner_mount.png" alt="Corner Mount">
-
-        <div class="project-info">
-          <h4>Caster Wheel Modular Mounting System - Corner Mount (Spring 2025) </h4>
-          <p>
-            A modular mounting mechanism enabling temporary and non-destructive attachment of caster wheels to object corners 
-            without drilling or permanent fasteners. Designed as part of a multi-component team assembly emphasizing manufacturability and ease of use.
-          </p>
-          <p class="project-meta">
-            <span class="meta-label">Course:</span> E29 - Manufacturing and Design Communication
-          </p>
-          <p class="project-meta">
-            <span class="meta-label">Tools/Skills:</span> Fusion 360 · SolidWorks
-          </p>
-          <a> View Project (Coming Soon) </a>
-          <!-- <a href="projects/course_project1.html">View project →</a> -->
+        <!-- E29 Corner Mount — converted to carousel using existing images -->
+        <div class="project-card">
+          <div class="project-card-image">
+            <div class="project-image-rotator">
+              <div class="image-viewport">
+                <img src="images/main_page/e29_corner_mount.png" alt="E29 Corner Mount design" data-caption="Corner Mount Design">
+                <img src="images/e29/e29_deliverable.png"        alt="E29 deliverable"          data-caption="Deliverable">
+                <img src="images/e29/e29_assembly.png"           alt="E29 assembly view"        data-caption="Assembly View">
+                <div class="image-caption-overlay"></div>
+                <div class="carousel-controls">
+                  <button class="carousel-btn carousel-prev" aria-label="Previous image">&#8249;</button>
+                  <div class="carousel-dots">
+                    <span class="carousel-dot"></span>
+                    <span class="carousel-dot"></span>
+                    <span class="carousel-dot"></span>
+                  </div>
+                  <button class="carousel-btn carousel-next" aria-label="Next image">&#8250;</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="project-info">
+            <h4>Caster Wheel Modular Mounting System - Corner Mount (Spring 2025)</h4>
+            <p>
+              A modular mounting mechanism enabling temporary and non-destructive attachment of caster wheels to object corners
+              without drilling or permanent fasteners. Designed as part of a multi-component team assembly emphasizing manufacturability and ease of use.
+            </p>
+            <p class="project-meta">
+              <span class="meta-label">Course:</span> E29 - Manufacturing and Design Communication
+            </p>
+            <p class="project-meta">
+              <span class="meta-label">Tools/Skills:</span> Fusion 360 · SolidWorks
+            </p>
+            <a class="coming-soon-link">View Project (Coming Soon) →</a>
+            <!-- <a href="projects/course_project1.html">View project →</a> -->
+          </div>
         </div>
+
       </div>
+    </section>
+
+    <div class="projects-footer">
+      <p>Additional projects currently in design and fabrication.</p>
     </div>
-  </section>
-  <div class="projects-footer">
-    <p>Additional projects currently in design and fabrication.</p>
-  </div>
 
-</section>
+  </section>
 </main>
 
 <footer>
-  <p>© 2026 Nathan Lam</p>
+  <div class="footer-inner">
+    <!-- RETURN TO TOP -->
+    <a href="#" class="back-to-top">↑ Back to Top</a>
+    <!-- FOOTER CONTACT LINKS — replace # with the same URLs as the hero contact row -->
+    <div class="footer-links">
+      <a href="#">GitHub</a>
+      <a href="https://www.linkedin.com/in/nathanklam/">LinkedIn</a>
+      <a href="mailto:nathan_lam@berkeley.edu">Email</a>
+    </div>
+    <p class="footer-copyright">© 2026 Nathan Lam</p>
+  </div>
 </footer>
 
 <script>
-  const rotators = document.querySelectorAll('.project-image-rotator');
+  /* FLASHY: auto-rotating carousel with image captions, dot indicators, and arrow controls.
+     To disable individual features:
+       Auto-rotation  → remove the setInterval block at the bottom of this script
+       Captions       → remove all <div class="image-caption-overlay"> elements from HTML
+       Arrow/dot UI   → remove all <div class="carousel-controls"> elements from HTML */
 
-  rotators.forEach(rotator => {
-    const images = rotator.querySelectorAll('img');
-    let index = 0;
+  document.querySelectorAll('.project-image-rotator').forEach(rotator => {
+    const images  = rotator.querySelectorAll('.image-viewport img');
+    const dots    = rotator.querySelectorAll('.carousel-dot');
+    const caption = rotator.querySelector('.image-caption-overlay');
+    const prev    = rotator.querySelector('.carousel-prev');
+    const next    = rotator.querySelector('.carousel-next');
+    let current   = 0;
 
-    setInterval(() => {
-      images[index].style.opacity = 0;
-      index = (index + 1) % images.length;
-      images[index].style.opacity = 1;
-    }, 3000); // 3 seconds
+    function goTo(i) {
+      images[current].classList.remove('active');
+      dots[current]?.classList.remove('active');
+      current = (i + images.length) % images.length;
+      images[current].classList.add('active');
+      dots[current]?.classList.add('active');
+      if (caption) caption.textContent = images[current].dataset.caption || '';
+    }
+
+    goTo(0);
+
+    dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+    prev?.addEventListener('click', () => goTo(current - 1));
+    next?.addEventListener('click', () => goTo(current + 1));
+
+    // FLASHY: remove this setInterval block to stop auto-rotation
+    setInterval(() => goTo(current + 1), 4000);
   });
 </script>
 
 <script>
-  const stickyHeader = document.getElementById("stickyHeader");
-  const heroHeader = document.querySelector("header");
+  const stickyHeader = document.getElementById('stickyHeader');
+  const heroHeader   = document.querySelector('.hero-header');
 
-  const heroBottom = heroHeader.offsetHeight;
-
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > heroBottom - 105) { // this is hardcoded lmao
-      stickyHeader.classList.add("visible");
+  window.addEventListener('scroll', () => {
+    const heroBottom   = heroHeader.offsetHeight;
+    const stickyHeight = stickyHeader.offsetHeight;
+    if (window.scrollY > heroBottom - stickyHeight) {
+      stickyHeader.classList.add('visible');
     } else {
-      stickyHeader.classList.remove("visible");
+      stickyHeader.classList.remove('visible');
     }
   });
 </script>

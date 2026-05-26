@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Project Title | Nathan Lam</title>
+  <link rel="stylesheet" href="../styles.css">
+  <!--
+    Only needed if using the <model-viewer> 3D model block below.
+    Remove this line if you are not showing a 3D model.
+  -->
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     STICKY HEADER — same on every sub-page
+     ═══════════════════════════════════════════════════════════ -->
+<div class="sticky-header" id="stickyHeader">
+  <div class="sticky-inner">
+    <a href="../index.html" class="sticky-name">Nathan Lam</a>
+    <nav class="sticky-nav">
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#skills">Skills</a>
+      <div class="nav-dropdown">
+        <a href="../index.html#projects" class="nav-dropdown-trigger">Projects</a>
+        <div class="nav-dropdown-menu">
+          <a href="../index.html#combat-robotics">Combat Robotics</a>
+          <a href="../index.html#academic-projects">Academic Projects</a>
+        </div>
+      </div>
+      <a href="../resume.html">Resume</a>
+      <div class="nav-dropdown">
+        <span class="nav-dropdown-trigger">Links</span>
+        <div class="nav-dropdown-menu">
+          <a href="#">GitHub</a>
+          <a href="#">LinkedIn</a>
+          <a href="#">Email</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SUB-PAGE HEADER — use .site-header, NOT the hero <header>
+     ═══════════════════════════════════════════════════════════ -->
+<header class="site-header">
+  <div class="header-inner">
+    <div class="site-name">
+      <a href="../index.html">Nathan Lam</a>
+    </div>
+    <nav class="site-nav">
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#skills">Skills</a>
+      <div class="nav-dropdown">
+        <a href="../index.html#projects" class="nav-dropdown-trigger">Projects</a>
+        <div class="nav-dropdown-menu">
+          <a href="../index.html#combat-robotics">Combat Robotics</a>
+          <a href="../index.html#academic-projects">Academic Projects</a>
+        </div>
+      </div>
+      <a href="../resume.html">Resume</a>
+      <div class="nav-dropdown">
+        <span class="nav-dropdown-trigger">Links</span>
+        <div class="nav-dropdown-menu">
+          <a href="#">GitHub</a>
+          <a href="#">LinkedIn</a>
+          <a href="#">Email</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- Project title — lives in main content, not in the header -->
+  <div class="project-heading">
+    <h1>Project Title</h1>
+    <p>Course Name &middot; Term Year</p>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       1. OVERVIEW — spec list + main visual
+       Left column: either a static image OR a 3D model viewer.
+       Right column: short summary paragraph + spec table.
+       ═══════════════════════════════════════════════════════════ -->
+  <section id="overview">
+    <h2>Overview</h2>
+    <div class="overview-grid">
+
+      <!-- OPTION A: Static image with caption -->
+      <figure class="project-figure">
+        <img src="../images/placeholder.png" alt="Descriptive alt text">
+        <figcaption>Short caption describing this image.</figcaption>
+      </figure>
+
+      <!--
+        OPTION B: 3D Model Viewer (replace the <figure> above)
+        Requires the model-viewer <script> in <head>.
+        Upload a .glb file and point src at it.
+
+        <model-viewer
+          src="../models/your-model.glb"
+          alt="3D model of project"
+          auto-rotate
+          camera-controls
+          style="width: 100%; height: 320px;">
+        </model-viewer>
+      -->
+
+      <!-- Spec list -->
+      <div class="overview-specs">
+        <p>One or two sentences describing the project goal and outcome.</p>
+        <ul class="spec-list">
+          <li><span class="spec-label">Weight</span>     <span class="spec-value">X kg / X lb</span></li>
+          <li><span class="spec-label">Dimensions</span> <span class="spec-value">X × X × X mm</span></li>
+          <li><span class="spec-label">Material</span>   <span class="spec-value">6061 Aluminum</span></li>
+          <li><span class="spec-label">Course</span>     <span class="spec-value">ME 1XX — Course Name</span></li>
+          <li><span class="spec-label">Timeline</span>   <span class="spec-value">Month–Month 20XX</span></li>
+          <li><span class="spec-label">Tools</span>      <span class="spec-value">Fusion 360 · Mill · 3D Printing</span></li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       2. IMAGE CAROUSEL
+       Dot count must equal image count.
+       data-caption drives the text overlay on each slide.
+       ═══════════════════════════════════════════════════════════ -->
+  <section id="design">
+    <h2>Design</h2>
+    <p>Section text goes here. The carousel below cycles through multiple images.</p>
+
+    <div class="carousel-block">
+      <div class="project-image-rotator">
+        <div class="image-viewport">
+          <img src="../images/placeholder.png" alt="Slide one"   data-caption="Slide One Label">
+          <img src="../images/placeholder.png" alt="Slide two"   data-caption="Slide Two Label">
+          <img src="../images/placeholder.png" alt="Slide three" data-caption="Slide Three Label">
+          <!-- Remove .image-caption-overlay to hide text overlays -->
+          <div class="image-caption-overlay"></div>
+          <!-- Remove .carousel-controls to hide arrow/dot UI -->
+          <div class="carousel-controls">
+            <button class="carousel-btn carousel-prev" aria-label="Previous image">&#8249;</button>
+            <div class="carousel-dots">
+              <span class="carousel-dot"></span>
+              <span class="carousel-dot"></span>
+              <span class="carousel-dot"></span>
+            </div>
+            <button class="carousel-btn carousel-next" aria-label="Next image">&#8250;</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       3. SIDE-BY-SIDE BLOCKS
+       .project-block      → image left,  text right
+       .project-block.reverse → text left, image right
+       ═══════════════════════════════════════════════════════════ -->
+  <section id="fabrication">
+    <h2>Fabrication</h2>
+
+    <!-- Image LEFT, text RIGHT -->
+    <div class="project-block">
+      <figure class="project-figure">
+        <img src="../images/placeholder.png" alt="Fabrication step">
+        <figcaption>Caption for this image.</figcaption>
+      </figure>
+      <div class="project-block-text">
+        <p>Describe this step, decision, or finding. Keep one focused idea per block for readability.</p>
+      </div>
+    </div>
+
+    <!-- Image RIGHT, text LEFT -->
+    <div class="project-block reverse">
+      <figure class="project-figure">
+        <img src="../images/placeholder.png" alt="Another view">
+        <figcaption>Caption for the second image.</figcaption>
+      </figure>
+      <div class="project-block-text">
+        <p>Add .reverse to .project-block to move the image to the right column. Alternating helps break up long pages.</p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       4. VIDEO EMBED
+       YouTube / Vimeo: paste the embed URL into <iframe src="...">.
+       Self-hosted: use <video> tag (commented out below).
+       ═══════════════════════════════════════════════════════════ -->
+  <section id="demo">
+    <h2>Demo</h2>
+    <p>Short description of what the video shows.</p>
+
+    <!-- Embedded video (YouTube / Vimeo) -->
+    <div class="video-wrapper">
+      <iframe
+        src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
+        title="Project demo video"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+    <!--
+      Self-hosted video alternative (replace the video-wrapper+iframe above):
+
+      <video controls style="width:100%; border:1px solid var(--border); border-radius:var(--radius);">
+        <source src="../video/demo.mp4" type="video/mp4">
+        Your browser does not support HTML video.
+      </video>
+    -->
+
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       5. ACCORDION — collapsible technical detail sections
+       Each .accordion-item opens/closes on header click.
+       project-block works inside accordion-body for image+text.
+       ═══════════════════════════════════════════════════════════ -->
+  <section id="details">
+    <h2>Technical Details</h2>
+
+    <div class="accordion">
+
+      <div class="accordion-item">
+        <button class="accordion-header">Section One Heading</button>
+        <div class="accordion-body">
+          <section>
+            <h3>Sub-heading</h3>
+            <p>Content for this accordion section. Use project-block for image+text layouts inside here.</p>
+            <div class="project-block">
+              <figure class="project-figure">
+                <img src="../images/placeholder.png" alt="Detail view">
+                <figcaption>Caption for detail image.</figcaption>
+              </figure>
+              <div class="project-block-text">
+                <p>project-block inside an accordion item works exactly like it does outside one.</p>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header">Section Two Heading</button>
+        <div class="accordion-body">
+          <section>
+            <h3>Sub-heading</h3>
+            <p>Second accordion section content. Add as many .accordion-item blocks as needed.</p>
+          </section>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <button class="accordion-header">Section Three Heading</button>
+        <div class="accordion-body">
+          <section>
+            <h3>Sub-heading</h3>
+            <p>Third section. Accordion items are independent — opening one does not close others.</p>
+          </section>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       6. PDF — download link + inline embed
+       Good for reports, papers, or spec sheets.
+       ═══════════════════════════════════════════════════════════ -->
+  <section id="report">
+    <h2>Report</h2>
+    <p>
+      <a href="../your-report.pdf" target="_blank">Download PDF →</a>
+    </p>
+    <iframe src="../your-report.pdf"></iframe>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <a href="#" class="back-to-top">↑ Back to Top</a>
+    <p class="footer-copyright">© 2026 Nathan Lam</p>
+  </div>
+</footer>
+
+<!-- Carousel script — required for any .project-image-rotator on this page -->
+<script>
+  document.querySelectorAll('.project-image-rotator').forEach(rotator => {
+    const images  = rotator.querySelectorAll('.image-viewport img');
+    const dots    = rotator.querySelectorAll('.carousel-dot');
+    const caption = rotator.querySelector('.image-caption-overlay');
+    const prev    = rotator.querySelector('.carousel-prev');
+    const next    = rotator.querySelector('.carousel-next');
+    let current   = 0;
+
+    function goTo(i) {
+      images[current].classList.remove('active');
+      dots[current]?.classList.remove('active');
+      current = (i + images.length) % images.length;
+      images[current].classList.add('active');
+      dots[current]?.classList.add('active');
+      if (caption) caption.textContent = images[current].dataset.caption || '';
+    }
+
+    goTo(0);
+    dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+    prev?.addEventListener('click', () => goTo(current - 1));
+    next?.addEventListener('click', () => goTo(current + 1));
+    setInterval(() => goTo(current + 1), 4000);
+  });
+</script>
+
+<!-- Accordion script — required for any .accordion on this page -->
+<script>
+  document.querySelectorAll('.accordion-header').forEach(header => {
+    header.addEventListener('click', () => {
+      header.closest('.accordion-item').classList.toggle('active');
+    });
+  });
+</script>
+
+<!-- Sticky header script — same on every sub-page -->
+<script>
+  const stickyHeader = document.getElementById('stickyHeader');
+  const hero = document.querySelector('.site-header');
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > hero.offsetHeight) {
+      stickyHeader.classList.add('visible');
+    } else {
+      stickyHeader.classList.remove('visible');
+    }
+  });
+</script>
+
+</body>
+</html>

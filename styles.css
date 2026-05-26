@@ -1,120 +1,148 @@
-/* ---------- Reset & Base ---------- */
-* {
-  box-sizing: border-box;
+/* ============================================================
+   Nathan Lam — Portfolio Styles
+   ============================================================
+   Color system — edit :root variables to change the site's theme:
+     --navy    #0d1b2a  hero header, sticky header, footer, accordion
+     --accent  #f59e0b  amber — primary accent, combat section bar
+     --blue    #2563eb  blue  — secondary accent, academic section bar
+     --bg      #f1f5f9  page background (light blue-gray)
+     --surface #ffffff  card and main content surface
+
+   Table of Contents
+   ┌─ Home page ─────────────────────────────────────────────
+   │   1.  Design tokens        (:root)
+   │   2.  Reset & base
+   │   3.  Hero header          (.hero-header)
+   │   4.  Sticky header        (.sticky-header)
+   │   5.  Dropdown nav         (.nav-dropdown)
+   │   6.  Main container       (main)
+   │   7.  Section headings
+   │   8.  About section
+   │   9.  Skills section       (.skills-grid)
+   │  10.  Project groups       (.project-group)
+   │  11.  Project cards        (.project-card)
+   │  12.  Image carousel       (.project-image-rotator)
+   │  13.  Image placeholder    (.project-image-placeholder)
+   │  14.  Mobile — card stacking  (@media 680px)
+   │  15.  Footer
+   └─ Sub-pages (projects/, resume.html) ───────────────────
+      16.  Site header          (.site-header / .header-inner)
+      17.  Project heading      (.project-heading)
+      18.  Project blocks       (.project-block)
+      19.  Overview grid & spec list
+      20.  Standalone carousel  (.carousel-block)
+      21.  Video embed          (.video-wrapper)
+      22.  PDF embed            (section > iframe)
+      23.  Accordion            (.accordion)
+      24.  3D model viewer      (model-viewer)
+   ============================================================ */
+
+
+/* ── 1. Design Tokens ────────────────────────────────────── */
+:root {
+  --navy:         #0d1b2a;
+  --navy-mid:     #1e3a5f;  /* accordion header hover */
+  --accent:       #f59e0b;
+  --blue:         #2563eb;
+  --bg:           #f1f5f9;
+  --surface:      #ffffff;
+  --surface-alt:  #f8fafc;
+  --text:         #0f172a;
+  --text-mid:     #334155;
+  --text-muted:   #64748b;
+  --border:       #e2e8f0;
+  --border-dark:  #cbd5e1;
+  --shadow:       0 4px 20px rgba(15,23,42,0.08);
+  --shadow-hover: 0 10px 36px rgba(15,23,42,0.14);
+  --radius:       8px;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+
+/* ── 2. Reset & Base ─────────────────────────────────────── */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
   font-family: "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  background-color: #f4f6f8;
-  color: #111827;
-  line-height: 1.6;
+  background-color: var(--bg);
+  /* FLASHY: dot-grid on page background — remove the next line to disable */
+  background-image: radial-gradient(circle, rgba(15,23,42,0.06) 1px, transparent 1px);
+  background-size: 22px 22px;
+  color: var(--text);
+  line-height: 1.65;
 }
 
-/* ---------- Page Title ---------- */
-.page-title {
-  text-align: center;
-  margin-top: 36px;
-  font-size: 2.2rem;
-  font-weight: 600;
+
+/* ── 3. Hero Header ──────────────────────────────────────── */
+/* Scoped to .hero-header (index.html only) so the flex-column centering
+   does not leak onto .site-header on sub-pages. */
+.hero-header {
+  background-color: var(--navy);
+  /* FLASHY: dot-grid pattern — remove the next line to disable */
+  background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+  color: #e2e8f0;
+  padding: 80px 24px 120px;
+  border-bottom: 3px solid var(--accent);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* ---------- Main Page Specific Header ---------- */
-header {
-  background-color: #0b1220;
-  color: #e5e7eb;
-  padding: 64px 24px 100px; /* vertical space for hero header */
-  text-align: center;
-}
-
-header h1 {
+.hero-header h1 {
   margin: 0;
-  font-size: 2.4rem;
-  font-weight: 600;
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #f1f5f9;
+  text-align: center;
+}
+
+.hero-header > p {
+  margin: 10px 0 0;
+  font-size: 1.1rem;
+  color: var(--accent);
+  font-weight: 500;
   letter-spacing: 0.5px;
 }
 
-header p {
-  margin: 6px 0 0;
-  font-size: 1.05rem;
-  color: #9ca3af;
+.hero-header nav {
+  margin-top: 28px;
+  display: flex;
+  gap: 28px;
+  align-items: center;
 }
 
-header nav {
-  margin-top: 20px;
-}
-
-nav a {
-  color: #e5e7eb;
-  margin: 0 16px;
+.hero-header nav a {
+  color: #94a3b8;
   text-decoration: none;
   font-weight: 500;
   font-size: 0.95rem;
+  transition: color 0.2s;
 }
 
-nav a:hover {
-  text-decoration: underline;
-}
+.hero-header nav a:hover { color: var(--accent); }
 
-/* ---------- Site Header / Top Bar ---------- */
-.site-header {
-  background-color: #0b1220;
-  color: #e5e7eb;
-  padding: 24px 32px 70px;
-}
 
-.header-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-.site-name a {
-  color: #e5e7eb;
-  font-weight: 600;
-  font-size: 1.1rem;
-  text-decoration: none;
-}
-
-.site-name a:hover {
-  text-decoration: underline;
-}
-
-.site-nav a {
-  color: #e5e7eb;
-  margin-left: 24px;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.site-nav a:hover {
-  text-decoration: underline;
-}
-
-/* ---------- Sticky Header ---------- */
+/* ── 4. Sticky Header ────────────────────────────────────── */
+/* Slides down from the top once the hero scrolls out of view. */
 .sticky-header {
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 0; left: 0;
   width: 100%;
-  background-color: #0b1220;
-  color: #e5e7eb;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+  background-color: var(--navy);
+  color: #e2e8f0;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
   z-index: 1000;
   transform: translateY(-100%);
   transition: transform 0.3s ease;
+  border-bottom: 2px solid var(--accent);
 }
 
-.sticky-header.visible {
-  transform: translateY(0);
-}
+.sticky-header.visible { transform: translateY(0); }
 
+/* Same max-width/padding as .header-inner so name and nav align identically. */
 .sticky-inner {
   max-width: 1100px;
   margin: 0 auto;
@@ -126,271 +154,755 @@ nav a:hover {
 
 .sticky-name {
   font-size: 1.1rem;
-  font-weight: 600;
-  color: #e5e7eb;
+  font-weight: 700;
+  color: #f1f5f9;
   text-decoration: none;
+  letter-spacing: 0.5px;
 }
 
 .sticky-nav {
   display: flex;
+  align-items: center;
   gap: 20px;
 }
 
 .sticky-nav a {
   font-size: 0.95rem;
   font-weight: 500;
-  color: #e5e7eb;
+  color: #94a3b8;
   text-decoration: none;
+  transition: color 0.2s;
 }
 
-.sticky-nav a:hover {
-  text-decoration: underline;
-}
+.sticky-nav a:hover { color: var(--accent); }
 
-/* ---------- Anchor Offset for Sticky Header ---------- */
-section {
-  scroll-margin-top: 80px; /* prevents sticky header from covering headings */
-  margin-bottom: 90px; /* default section spacing */
-}
 
-/* ---------- Main Container & Sections ---------- */
-main {
-  max-width: 1100px;
-  margin: -40px auto 0;
-  padding: 48px 32px 80px;
-  background-color: #ffffff;
-  border-radius: 6px;
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
-}
-
-section h2 {
-  font-size: 1.7rem;
-  margin-bottom: 28px;
-  padding-bottom: 8px;
-  border-bottom: 2px solid #e5e7eb;
-}
-
-/* ---------- Project Groups ---------- */
-.project-group {
-  margin-bottom: 90px;
-}
-
-.project-group-title {
+/* ── 5. Dropdown Navigation ──────────────────────────────── */
+/* Shared by .sticky-nav (home page) and .site-nav (sub-pages). */
+.nav-dropdown {
   position: relative;
-}
-
-.project-group-title::after {
-  content: "";
-  display: block;
-  width: 60px;
-  height: 2px;
-  background: #9ca3af;
-  margin-top: 10px;
-}
-
-.project-group-subtitle {
-  margin: -0.25rem 0 1.5rem;
-  font-size: 0.95rem;
-  color: #666;
-  font-style: italic;
-}
-
-/* ---------- Project Cards ---------- */
-.project-card {
-  display: grid;
-  grid-template-columns: 240px 1fr;
-  gap: 28px;
-  padding: 28px;
-  border: 1px solid #e5e7eb;
-  background-color: #fbfbfc;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.06);
-  margin-bottom: 32px; /* spacing for grouped cards */
-}
-
-/* shared image defaults for project images */
-.project-card img,
-.project-figure img,
-.project-block img,
-.project-image-rotator img,
-.image-viewport img {
-  width: 100%;
-  height: auto;
-  border: 1px solid #d1d5db;
-  background-color: white;
-  display: block;
-  object-fit: cover;
-  transition: transform 0.25s ease;
-}
-
-.project-card img:hover,
-.image-viewport:hover img {
-  transform: scale(1.06);
-}
-
-.project-image-placeholder {
-  width: 100%;
-  max-width: 420px; /* match your image width */
-  aspect-ratio: 4 / 3; /* keeps consistent height */
   display: flex;
   align-items: center;
-  justify-content: center;
-
-  background-color: #f3f4f6;
-  border: 1px dashed #d1d5db;
-  color: #6b7280;
-  font-size: 0.9rem;
-  text-align: center;
 }
 
-/* ---------- Project Image Rotator ---------- */
-.project-image-rotator {
-  position: relative;
-  width: 100%;
+/* Trigger — works for both <a class="nav-dropdown-trigger"> and <span> variants */
+.nav-dropdown-trigger {
+  color: #94a3b8;
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: default;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
 }
 
-.project-image-rotator img {
+/* Caret — rotates 180° on hover */
+.nav-dropdown-trigger::after {
+  content: ' ▾';
+  font-size: 0.75em;
+  display: inline-block;
+  transition: transform 0.2s;
+}
+
+.nav-dropdown:hover .nav-dropdown-trigger         { color: var(--accent); }
+.nav-dropdown:hover .nav-dropdown-trigger::after  { transform: rotate(180deg); }
+
+/* <a> triggers use pointer; <span> triggers keep default */
+a.nav-dropdown-trigger { cursor: pointer; }
+
+.nav-dropdown-menu {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 100%;
+  right: 0;
+  margin-top: 14px;
+  background: var(--navy);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-top: 2px solid var(--accent);
+  border-radius: 0 0 var(--radius) var(--radius);
+  padding: 6px 0;
+  min-width: 180px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.4);
   opacity: 0;
-  transition: opacity 0.6s ease;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
+  z-index: 1001;
 }
 
-.project-image-rotator img:first-child {
-  position: relative;
+.nav-dropdown:hover .nav-dropdown-menu {
   opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
-.image-viewport {
-  position: relative;
+.nav-dropdown-menu a {
+  display: block;
+  padding: 9px 18px;
+  color: #94a3b8;
+  font-size: 0.88rem;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.15s, background 0.15s;
+}
+
+.nav-dropdown-menu a:hover {
+  color: #f1f5f9;
+  background: rgba(255,255,255,0.07);
+}
+
+
+/* ── 6. Main Content Container ───────────────────────────── */
+/* Negative margin-top overlaps the hero's bottom padding for a "lifted card" look. */
+main {
+  max-width: 1100px;
+  margin: -48px auto 0;
+  padding: 56px 40px 80px;
+  background-color: var(--surface);
+  /* FLASHY: dot-grid on main content — remove the next line to disable */
+  background-image: radial-gradient(circle, rgba(15,23,42,0.055) 1px, transparent 1px);
+  background-size: 24px 24px;
+  border-radius: var(--radius);
+  box-shadow: 0 20px 48px rgba(15,23,42,0.10);
+}
+
+
+/* ── 7. Section Headings ─────────────────────────────────── */
+section {
+  scroll-margin-top: 80px;
+  margin-bottom: 30px;
+}
+
+/* Nested sections (e.g. #combat-robotics inside #projects) don't double-add spacing */
+section section { margin-bottom: 0; }
+
+section h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 32px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--border);
+  letter-spacing: 0.3px;
+}
+
+
+/* ── 8. About Section ────────────────────────────────────── */
+.about-grid {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+.about-text { flex: 1; }
+
+.about-images {
+  flex: 0 0 var(--about-img-w, 300px);
+  height: var(--about-img-h, 290px);
+  border-radius: var(--radius);
   overflow: hidden;
 }
 
-.image-viewport img {
+/* FLASHY: amber accent border-left — remove border-left and padding-left to disable */
+#about p {
+  border-left: 3px solid var(--accent);
+  padding-left: 16px;
+  margin-bottom: 16px;
+  color: var(--text-mid);
+}
+
+
+/* ── 9. Skills Section ───────────────────────────────────── */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+}
+
+.skill-category-title {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin: 0 0 12px 0;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skill-tag {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  background: var(--surface-alt);
+  border: 1px solid var(--border-dark);
+  color: var(--text-mid);
+}
+
+
+/* ── 10. Project Groups ──────────────────────────────────── */
+.project-group { margin-bottom: 64px; }
+
+.project-group-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: 0.3px;
+  position: relative;
+  padding-left: 14px;
+  margin: 0 0 4px 0;
+}
+
+/* Colored accent bar left of the group title — color set per section below */
+.project-group-title::before {
+  content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  transition: opacity 0.6s ease, transform 0.25s ease;
+  left: 0; top: 2px; bottom: 2px;
+  width: 4px;
+  border-radius: 2px;
 }
 
-/* ---------- Image Captions ---------- */
-.project-figure {
-  margin: 0;
+#combat-robotics   .project-group-title::before { background: var(--accent); }
+#academic-projects .project-group-title::before { background: var(--blue); }
+
+.project-group-subtitle {
+  margin: 4px 0 24px 14px;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-style: italic;
 }
 
-.project-figure img {
+
+/* ── 11. Project Cards ───────────────────────────────────── */
+/* Image column (42%) on the left, text column takes remaining width. */
+.project-card {
+  display: flex;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+  box-shadow: var(--shadow);
+  margin-bottom: 28px;
+  overflow: hidden;
+  /* FLASHY: hover lift — remove transition + .project-card:hover rule to disable */
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+/* FLASHY: remove this rule to disable card hover lift */
+.project-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+.project-card-image {
+  flex: 0 0 42%;
+  min-height: 220px;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--surface-alt);
+}
+
+/* Static single image — fills full card height */
+.project-card-image > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   display: block;
+  border: none;
+  /* FLASHY: hover zoom — remove transition + rule below to disable */
+  transition: transform 0.35s ease;
 }
 
-.project-figure figcaption {
-  margin-top: 8px;
-  font-size: 0.85rem;
-  color: #6b7280;          /* subtle gray */
-  text-align: center;
-  line-height: 1.4;
+/* FLASHY: remove this rule to disable image hover zoom */
+.project-card:hover .project-card-image > img { transform: scale(1.04); }
+
+/* Text column */
+.project-info {
+  flex: 1;
+  min-width: 0;
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
 }
 
-
-/* ---------- Project Info ---------- */
 .project-info h3,
 .project-info h4 {
   margin-top: 0;
-}
-
-.project-info h3 {
-  margin-bottom: 10px;
-  font-size: 1.35rem;
-  font-weight: 600;
+  color: var(--navy);
 }
 
 .project-info h4 {
-  margin-bottom: 8px;
-  font-size: 1.3rem;
-  font-weight: 600;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.4;
 }
 
 .project-info p {
   margin-bottom: 10px;
-  color: #374151;
+  color: var(--text-mid);
+  font-size: 0.95rem;
 }
 
 .project-meta {
-  font-size: 0.9rem;
-  color: #6b7280;
+  font-size: 0.88rem;
+  color: var(--text-muted);
   font-weight: 500;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.2px;
 }
 
+.meta-label {
+  font-weight: 700;
+  color: #475569;
+}
+
+/* Link — pushed to the bottom of the card by margin-top: auto */
 .project-info a {
   display: inline-block;
-  margin-top: 12px;
+  margin-top: auto;
+  padding-top: 14px;
   font-weight: 600;
-  color: #1f2937;
+  font-size: 0.9rem;
+  color: var(--blue);
   text-decoration: none;
+  transition: color 0.2s;
 }
 
 .project-info a:hover {
+  color: #1d4ed8;
   text-decoration: underline;
 }
-/* ---------- Detailed Project Blocks ---------- */
+
+/* Coming-soon links: gray, italic, non-interactive */
+.coming-soon-link {
+  color: #94a3b8 !important;
+  cursor: default !important;
+  font-weight: 400 !important;
+  font-style: italic;
+}
+
+.coming-soon-link:hover {
+  color: #94a3b8 !important;
+  text-decoration: none !important;
+}
+
+
+/* ── 12. Image Carousel ──────────────────────────────────── */
+/* Auto-rotation is controlled in the JS (setInterval); see index.html comments.
+   FLASHY: remove setInterval block in JS to disable auto-rotation. */
+.project-image-rotator {
+  width: 100%;
+  height: 100%;
+}
+
+.image-viewport {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #dde3ec;
+}
+
+/* All images are stacked; only .active is visible */
+.image-viewport img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  border: none;
+}
+
+.image-viewport img.active { opacity: 1; }
+
+/* Caption overlay — text is set by JS from each image's data-caption attribute.
+   Remove <div class="image-caption-overlay"> in HTML to hide captions entirely. */
+.image-caption-overlay {
+  position: absolute;
+  bottom: 40px; left: 0; right: 0;
+  padding: 20px 12px 6px;
+  background: linear-gradient(transparent, rgba(13,27,42,0.65));
+  color: #f1f5f9;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  pointer-events: none;
+}
+
+/* Controls bar (arrows + dots) — sits at the very bottom of the image.
+   Remove <div class="carousel-controls"> in HTML to hide controls entirely. */
+.carousel-controls {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 7px 12px;
+  background: rgba(13,27,42,0.52);
+  backdrop-filter: blur(2px);
+}
+
+.carousel-btn {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.75);
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 3px;
+  transition: color 0.2s;
+}
+
+.carousel-btn:hover { color: var(--accent); }
+
+.carousel-dots {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.carousel-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.35);
+  cursor: pointer;
+  transition: background 0.25s, transform 0.2s;
+  display: block;
+}
+
+.carousel-dot.active {
+  background: var(--accent);
+  transform: scale(1.35);
+}
+
+.carousel-dot:hover:not(.active) { background: rgba(255,255,255,0.65); }
+
+
+/* ── 13. Image Placeholder ───────────────────────────────── */
+/* Used when no image is available yet.
+   Replace the entire placeholder <div> with <img> or .project-image-rotator
+   once assets exist. */
+.project-image-placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: linear-gradient(135deg, #f1f5f9, #e8eef5);
+  color: #94a3b8;
+  font-size: 0.85rem;
+  font-style: italic;
+  text-align: center;
+  padding: 16px;
+  border-right: 1px solid var(--border);
+}
+
+.project-image-placeholder svg { opacity: 0.28; }
+
+
+/* ── 14. Mobile — Card Stacking ──────────────────────────── */
+@media (max-width: 680px) {
+  main {
+    padding: 36px 20px 60px;
+    margin-top: -32px;
+  }
+
+  .about-grid { flex-direction: column; }
+  .about-images { flex: none; width: 100%; height: 260px; }
+
+  .project-card { flex-direction: column; }
+
+  .project-card-image {
+    flex: none;
+    width: 100%;
+    min-height: 220px;
+  }
+}
+
+
+/* ── 15. Footer ──────────────────────────────────────────── */
+/* "More to come" note below the project cards */
+.projects-footer {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.projects-footer p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  font-style: italic;
+}
+
+/* Page footer */
+footer {
+  background-color: var(--navy);
+  color: #94a3b8;
+  text-align: center;
+  padding: 48px 24px 36px;
+  border-top: 3px solid var(--accent);
+}
+
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.back-to-top {
+  display: inline-block;
+  color: var(--accent);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: opacity 0.2s;
+}
+
+.back-to-top:hover {
+  opacity: 0.75;
+  text-decoration: none;
+}
+
+.footer-links {
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footer-links a {
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover { color: #e2e8f0; }
+
+.footer-copyright {
+  font-size: 0.82rem;
+  color: #475569;
+  margin: 0;
+}
+
+
+/* ============================================================
+   Sub-page Styles  (projects/, resume.html)
+   ============================================================ */
+
+/* ── 16. Site Header (sub-pages) ─────────────────────────── */
+/* Horizontal nav bar — name left, nav right — used on all sub-pages.
+   display: block is required so .header-inner stretches full width
+   (there is no base header{} rule to worry about since the hero is
+   now scoped to .hero-header). */
+.site-header {
+  background-color: var(--navy);
+  color: #e2e8f0;
+  padding: 0 0 70px;  /* bottom padding creates the overlap with <main> below */
+  display: block;
+}
+
+/* Same max-width and padding as .sticky-inner — keeps name/nav at identical
+   horizontal positions in both the static and sticky headers. */
+.header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 14px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.site-name a {
+  color: #e2e8f0;
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-decoration: none;
+}
+
+.site-name a:hover { text-decoration: underline; }
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.site-nav a {
+  color: #94a3b8;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+}
+
+.site-nav a:hover { color: var(--accent); }
+
+/* Extra specificity needed: .nav-dropdown-menu a and .site-nav a have equal
+   specificity (0,1,1), so whichever is later in the file wins. This rule
+   (0,2,1) ensures dropdown items keep their 0.88rem size inside .site-nav. */
+.site-nav .nav-dropdown-menu a { font-size: 0.88rem; }
+
+
+/* ── 17. Project Heading ─────────────────────────────────── */
+/* Prefer .project-heading at the top of <main> for project sub-pages.
+   .page-title is kept for legacy pages (e.g. ME127.html) that put the
+   title inside .site-header instead. */
+.page-title {
+  text-align: center;
+  margin-top: 36px;
+  font-size: 2.2rem;
+  font-weight: 700;
+}
+
+.project-heading {
+  margin-bottom: 48px;
+  padding-bottom: 24px;
+  border-bottom: 2px solid var(--border);
+}
+
+.project-heading h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin: 0 0 6px 0;
+}
+
+.project-heading p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+
+/* ── 18. Project Blocks (image + text side-by-side) ─────── */
+/* .project-block      → image left,  text right
+   .project-block.reverse → text left, image right */
 .project-block {
   display: grid;
-  grid-template-columns: minmax(0, 420px) 1fr; /* image column capped */
+  grid-template-columns: minmax(0, 420px) 1fr;
   gap: 32px;
   align-items: start;
   margin: 48px 0;
 }
 
-/* Image / figure container */
 .project-block img {
   width: 100%;
   height: auto;
-  max-width: 420px;              /* cohesion across blocks */
-  border: 1px solid #d1d5db;
+  max-width: 420px;
+  border: 1px solid var(--border);
   background-color: white;
 }
 
-/* Text */
-.project-block-text p {
-  margin: 0;
-  color: #374151;
-}
+.project-block-text p { margin: 0; color: var(--text-mid); }
 
-/* ---------- Reverse layout for alternating blocks ---------- */
-.project-block.reverse {
-  grid-template-columns: 1fr minmax(0, 420px);
-}
+.project-block.reverse { grid-template-columns: 1fr minmax(0, 420px); }
 
-/* Move image/figure to the right */
 .project-block.reverse figure,
-.project-block.reverse img {
-  order: 2;
-}
+.project-block.reverse img { order: 2; }
 
-/* ---------- Mobile ---------- */
 @media (max-width: 768px) {
   .project-block,
-  .project-block.reverse {
-    grid-template-columns: 1fr;
-  }
+  .project-block.reverse { grid-template-columns: 1fr; }
 
-  .project-block img {
-    max-width: 100%;
-  }
+  .project-block img { max-width: 100%; }
 
   .project-block.reverse figure,
-  .project-block.reverse img {
-    order: 0;
-  }
+  .project-block.reverse img { order: 0; }
+}
+
+/* Image captions (used inside .project-block with a <figure> wrapper) */
+.project-figure { margin: 0; }
+.project-figure img { display: block; }
+.project-figure figcaption {
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-align: center;
+  line-height: 1.4;
 }
 
 
-/* ---------- Video Embeds ---------- */
+/* ── 19. Overview Grid & Spec List ───────────────────────── */
+/* Two-column layout: large image/model on the left, spec table on the right. */
+.overview-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+@media (max-width: 800px) {
+  .overview-grid { grid-template-columns: 1fr; }
+}
+
+.overview-specs p { margin-top: 0; margin-bottom: 16px; color: var(--text-mid); }
+
+.spec-list { list-style: none; padding: 0; margin: 0; }
+
+.spec-list li {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 16px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.spec-list li:last-child { border-bottom: none; }
+.spec-label { font-weight: 600; color: var(--text); }
+.spec-value { color: var(--text-mid); }
+
+@media (max-width: 600px) {
+  .spec-list li { grid-template-columns: 1fr; gap: 4px; }
+}
+
+
+/* ── 20. Standalone Carousel Block ──────────────────────── */
+/* Provides explicit height so .project-image-rotator has a sizing context on
+   sub-pages. (On the home page the parent .project-card-image provides this.) */
+.carousel-block {
+  height: 340px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin: 24px 0;
+}
+
+
+/* ── 21. Video Embed ─────────────────────────────────────── */
+/* Maintains 16:9 aspect ratio at any width. */
 .video-wrapper {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
-  border: 1px solid #d1d5db;
+  border: 1px solid var(--border);
   background-color: black;
 }
 
@@ -402,52 +914,34 @@ section h2 {
   border: none;
 }
 
-/* ---------- Resume embed ---------- */
-iframe {
+
+/* ── 22. PDF / Resume Embed ──────────────────────────────── */
+/* Targets <iframe> that is a direct child of <section> — the pattern used for
+   PDF and resume embeds. Video iframes sit inside .video-wrapper (a div) and
+   are unaffected. */
+section > iframe {
   width: 100%;
   height: 900px;
-  border: 1px solid #d1d5db;
+  border: 1px solid var(--border);
 }
 
-/* ---------- Footer ---------- */
-.projects-footer {
-  margin-top: 60px;
-  padding-top: 30px;
-  border-top: 1px solid #e5e7eb;
-  text-align: center;
-}
 
-.projects-footer p {
-  font-size: 0.95rem;
-  color: #6b7280;
-  letter-spacing: 0.04em;
-}
-
-footer {
-  text-align: center;
-  padding: 28px;
-  font-size: 0.85rem;
-  color: #6b7280;
-}
-
-/* ---------- Accordion ---------- */
-.accordion {
-  margin-top: 24px;
-}
+/* ── 23. Accordion ───────────────────────────────────────── */
+.accordion { margin-top: 24px; }
 
 .accordion-item {
   margin-bottom: 16px;
-  border-radius: 6px;
+  border-radius: var(--radius);
   overflow: hidden;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.06);
-  background-color: #fbfbfc;
-  border: 1px solid #e5e7eb;
+  box-shadow: var(--shadow);
+  background-color: var(--surface);
+  border: 1px solid var(--border);
 }
 
 .accordion-header {
   width: 100%;
-  background: #0b1220;
-  color: #e5e7eb;
+  background: var(--navy);
+  color: #e2e8f0;
   padding: 16px 24px;
   font-size: 1.2rem;
   font-weight: 600;
@@ -456,128 +950,47 @@ footer {
   cursor: pointer;
   outline: none;
   position: relative;
-  transition: background 0.3s ease;
-  border-radius: 6px 6px 0 0;
+  transition: background 0.3s;
+  border-radius: var(--radius) var(--radius) 0 0;
 }
 
-.accordion-header:hover {
-  background: #1f2937;
-}
+.accordion-header:hover { background: var(--navy-mid); }
 
-/* animated underline */
+/* Animated amber underline sweeps in when the item is open */
 .accordion-header::after {
-  content: "";
+  content: '';
   display: block;
-  height: 4px;
+  height: 3px;
   width: 0;
-  background: #769ee2;
+  background: var(--accent);
   position: absolute;
-  bottom: 0;
-  left: 0;
-  transition: width 0.3s ease;
+  bottom: 0; left: 0;
+  transition: width 0.3s;
 }
 
-.accordion-item.active .accordion-header::after {
-  width: 100%;
-}
+.accordion-item.active .accordion-header::after { width: 100%; }
 
-/* ---------- Accordion Body ---------- */
 .accordion-body {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.4s ease;
-  background-color: #ffffff;
+  background-color: var(--surface);
   padding: 0 24px;
 }
 
-/* 🔧 FIX: neutralize global section margins inside accordion */
-.accordion-body section {
-  margin: 0;                 /* overrides section { margin-bottom: 90px } */
-  padding: 24px 0;
-  border-bottom: 1px solid #e5e7eb;
-}
+.accordion-body section            { margin: 0; padding: 24px 0; border-bottom: 1px solid var(--border); }
+.accordion-body h3                 { margin-top: 0; }
+.accordion-body .project-block     { margin: 24px 0; }
+.accordion-body img                { display: block; }
+.accordion-body section:last-child { border-bottom: none; }
 
-/* Tighter, consistent section headings */
-.accordion-body h3 {
-  margin-top: 0;
-}
+.accordion-item.active .accordion-body { max-height: 2000px; }
 
-/* Optional: control spacing of project blocks */
-.accordion-body .project-block {
-  margin: 24px 0;
-}
 
-.accordion-body img {
-  display: block;
-}
-
-.accordion-body section:last-child {
-  border-bottom: none;
-}
-
-.accordion-item.active .accordion-body {
-  max-height: 2000px;
-}
-
-/* ---------- Overview Layout ---------- */
-.overview-grid {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 32px;
-  align-items: start;
-}
-
-/* Stack on small screens */
-@media (max-width: 800px) {
-  .overview-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* ---------- Model Viewer Styling ---------- */
+/* ── 24. 3D Model Viewer ─────────────────────────────────── */
+/* Requires <script type="module" src="...model-viewer.min.js"> in <head>.
+   Set width and height inline on the element or via a parent wrapper. */
 model-viewer {
-  background-color: #0b1220; /* light gray CAD background */
-  outline: 1px solid #d1d5db;
-}
-
-/* ---------- Overview Specs ---------- */
-.overview-specs p {
-  margin-top: 0;
-  margin-bottom: 16px;
-  color: #374151;
-}
-
-.spec-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.spec-list li {
-  display: grid;
-  grid-template-columns: 160px 1fr;
-  gap: 16px;
-  padding: 8px 0;
-  border-bottom: 1px solid #e5e7eb;
-}
-
-.spec-list li:last-child {
-  border-bottom: none;
-}
-
-.spec-label {
-  font-weight: 600;
-  color: #111827;
-}
-
-.spec-value {
-  color: #374151;
-}
-
-/* Mobile: stack labels above values */
-@media (max-width: 600px) {
-  .spec-list li {
-    grid-template-columns: 1fr;
-    gap: 4px;
-  }
+  background-color: var(--navy);
+  outline: 1px solid var(--border);
 }

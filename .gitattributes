@@ -1,1 +1,12 @@
+# Normalize all text files to LF in the repo; suppress CRLF warnings on Windows
+* text=auto eol=lf
+
+# Binary files — never touch line endings
+*.png  binary
+*.jpg  binary
+*.JPG  binary
+*.jpeg binary
+*.gif  binary
+*.ico  binary
+*.pdf  binary
 *.glb filter=lfs diff=lfs merge=lfs -text
