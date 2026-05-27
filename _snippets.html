@@ -8,9 +8,10 @@
   2.  Project card — single static image
   3.  Project card — image placeholder (no image yet)
   4.  Link variants — coming-soon vs. real
-  5.  Skill category block
-  6.  Project group shell (section wrapper)
-  7.  About section grid (text + image carousel)
+  5.  Image adjustments — object-position, padding, contain
+  6.  Skill category block
+  7.  Project group shell (section wrapper)
+  8.  About section grid (text + image carousel)
   ─────────────────────────────────────────────────────────────────
 -->
 
@@ -147,7 +148,36 @@
 
 
 <!-- ═══════════════════════════════════════════════════════════
-     5. SKILL CATEGORY BLOCK
+     5. IMAGE ADJUSTMENTS — object-position, padding, contain
+     All applied inline on the <img> tag — no CSS changes needed.
+     These can be combined freely on the same image.
+
+     A) REPOSITION THE CROP (object-fit: cover stays, shifts where)
+        Use when the subject is off-centre in the frame.
+        Values: "center center" (default), "center top", "center 40%", "left center", etc.
+
+     B) ADD WHITE PADDING (switches to contain — shows full image, no cropping)
+        Use when content near the image edges is being cut off.
+        Adjust the padding value; asymmetric values (e.g. "8px 20px") work too.
+
+     C) BOTH TOGETHER — shift the contained image within its padded box.
+     ═══════════════════════════════════════════════════════════ -->
+
+<!-- A) Reposition crop only -->
+<img src="images/main_page/FILENAME.png" alt="..." data-caption="..."
+     style="object-position: center 40%;">
+
+<!-- B) White padding — show full image without cropping -->
+<img src="images/main_page/FILENAME.png" alt="..." data-caption="..."
+     style="object-fit: contain; padding: 12px; background: white;">
+
+<!-- C) White padding + repositioned within the padded area -->
+<img src="images/main_page/FILENAME.png" alt="..." data-caption="..."
+     style="object-fit: contain; padding: 12px; background: white; object-position: center top;">
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     6. SKILL CATEGORY BLOCK
      One block per category inside .skills-grid.
      Add or remove <span class="skill-tag"> lines freely.
      Use &amp; in place of & in tag text (e.g. GD&amp;T).
@@ -164,7 +194,7 @@
 
 
 <!-- ═══════════════════════════════════════════════════════════
-     6. PROJECT GROUP SHELL
+     7. PROJECT GROUP SHELL
      Wraps a set of related project cards under one heading.
      The id on <section> drives the nav dropdown links and the
      colored accent bar on the group title:
@@ -186,7 +216,7 @@
 
 
 <!-- ═══════════════════════════════════════════════════════════
-     7. ABOUT SECTION GRID
+     8. ABOUT SECTION GRID
      Two-column layout: text left, image carousel right.
      Resize the image column by editing --about-img-w / --about-img-h
      inline on .about-images — no CSS file change needed.
