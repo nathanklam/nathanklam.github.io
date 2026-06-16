@@ -26,7 +26,7 @@
    │  14.  Mobile — card stacking  (@media 680px)
    │  15.  Footer
    └─ Sub-pages (projects/, resume.html) ───────────────────
-      16.  Site header          (.site-header / .header-inner)
+      16.  Site header          (.site-header)
       17.  Project heading      (.project-heading)
       18.  Project blocks       (.project-block)
       19.  Overview grid & spec list
@@ -64,11 +64,15 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   font-family: "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   background-color: var(--bg);
-  /* FLASHY: dot-grid on page background — remove the next line to disable */
+  /* FLASHY: dot-grid on page background — remove the next two lines to disable */
   background-image: radial-gradient(circle, rgba(15,23,42,0.06) 1px, transparent 1px);
-  background-size: 22px 22px;
+  background-size: 24px 24px;
+  background-attachment: fixed;
   color: var(--text);
   line-height: 1.65;
 }
@@ -79,9 +83,10 @@ body {
    does not leak onto .site-header on sub-pages. */
 .hero-header {
   background-color: var(--navy);
-  /* FLASHY: dot-grid pattern — remove the next line to disable */
+  /* FLASHY: dot-grid pattern — remove the next two lines to disable */
   background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
-  background-size: 28px 28px;
+  background-size: 24px 24px;
+  background-attachment: fixed;
   color: #e2e8f0;
   padding: 80px 24px 120px;
   border-bottom: 3px solid var(--accent);
@@ -114,15 +119,6 @@ body {
   align-items: center;
 }
 
-.hero-header nav a {
-  color: #94a3b8;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 0.95rem;
-  transition: color 0.2s;
-}
-
-.hero-header nav a:hover { color: var(--accent); }
 
 
 /* ── 4. Sticky Header ────────────────────────────────────── */
@@ -142,8 +138,10 @@ body {
 
 .sticky-header.visible { transform: translateY(0); }
 
-/* Same max-width/padding as .header-inner so name and nav align identically. */
-.sticky-inner {
+/* Inner container shared with .header-inner (sub-page site-header) —
+   keeps name/nav at identical horizontal positions in both headers. */
+.sticky-inner,
+.header-inner {
   max-width: 1100px;
   margin: 0 auto;
   padding: 14px 32px;
@@ -160,13 +158,19 @@ body {
   letter-spacing: 0.5px;
 }
 
-.sticky-nav {
+.sticky-nav,
+.site-nav {
   display: flex;
   align-items: center;
   gap: 20px;
 }
 
-.sticky-nav a {
+/* Shared nav link style across all three header contexts (hero, sticky, sub-page).
+   Placed before section 5's .nav-dropdown-menu a rule so dropdown items correctly
+   inherit the smaller 0.88rem size without needing an extra specificity override. */
+.hero-header nav a,
+.sticky-nav a,
+.site-nav a {
   font-size: 0.95rem;
   font-weight: 500;
   color: #94a3b8;
@@ -174,7 +178,9 @@ body {
   transition: color 0.2s;
 }
 
-.sticky-nav a:hover { color: var(--accent); }
+.hero-header nav a:hover,
+.sticky-nav a:hover,
+.site-nav a:hover { color: var(--accent); }
 
 
 /* ── 5. Dropdown Navigation ──────────────────────────────── */
@@ -260,13 +266,16 @@ a.nav-dropdown-trigger { cursor: pointer; }
 /* ── 6. Main Content Container ───────────────────────────── */
 /* Negative margin-top overlaps the hero's bottom padding for a "lifted card" look. */
 main {
+  flex: 1;
+  width: 100%;
   max-width: 1100px;
   margin: -48px auto 0;
   padding: 56px 40px 80px;
   background-color: var(--surface);
-  /* FLASHY: dot-grid on main content — remove the next line to disable */
+  /* FLASHY: dot-grid on main content — remove the next two lines to disable */
   background-image: radial-gradient(circle, rgba(15,23,42,0.055) 1px, transparent 1px);
   background-size: 24px 24px;
+  background-attachment: fixed;
   border-radius: var(--radius);
   box-shadow: 0 20px 48px rgba(15,23,42,0.10);
 }
@@ -720,25 +729,14 @@ footer {
 
 /* ── 16. Site Header (sub-pages) ─────────────────────────── */
 /* Horizontal nav bar — name left, nav right — used on all sub-pages.
-   display: block is required so .header-inner stretches full width
-   (there is no base header{} rule to worry about since the hero is
-   now scoped to .hero-header). */
+   display: block is required so .header-inner stretches full width.
+   .header-inner, .site-nav, and nav link styles are shared with the sticky
+   header and defined in section 4. */
 .site-header {
   background-color: var(--navy);
   color: #e2e8f0;
-  padding: 0 0 70px;  /* bottom padding creates the overlap with <main> below */
+  padding: 0 0 50px;  /* bottom padding creates the overlap with <main> below */
   display: block;
-}
-
-/* Same max-width and padding as .sticky-inner — keeps name/nav at identical
-   horizontal positions in both the static and sticky headers. */
-.header-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 14px 32px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .site-name a {
@@ -750,39 +748,8 @@ footer {
 
 .site-name a:hover { text-decoration: underline; }
 
-.site-nav {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.site-nav a {
-  color: #94a3b8;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 0.95rem;
-  transition: color 0.2s;
-}
-
-.site-nav a:hover { color: var(--accent); }
-
-/* Extra specificity needed: .nav-dropdown-menu a and .site-nav a have equal
-   specificity (0,1,1), so whichever is later in the file wins. This rule
-   (0,2,1) ensures dropdown items keep their 0.88rem size inside .site-nav. */
-.site-nav .nav-dropdown-menu a { font-size: 0.88rem; }
-
 
 /* ── 17. Project Heading ─────────────────────────────────── */
-/* Prefer .project-heading at the top of <main> for project sub-pages.
-   .page-title is kept for legacy pages (e.g. ME127.html) that put the
-   title inside .site-header instead. */
-.page-title {
-  text-align: center;
-  margin-top: 36px;
-  font-size: 2.2rem;
-  font-weight: 700;
-}
-
 .project-heading {
   margin-bottom: 48px;
   padding-bottom: 24px;
@@ -800,6 +767,38 @@ footer {
   color: var(--text-muted);
   font-size: 0.95rem;
   margin: 0;
+}
+
+
+/* ── 17b. Section Intro Grid (text left, carousel right) ─── */
+.section-intro-grid {
+  display: flex;
+  gap: 40px;
+  align-items: stretch;
+  margin-bottom: 40px;
+}
+
+.section-intro-grid .section-intro {
+  flex: 1;
+  margin: 0;
+}
+
+.section-intro-carousel {
+  flex: 1;
+  min-height: 300px;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.section-intro-carousel .project-image-rotator,
+.section-intro-carousel .image-viewport {
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 680px) {
+  .section-intro-grid { flex-direction: column; }
+  .section-intro-carousel { min-height: 240px; }
 }
 
 
@@ -925,6 +924,8 @@ section > iframe {
   border: 1px solid var(--border);
 }
 
+/* PDF-specific pages: narrower side padding so the iframe gets more horizontal
+   room while still having a small gutter around the viewer. */
 
 /* ── 23. Accordion ───────────────────────────────────────── */
 .accordion { margin-top: 24px; }
@@ -979,12 +980,13 @@ section > iframe {
 }
 
 .accordion-body section            { margin: 0; padding: 24px 0; border-bottom: 1px solid var(--border); }
-.accordion-body h3                 { margin-top: 0; }
+.accordion-body h3                 { margin-top: 0; margin-bottom: 4px; }
+.version-subtitle                  { margin: 0 0 20px; color: var(--text-muted); font-size: 0.9rem; font-style: italic; }
 .accordion-body .project-block     { margin: 24px 0; }
 .accordion-body img                { display: block; }
 .accordion-body section:last-child { border-bottom: none; }
 
-.accordion-item.active .accordion-body { max-height: 2000px; }
+.accordion-item.active .accordion-body { max-height: 5000px; }
 
 
 /* ── 24. 3D Model Viewer ─────────────────────────────────── */

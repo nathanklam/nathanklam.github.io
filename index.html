@@ -24,7 +24,6 @@
       <div class="nav-dropdown">
         <span class="nav-dropdown-trigger">Links</span>
         <div class="nav-dropdown-menu">
-          <!-- <a href="#">GitHub</a> -->
           <a href="https://www.linkedin.com/in/nathanklam/">LinkedIn</a>
           <a href="mailto:nathan_lam@berkeley.edu">Email</a>
         </div>
@@ -89,8 +88,8 @@
         <h4 class="skill-category-title">CAD &amp; Design</h4>
         <div class="skill-tags">
           <span class="skill-tag">Fusion 360</span>
-          <span class="skill-tag">SolidWorks</span>
           <span class="skill-tag">Onshape</span>
+          <span class="skill-tag">SolidWorks</span>
         </div>
       </div>
 
@@ -100,7 +99,7 @@
           <span class="skill-tag">Mill</span>
           <span class="skill-tag">Lathe</span>
           <span class="skill-tag">Drill Press</span>
-          <span class="skill-tag">3D Printing (FDM)</span>
+          <span class="skill-tag">3D Printing</span>
           <span class="skill-tag">Soldering</span>
           <span class="skill-tag">GD&amp;T</span>
         </div>
@@ -154,7 +153,7 @@
               <span class="meta-label">Tools/Skills:</span> Fusion 360 · Mill · Lathe · BOM Management · Geometric Dimensioning &amp; Tolerancing
             </p>
             <a class="coming-soon-link">View Robot (Coming Soon) →</a>
-            <!--<a href="projects/master_oogway.html">View project →</a>-->
+            <!-- <a href="projects/master_oogway.html">View Robot →</a> -->
           </div>
         </div>
 
@@ -163,13 +162,15 @@
           <div class="project-card-image">
             <div class="project-image-rotator">
               <div class="image-viewport">
-                <img src="images/main_page/skadoosh_v2.jpg"     alt="Skadoosh 1lb robot"       data-caption="Skadoosh v2 (Spring 2026–)">
+                <img src="images/main_page/skadoosh_v3.png"     alt="Skadoosh 1lb robot"       data-caption="Skadoosh v3 (Summer 2026)"  style="object-fit: contain; padding: 12px; background: white;">>
+                <img src="images/main_page/skadoosh_v2.jpg"     alt="Skadoosh 1lb robot"       data-caption="Skadoosh v2 (Spring 2026)">
                 <img src="images/main_page/skadoosh.jpg"        alt="Skadoosh 1lb robot"       data-caption="Skadoosh v1 (Winter 2026)"  style="object-fit: contain; padding: 12px; background: white;">>
                 <img src="images/main_page/eggsterminator.png"  alt="Eggsterminator 1lb robot" data-caption="Eggsterminator (Fall 2024)" style="object-fit: contain; padding: 12px; background: white;">
                 <div class="image-caption-overlay"></div>
                 <div class="carousel-controls">
                   <button class="carousel-btn carousel-prev" aria-label="Previous image">&#8249;</button>
                   <div class="carousel-dots">
+                    <span class="carousel-dot"></span>
                     <span class="carousel-dot"></span>
                     <span class="carousel-dot"></span>
                     <span class="carousel-dot"></span>
@@ -190,7 +191,7 @@
               <span class="meta-label">Tools/Skills:</span> Fusion 360 · 3D Printing · Soldering · Geometric Dimensioning &amp; Tolerancing
             </p>
             <a class="coming-soon-link">View Robots (Coming Soon) →</a>
-            <!-- <a href="projects/PLANTs.html">View projects →</a> -->
+            <!-- <a href="projects/PLANTs.html">View Robots →</a> -->
           </div>
         </div>
 
@@ -288,7 +289,7 @@
             <p class="project-meta">
               <span class="meta-label">Tools/Skills:</span> ROS2 · YOLO · Python · HTML · CSS
             </p>
-            <a href="https://nchaniel.github.io/106a-Report/project-report-site/index.html">Link to Project Website →</a>
+            <a href="https://nchaniel.github.io/106a-Report/">Link to Project Website →</a>
           </div>
         </div>
 
@@ -389,7 +390,6 @@
     <a href="#" class="back-to-top">↑ Back to Top</a>
     <!-- FOOTER CONTACT LINKS — replace # with the same URLs as the hero contact row -->
     <div class="footer-links">
-      <!-- <a href="#">GitHub</a> -->
       <a href="https://www.linkedin.com/in/nathanklam/">LinkedIn</a>
       <a href="mailto:nathan_lam@berkeley.edu">Email</a>
     </div>
@@ -423,12 +423,18 @@
 
     goTo(0);
 
-    dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
-    prev?.addEventListener('click', () => goTo(current - 1));
-    next?.addEventListener('click', () => goTo(current + 1));
+    // FLASHY: remove this block (resetTimer + setInterval call below) to stop auto-rotation
+    let timer;
+    function resetTimer() {
+      clearInterval(timer);
+      timer = setInterval(() => goTo(current + 1), 4000);
+    }
 
-    // FLASHY: remove this setInterval block to stop auto-rotation
-    setInterval(() => goTo(current + 1), 4000);
+    dots.forEach((dot, i) => dot.addEventListener('click', () => { goTo(i); resetTimer(); }));
+    prev?.addEventListener('click', () => { goTo(current - 1); resetTimer(); });
+    next?.addEventListener('click', () => { goTo(current + 1); resetTimer(); });
+
+    resetTimer();
   });
 </script>
 

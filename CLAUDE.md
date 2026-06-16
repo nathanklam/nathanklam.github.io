@@ -58,7 +58,7 @@ Home page:
   15. Footer
 
 Sub-pages (projects/, resume.html):
-  16. Site header          (.site-header / .header-inner)
+  16. Site header          (.site-header)
   17. Project heading      (.project-heading)
   18. Project blocks       (.project-block)
   19. Overview grid & spec list
@@ -124,16 +124,34 @@ The JS at the bottom of index.html (and each sub-page) auto-initializes all
 On sub-pages, wrap the rotator in `<div class="carousel-block">` to give it
 an explicit height (the home page card layout provides this automatically).
 
+## Accordion max-height
+
+The accordion open state uses `max-height: 5000px` in styles.css section 23 as a CSS animation workaround (you can't transition to `height: auto`). If an accordion item's content is unusually tall and gets clipped at the bottom, increase this value.
+
+## Video embed with caption
+
+To add a caption below a video, wrap `.video-wrapper` in `<figure class="project-figure">`:
+
+```html
+<figure class="project-figure">
+  <div class="video-wrapper">
+    <iframe src="https://www.youtube.com/embed/YOUR_ID" title="..." allowfullscreen></iframe>
+  </div>
+  <figcaption>Caption text here.</figcaption>
+</figure>
+```
+
+**Do not put a video inside `.project-block` alongside tall text.** The two-column grid constrains the text column to the video's height — any overflow is hidden. Instead, put the `<figure>` above and the text paragraphs as regular `<p>` elements below it in the same `<section>`.
+
 ## Sub-page conventions
 
 - Copy `projects/_template.html` as a starting point for new project pages.
 - Sub-pages use `<header class="site-header">` + `.header-inner` for the top bar.
 - Put the project title in `<div class="project-heading">` at the top of `<main>`,
   not inside the header.
-- The `.page-title` class is legacy (used only by ME127.html); prefer `.project-heading`.
 - PDF embeds use `<iframe>` as a direct child of `<section>` — the CSS rule
   `section > iframe { height: 900px }` targets exactly this pattern.
-- Video embeds go inside `<div class="video-wrapper">` to maintain 16:9 aspect ratio.
+- Video embeds go inside `<div class="video-wrapper">` to maintain 16:9 aspect ratio. Works with YouTube (`https://www.youtube.com/embed/ID`), Google Drive (`https://drive.google.com/file/d/FILE_ID/preview`, file must be shared "Anyone with the link can view"), or any other iframe-embeddable source.
 
 ## About section layout
 

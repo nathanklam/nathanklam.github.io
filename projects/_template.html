@@ -32,9 +32,8 @@
       <div class="nav-dropdown">
         <span class="nav-dropdown-trigger">Links</span>
         <div class="nav-dropdown-menu">
-          <a href="#">GitHub</a>
-          <a href="#">LinkedIn</a>
-          <a href="#">Email</a>
+          <a href="https://www.linkedin.com/in/nathanklam/">LinkedIn</a>
+          <a href="mailto:nathan_lam@berkeley.edu">Email</a>
         </div>
       </div>
     </nav>
@@ -63,9 +62,8 @@
       <div class="nav-dropdown">
         <span class="nav-dropdown-trigger">Links</span>
         <div class="nav-dropdown-menu">
-          <a href="#">GitHub</a>
-          <a href="#">LinkedIn</a>
-          <a href="#">Email</a>
+          <a href="https://www.linkedin.com/in/nathanklam/">LinkedIn</a>
+          <a href="mailto:nathan_lam@berkeley.edu">Email</a>
         </div>
       </div>
     </nav>
@@ -198,7 +196,7 @@
     <h2>Demo</h2>
     <p>Short description of what the video shows.</p>
 
-    <!-- Embedded video (YouTube / Vimeo) -->
+    <!-- Embedded video (YouTube) — no caption -->
     <div class="video-wrapper">
       <iframe
         src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
@@ -207,6 +205,48 @@
         allowfullscreen>
       </iframe>
     </div>
+
+    <!--
+      Google Drive video alternative (replace the src above):
+      File must be shared as "Anyone with the link can view" in Drive.
+      Copy the file ID from the Drive share URL:
+        https://drive.google.com/file/d/FILE_ID/view  →  use FILE_ID below
+
+      <div class="video-wrapper">
+        <iframe
+          src="https://drive.google.com/file/d/FILE_ID/preview"
+          title="Project demo video"
+          allow="autoplay"
+          allowfullscreen>
+        </iframe>
+      </div>
+    -->
+
+    <!--
+      With caption — wrap in <figure> instead:
+
+      YouTube:
+      <figure class="project-figure">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
+                  title="Project demo video" allowfullscreen></iframe>
+        </div>
+        <figcaption>Caption text here.</figcaption>
+      </figure>
+
+      Google Drive:
+      <figure class="project-figure">
+        <div class="video-wrapper">
+          <iframe src="https://drive.google.com/file/d/FILE_ID/preview"
+                  title="Project demo video" allow="autoplay" allowfullscreen></iframe>
+        </div>
+        <figcaption>Caption text here.</figcaption>
+      </figure>
+
+      NOTE: Do not put a video inside .project-block alongside tall text.
+      The grid constrains the text column to the video's height, clipping overflow.
+      Use the <figure> above and put analysis text as plain <p> elements below it.
+    -->
 
     <!--
       Self-hosted video alternative (replace the video-wrapper+iframe above):
@@ -312,10 +352,18 @@
     }
 
     goTo(0);
-    dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
-    prev?.addEventListener('click', () => goTo(current - 1));
-    next?.addEventListener('click', () => goTo(current + 1));
-    setInterval(() => goTo(current + 1), 4000);
+    // FLASHY: remove this block (resetTimer + setInterval call below) to stop auto-rotation
+    let timer;
+    function resetTimer() {
+      clearInterval(timer);
+      timer = setInterval(() => goTo(current + 1), 4000);
+    }
+
+    dots.forEach((dot, i) => dot.addEventListener('click', () => { goTo(i); resetTimer(); }));
+    prev?.addEventListener('click', () => { goTo(current - 1); resetTimer(); });
+    next?.addEventListener('click', () => { goTo(current + 1); resetTimer(); });
+
+    resetTimer();
   });
 </script>
 
