@@ -1,800 +1,500 @@
 /* ============================================================
    Nathan Lam — Portfolio Styles
    ============================================================
+   "Editorial Rows" design (ported from concept-bento/).
    Color system — edit :root variables to change the site's theme:
-     --navy    #0d1b2a  hero header, sticky header, footer, accordion
-     --accent  #f59e0b  amber — primary accent, combat section bar
-     --blue    #2563eb  blue  — secondary accent, academic section bar
-     --bg      #f1f5f9  page background (light blue-gray)
-     --surface #ffffff  card and main content surface
+     --accent      #285f82  primary accent — links, chips, navbar highlights
+     --navbar-bg   #161b20  sticky navbar, accordion headers, model-viewer bg
+     --bg          #eef1f4  page background
+     --surface     #ffffff  card/accordion surface
+     --surface-2   #e1e7ec  image placeholder / carousel background
 
    Table of Contents
-   ┌─ Home page ─────────────────────────────────────────────
+   ┌─ Shared ────────────────────────────────────────────────
    │   1.  Design tokens        (:root)
    │   2.  Reset & base
-   │   3.  Hero header          (.hero-header)
-   │   4.  Sticky header        (.sticky-header)
-   │   5.  Dropdown nav         (.nav-dropdown)
-   │   6.  Main container       (main)
-   │   7.  Section headings
-   │   8.  About section
-   │   9.  Skills section       (.skills-grid)
-   │  10.  Project groups       (.project-group)
-   │  11.  Project cards        (.project-card)
-   │  12.  Image carousel       (.project-image-rotator)
-   │  13.  Image placeholder    (.project-image-placeholder)
-   │  14.  Mobile — card stacking  (@media 680px)
-   │  15.  Footer
+   │   3.  Navbar               (.navbar)
+   │   4.  Page wrapper         (.page)
+   │   5.  Carousel             (.project-image-rotator)
+   │   6.  Footer
+   ├─ Home page (index.html) ───────────────────────────────
+   │   7.  Hero                 (.hero)
+   │   8.  Section heading      (.section-heading)
+   │   9.  About row            (.about-row)
+   │  10.  Skills list          (.skills-list)
+   │  11.  Project groups/rows  (.project-group / .project-row)
+   │  12.  Archive list         (.archive-list)
+   │  13.  Responsive — home
    └─ Sub-pages (projects/, resume.html) ───────────────────
-      16.  Site header          (.site-header)
-      17.  Project heading      (.project-heading)
-      18.  Project blocks       (.project-block)
-      19.  Overview grid & spec list
-      20.  Standalone carousel  (.carousel-block)
-      21.  Video embed          (.video-wrapper)
-      22.  PDF embed            (section > iframe)
-      23.  Accordion            (.accordion)
-      24.  3D model viewer      (model-viewer)
+      14.  Sub-page heading     (.project-heading)
+      14b. Project pager        (.project-pager)
+      15.  Sub-page section headings
+      16.  Overview grid & spec list
+      17.  Project blocks       (.project-block)
+      18.  Image captions       (.project-figure)
+      19.  Standalone carousel  (.carousel-block)
+      20.  Video embed          (.video-wrapper)
+      21.  PDF embed            (section > iframe)
+      22.  Accordion            (.accordion)
+      23.  3D model viewer      (model-viewer)
+      24.  Responsive — sub-pages
    ============================================================ */
 
 
-/* ── 1. Design Tokens ────────────────────────────────────── */
+/* ── 1. Design Tokens ─────────────────────────────────────── */
 :root {
-  --navy:         #0d1b2a;
-  --navy-mid:     #1e3a5f;  /* accordion header hover */
-  --accent:       #f59e0b;
-  --blue:         #2563eb;
-  --bg:           #f1f5f9;
-  --surface:      #ffffff;
-  --surface-alt:  #f8fafc;
-  --text:         #0f172a;
-  --text-mid:     #334155;
-  --text-muted:   #64748b;
-  --border:       #e2e8f0;
-  --border-dark:  #cbd5e1;
-  --shadow:       0 4px 20px rgba(15,23,42,0.08);
-  --shadow-hover: 0 10px 36px rgba(15,23,42,0.14);
-  --radius:       8px;
+  --bg:            #eef1f4;
+  --surface:       #ffffff;
+  --surface-2:     #e1e7ec;
+  --ink:           #161b20;
+  --body-text:     #343c43;
+  --muted:         #66707a;
+  --accent:        #285f82;
+  --accent-soft:   #dbe7ee;
+  --accent-text:   #1c4a64;
+  --accent-light:  #6fa8c9;
+  --border:        #d5dce2;
+  --navbar-bg:     #161b20;
+  --navbar-mid:    #262e36;
+  --navbar-text:   #aeb8c2;
+  --shadow:        0 10px 30px rgba(22, 27, 32, 0.10);
+  --sans:  -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --radius: 6px;
 }
 
 
-/* ── 2. Reset & Base ─────────────────────────────────────── */
+/* ── 2. Reset & Base ──────────────────────────────────────── */
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-
 body {
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  font-family: "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  background-color: var(--bg);
-  /* FLASHY: dot-grid on page background — remove the next two lines to disable */
-  background-image: radial-gradient(circle, rgba(15,23,42,0.06) 1px, transparent 1px);
-  background-size: 24px 24px;
-  background-attachment: fixed;
-  color: var(--text);
-  line-height: 1.65;
+  font-family: var(--sans);
+  color: var(--ink);
+  background: var(--bg);
 }
+h1, h2, h3, h4 { margin: 0; }
+p { margin: 0 0 12px; line-height: 1.65; }
+a { color: inherit; }
+img { max-width: 100%; display: block; }
+ul { margin: 0 0 12px; padding-left: 20px; }
+li { margin-bottom: 6px; }
 
 
-/* ── 3. Hero Header ──────────────────────────────────────── */
-/* Scoped to .hero-header (index.html only) so the flex-column centering
-   does not leak onto .site-header on sub-pages. */
-.hero-header {
-  background-color: var(--navy);
-  /* FLASHY: dot-grid pattern — remove the next two lines to disable */
-  background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
-  background-size: 24px 24px;
-  background-attachment: fixed;
-  color: #e2e8f0;
-  padding: 80px 24px 120px;
-  border-bottom: 3px solid var(--accent);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.hero-header h1 {
-  margin: 0;
-  font-size: 3rem;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  color: #f1f5f9;
-  text-align: center;
-}
-
-.hero-header > p {
-  margin: 10px 0 0;
-  font-size: 1.1rem;
-  color: var(--accent);
-  font-weight: 500;
-  letter-spacing: 0.5px;
-}
-
-.hero-header nav {
-  margin-top: 28px;
-  display: flex;
-  gap: 28px;
-  align-items: center;
-}
-
-
-
-/* ── 4. Sticky Header ────────────────────────────────────── */
-/* Slides down from the top once the hero scrolls out of view. */
-.sticky-header {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%;
-  background-color: var(--navy);
-  color: #e2e8f0;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-  z-index: 1000;
-  transform: translateY(-100%);
-  transition: transform 0.3s ease;
+/* ── 3. Navbar ────────────────────────────────────────────── */
+/* Single sticky navbar shared by every page — no separate hero header
+   and no scroll-triggered show/hide JS needed. */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--navbar-bg);
   border-bottom: 2px solid var(--accent);
 }
-
-.sticky-header.visible { transform: translateY(0); }
-
-/* Inner container shared with .header-inner (sub-page site-header) —
-   keeps name/nav at identical horizontal positions in both headers. */
-.sticky-inner,
-.header-inner {
-  max-width: 1100px;
+.navbar-inner {
+  max-width: 900px;
   margin: 0 auto;
-  padding: 14px 32px;
+  padding: 16px 32px;
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-items: center;
 }
-
-.sticky-name {
-  font-size: 1.1rem;
+.navbar-name {
+  font-family: var(--sans);
   font-weight: 700;
-  color: #f1f5f9;
+  letter-spacing: -0.01em;
+  font-size: 1.1rem;
   text-decoration: none;
-  letter-spacing: 0.5px;
+  color: #ffffff;
 }
-
-.sticky-nav,
-.site-nav {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-/* Shared nav link style across all three header contexts (hero, sticky, sub-page).
-   Placed before section 5's .nav-dropdown-menu a rule so dropdown items correctly
-   inherit the smaller 0.88rem size without needing an extra specificity override. */
-.hero-header nav a,
-.sticky-nav a,
-.site-nav a {
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: #94a3b8;
+.navbar-nav { display: flex; align-items: center; gap: 28px; }
+.navbar-nav a {
   text-decoration: none;
-  transition: color 0.2s;
+  color: var(--navbar-text);
+  font-size: 13.5px;
 }
-
-.hero-header nav a:hover,
-.sticky-nav a:hover,
-.site-nav a:hover { color: var(--accent); }
-
-
-/* ── 5. Dropdown Navigation ──────────────────────────────── */
-/* Shared by .sticky-nav (home page) and .site-nav (sub-pages). */
-.nav-dropdown {
-  position: relative;
-  display: flex;
-  align-items: center;
+.navbar-nav a:hover { color: #ffffff; }
+.navbar-nav a.button {
+  color: var(--accent-light);
+  border: 1px solid var(--accent-light);
+  padding: 6px 16px;
+  border-radius: 3px;
 }
+.navbar-nav a.button:hover { background: var(--accent-light); color: var(--navbar-bg); }
 
-/* Trigger — works for both <a class="nav-dropdown-trigger"> and <span> variants */
-.nav-dropdown-trigger {
-  color: #94a3b8;
-  font-size: 0.95rem;
-  font-weight: 500;
-  text-decoration: none;
-  cursor: default;
-  background: none;
-  border: none;
-  padding: 0;
-  font-family: inherit;
-  transition: color 0.2s;
-  display: flex;
-  align-items: center;
+/* Dropdown (e.g. Archive on the home page) */
+.navbar-dropdown { position: relative; }
+.navbar-dropdown .drop-trigger {
+  cursor: pointer;
+  color: var(--navbar-text);
+  font-size: 13.5px;
 }
-
-/* Caret — rotates 180° on hover */
-.nav-dropdown-trigger::after {
-  content: ' ▾';
-  font-size: 0.75em;
-  display: inline-block;
-  transition: transform 0.2s;
-}
-
-.nav-dropdown:hover .nav-dropdown-trigger         { color: var(--accent); }
-.nav-dropdown:hover .nav-dropdown-trigger::after  { transform: rotate(180deg); }
-
-/* <a> triggers use pointer; <span> triggers keep default */
-a.nav-dropdown-trigger { cursor: pointer; }
-
-.nav-dropdown-menu {
+.navbar-dropdown:hover .drop-trigger { color: #ffffff; }
+.navbar-dropdown-menu {
   position: absolute;
-  top: 100%;
-  right: 0;
+  top: 100%; right: 0;
   margin-top: 14px;
-  background: var(--navy);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-top: 2px solid var(--accent);
-  border-radius: 0 0 var(--radius) var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  min-width: 220px;
   padding: 6px 0;
-  min-width: 180px;
-  box-shadow: 0 8px 28px rgba(0,0,0,0.4);
+  box-shadow: 0 10px 26px rgba(10, 14, 18, 0.22);
   opacity: 0;
   visibility: hidden;
   transform: translateY(-6px);
   transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
-  z-index: 1001;
+  z-index: 60;
 }
-
-.nav-dropdown:hover .nav-dropdown-menu {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-.nav-dropdown-menu a {
+.navbar-dropdown:hover .navbar-dropdown-menu,
+.navbar-dropdown:focus-within .navbar-dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+.navbar-dropdown-menu a {
   display: block;
-  padding: 9px 18px;
-  color: #94a3b8;
-  font-size: 0.88rem;
-  font-weight: 500;
+  padding: 9px 16px;
+  font-size: 12.5px;
+  color: var(--body-text);
   text-decoration: none;
-  white-space: nowrap;
-  transition: color 0.15s, background 0.15s;
 }
-
-.nav-dropdown-menu a:hover {
-  color: #f1f5f9;
-  background: rgba(255,255,255,0.07);
-}
+.navbar-dropdown-menu a:hover { background: var(--accent-soft); color: var(--accent-text); }
 
 
-/* ── 6. Main Content Container ───────────────────────────── */
-/* Negative margin-top overlaps the hero's bottom padding for a "lifted card" look. */
-main {
-  flex: 1;
-  width: 100%;
-  max-width: 1100px;
-  margin: -48px auto 0;
-  padding: 56px 40px 80px;
-  background-color: var(--surface);
-  /* FLASHY: dot-grid on main content — remove the next two lines to disable */
-  background-image: radial-gradient(circle, rgba(15,23,42,0.055) 1px, transparent 1px);
-  background-size: 24px 24px;
-  background-attachment: fixed;
-  border-radius: var(--radius);
-  box-shadow: 0 20px 48px rgba(15,23,42,0.10);
-}
+/* ── 4. Page Wrapper ──────────────────────────────────────── */
+/* Shared width/gutter for the home page (<div class="page">) and every
+   sub-page (<main class="page">). */
+.page { max-width: 900px; margin: 0 auto; padding: 0 32px; }
 
 
-/* ── 7. Section Headings ─────────────────────────────────── */
-section {
-  scroll-margin-top: 80px;
-  margin-bottom: 30px;
-}
-
-/* Nested sections (e.g. #combat-robotics inside #projects) don't double-add spacing */
-section section { margin-bottom: 0; }
-
-section h2 {
-  font-size: 1.75rem;
-  font-weight: 700;
-  margin-bottom: 32px;
-  padding-bottom: 10px;
-  border-bottom: 2px solid var(--border);
-  letter-spacing: 0.3px;
-}
-
-
-/* ── 8. About Section ────────────────────────────────────── */
-.about-grid {
-  display: flex;
-  gap: 32px;
-  align-items: flex-start;
-}
-
-.about-text { flex: 1; }
-
-.about-images {
-  flex: 0 0 var(--about-img-w, 300px);
-  height: var(--about-img-h, 290px);
-  border-radius: var(--radius);
-  overflow: hidden;
-}
-
-/* FLASHY: amber accent border-left — remove border-left and padding-left to disable */
-#about p {
-  border-left: 3px solid var(--accent);
-  padding-left: 16px;
-  margin-bottom: 16px;
-  color: var(--text-mid);
-}
-
-
-/* ── 9. Skills Section ───────────────────────────────────── */
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 24px;
-}
-
-.skill-category-title {
-  font-size: 0.78rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--text-muted);
-  margin: 0 0 12px 0;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--border);
-}
-
-.skill-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.skill-tag {
-  display: inline-block;
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 0.82rem;
-  font-weight: 500;
-  background: var(--surface-alt);
-  border: 1px solid var(--border-dark);
-  color: var(--text-mid);
-}
-
-
-/* ── 10. Project Groups ──────────────────────────────────── */
-.project-group { margin-bottom: 64px; }
-
-.project-group-title {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: var(--navy);
-  letter-spacing: 0.3px;
-  position: relative;
-  padding-left: 14px;
-  margin: 0 0 4px 0;
-}
-
-/* Colored accent bar left of the group title — color set per section below */
-.project-group-title::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 2px; bottom: 2px;
-  width: 4px;
-  border-radius: 2px;
-}
-
-#combat-robotics   .project-group-title::before { background: var(--accent); }
-#academic-projects .project-group-title::before { background: var(--blue); }
-
-.project-group-subtitle {
-  margin: 4px 0 24px 14px;
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  font-style: italic;
-}
-
-
-/* ── 11. Project Cards ───────────────────────────────────── */
-/* Image column (42%) on the left, text column takes remaining width. */
-.project-card {
-  display: flex;
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  background-color: var(--surface);
-  box-shadow: var(--shadow);
-  margin-bottom: 28px;
-  overflow: hidden;
-  /* FLASHY: hover lift — remove transition + .project-card:hover rule to disable */
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
-}
-
-/* FLASHY: remove this rule to disable card hover lift */
-.project-card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-hover);
-}
-
-.project-card-image {
-  flex: 0 0 42%;
-  min-height: 220px;
-  position: relative;
-  overflow: hidden;
-  background-color: var(--surface-alt);
-}
-
-/* Static single image — fills full card height */
-.project-card-image > img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  border: none;
-  /* FLASHY: hover zoom — remove transition + rule below to disable */
-  transition: transform 0.35s ease;
-}
-
-/* FLASHY: remove this rule to disable image hover zoom */
-.project-card:hover .project-card-image > img { transform: scale(1.04); }
-
-/* Text column */
-.project-info {
-  flex: 1;
-  min-width: 0;
-  padding: 28px 32px;
-  display: flex;
-  flex-direction: column;
-}
-
-.project-info h3,
-.project-info h4 {
-  margin-top: 0;
-  color: var(--navy);
-}
-
-.project-info h4 {
-  margin-bottom: 10px;
-  font-size: 1.1rem;
-  font-weight: 700;
-  line-height: 1.4;
-}
-
-.project-info p {
-  margin-bottom: 10px;
-  color: var(--text-mid);
-  font-size: 0.95rem;
-}
-
-.project-meta {
-  font-size: 0.88rem;
-  color: var(--text-muted);
-  font-weight: 500;
-  letter-spacing: 0.2px;
-}
-
-.meta-label {
-  font-weight: 700;
-  color: #475569;
-}
-
-/* Link — pushed to the bottom of the card by margin-top: auto */
-.project-info a {
-  display: inline-block;
-  margin-top: auto;
-  padding-top: 14px;
-  font-weight: 600;
-  font-size: 0.9rem;
-  color: var(--blue);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-
-.project-info a:hover {
-  color: #1d4ed8;
-  text-decoration: underline;
-}
-
-/* Coming-soon links: gray, italic, non-interactive */
-.coming-soon-link {
-  color: #94a3b8 !important;
-  cursor: default !important;
-  font-weight: 400 !important;
-  font-style: italic;
-}
-
-.coming-soon-link:hover {
-  color: #94a3b8 !important;
-  text-decoration: none !important;
-}
-
-
-/* ── 12. Image Carousel ──────────────────────────────────── */
-/* Auto-rotation is controlled in the JS (setInterval); see index.html comments.
-   FLASHY: remove setInterval block in JS to disable auto-rotation. */
-.project-image-rotator {
-  width: 100%;
-  height: 100%;
-}
-
-.image-viewport {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  background: #dde3ec;
-}
-
-/* All images are stacked; only .active is visible */
-.image-viewport img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transition: opacity 0.6s ease;
-  border: none;
-}
-
+/* ── 5. Carousel ──────────────────────────────────────────── */
+/* Used inside .about-media, .row-media, and sub-page .carousel-block.
+   FLASHY: auto-rotation — remove the resetTimer/setInterval block in the
+   carousel-init script (projects.js on the home page, inline script on
+   sub-pages) to disable. */
+.project-image-rotator, .image-viewport { position: relative; width: 100%; height: 100%; }
+.image-viewport img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.45s ease; }
 .image-viewport img.active { opacity: 1; }
+.image-viewport img.contain { object-fit: contain; padding: 16px; background: #fff; }
 
-/* Caption overlay — text is set by JS from each image's data-caption attribute.
-   Remove <div class="image-caption-overlay"> in HTML to hide captions entirely. */
+/* FLASHY: image captions — remove <div class="image-caption-overlay"> from HTML to disable */
 .image-caption-overlay {
   position: absolute;
-  bottom: 40px; left: 0; right: 0;
-  padding: 20px 12px 6px;
-  background: linear-gradient(transparent, rgba(13,27,42,0.65));
-  color: #f1f5f9;
-  font-size: 0.78rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  pointer-events: none;
+  left: 12px; bottom: 12px;
+  background: rgba(22, 27, 32, 0.82);
+  color: #eef1f4;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  padding: 5px 11px;
+  border-radius: 3px;
+  z-index: 2;
 }
 
-/* Controls bar (arrows + dots) — sits at the very bottom of the image.
-   Remove <div class="carousel-controls"> in HTML to hide controls entirely. */
+/* FLASHY: arrow controls — remove <div class="carousel-controls"> from HTML to disable */
 .carousel-controls {
   position: absolute;
-  bottom: 0; left: 0; right: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 7px 12px;
-  background: rgba(13,27,42,0.52);
-  backdrop-filter: blur(2px);
+  bottom: 12px; right: 12px;
+  display: flex; align-items: center; gap: 8px;
+  z-index: 3;
 }
-
 .carousel-btn {
-  background: none;
-  border: none;
-  color: rgba(255,255,255,0.75);
-  font-size: 1.3rem;
-  line-height: 1;
-  cursor: pointer;
-  padding: 2px 6px;
+  width: 24px; height: 24px;
   border-radius: 3px;
-  transition: color 0.2s;
-}
-
-.carousel-btn:hover { color: var(--accent); }
-
-.carousel-dots {
-  display: flex;
-  gap: 6px;
-  align-items: center;
-}
-
-.carousel-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.35);
+  border: none;
+  background: rgba(255,255,255,0.85);
+  color: var(--ink);
   cursor: pointer;
-  transition: background 0.25s, transform 0.2s;
-  display: block;
+  font-size: 13px;
+  line-height: 1;
+  display: flex; align-items: center; justify-content: center;
 }
-
-.carousel-dot.active {
-  background: var(--accent);
-  transform: scale(1.35);
-}
-
-.carousel-dot:hover:not(.active) { background: rgba(255,255,255,0.65); }
+.carousel-btn:hover { background: #fff; }
+.carousel-dots { display: none; }
 
 
-/* ── 13. Image Placeholder ───────────────────────────────── */
-/* Used when no image is available yet.
-   Replace the entire placeholder <div> with <img> or .project-image-rotator
-   once assets exist. */
-.project-image-placeholder {
-  width: 100%;
-  height: 100%;
-  min-height: 220px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  background: linear-gradient(135deg, #f1f5f9, #e8eef5);
-  color: #94a3b8;
-  font-size: 0.85rem;
-  font-style: italic;
-  text-align: center;
-  padding: 16px;
-  border-right: 1px solid var(--border);
-}
-
-.project-image-placeholder svg { opacity: 0.28; }
-
-
-/* ── 14. Mobile — Card Stacking ──────────────────────────── */
-@media (max-width: 680px) {
-  main {
-    padding: 36px 20px 60px;
-    margin-top: -32px;
-  }
-
-  .about-grid { flex-direction: column; }
-  .about-images { flex: none; width: 100%; height: 260px; }
-
-  .project-card { flex-direction: column; }
-
-  .project-card-image {
-    flex: none;
-    width: 100%;
-    min-height: 220px;
-  }
-}
-
-
-/* ── 15. Footer ──────────────────────────────────────────── */
-/* "More to come" note below the project cards */
-.projects-footer {
-  margin-top: 48px;
-  padding-top: 24px;
-  border-top: 1px solid var(--border);
-  text-align: center;
-}
-
-.projects-footer p {
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  letter-spacing: 0.04em;
-  font-style: italic;
-}
-
-/* Page footer */
-footer {
-  background-color: var(--navy);
-  color: #94a3b8;
-  text-align: center;
-  padding: 48px 24px 36px;
-  border-top: 3px solid var(--accent);
-}
-
+/* ── 6. Footer ────────────────────────────────────────────── */
+footer { border-top: 1px solid var(--border); margin-top: 20px; }
 .footer-inner {
-  max-width: 1100px;
+  max-width: 900px;
   margin: 0 auto;
+  padding: 32px 32px 60px;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 20px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.footer-inner a { color: var(--accent); text-decoration: none; }
+.footer-inner a:hover { text-decoration: underline; }
+.footer-links { display: flex; gap: 18px; }
+
+
+/* ============================================================
+   Home page (index.html)
+   ============================================================ */
+
+/* ── 7. Hero ──────────────────────────────────────────────── */
+.hero { padding: 80px 0 60px; max-width: 620px; }
+.hero .eyebrow {
+  font-family: var(--sans);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 18px;
+}
+.hero h1 { font-family: var(--sans); font-weight: 700; letter-spacing: -0.01em; font-size: clamp(2.1rem, 4.6vw, 2.8rem); line-height: 1.2; margin-bottom: 18px; }
+.hero p { font-size: 16px; color: var(--body-text); }
+.hero-links { display: flex; gap: 22px; margin-top: 22px; }
+.hero-links a { font-size: 13.5px; color: var(--accent); text-decoration: none; font-weight: 600; }
+.hero-links a:hover { text-decoration: underline; }
+
+
+/* ── 8. Section Heading ───────────────────────────────────── */
+.section-heading { display: flex; align-items: baseline; gap: 14px; margin: 0 0 36px; }
+.section-heading .section-index { font-family: var(--sans); font-weight: 700; font-size: 13px; color: var(--accent); }
+.section-heading h2 { font-family: var(--sans); font-weight: 700; letter-spacing: -0.01em; font-size: 1.5rem; }
+.section-heading .rule { flex: 1; height: 1px; background: var(--border); }
+section { padding: 64px 0; }
+
+
+/* ── 9. About Row ─────────────────────────────────────────── */
+.about-row { display: flex; gap: 56px; align-items: center; }
+.about-row .about-text { flex: 1 1 55%; }
+.about-row .about-text p { font-size: 15px; color: var(--body-text); }
+/* Width/height are overridable inline via --about-img-w / --about-img-h
+   on .about-media, e.g. style="--about-img-w: 340px; --about-img-h: 300px;" */
+.about-row .about-media {
+  flex: 0 0 var(--about-img-w, 320px);
+  height: var(--about-img-h, 272px);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--surface-2);
+  position: relative;
 }
 
-.back-to-top {
+
+/* ── 10. Skills — quiet definition list, not boxes ───────── */
+.skills-list { display: flex; flex-direction: column; }
+.skill-row {
+  display: grid;
+  grid-template-columns: 190px 1fr;
+  gap: 28px;
+  padding: 22px 0;
+  border-top: 1px solid var(--border);
+  align-items: baseline;
+}
+.skills-list .skill-row:last-child { border-bottom: 1px solid var(--border); }
+.skill-row h4 { font-family: var(--sans); font-size: 13.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink); }
+.skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.skill-tags span {
+  background: var(--accent-soft);
+  color: var(--accent-text);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 3px;
+}
+
+
+/* ── 11. Project Groups & Rows (alternating orientation) ─── */
+.project-group { margin-bottom: 12px; }
+.project-group + .project-group { margin-top: 56px; }
+.project-group-title { font-family: var(--sans); font-weight: 700; letter-spacing: -0.005em; font-size: 1.35rem; margin-bottom: 4px; }
+.project-group-subtitle { color: var(--muted); font-size: 13.5px; margin-bottom: 8px; }
+
+.project-row {
+  display: flex;
+  gap: 48px;
+  align-items: center;
+  padding: 44px 0;
+  border-top: 1px solid var(--border);
+}
+.project-row.reverse { flex-direction: row-reverse; }
+.project-row .row-media {
+  flex: 0 0 42%;
+  aspect-ratio: 4/3;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--surface-2);
+  position: relative;
+}
+.project-row .row-body { flex: 1; min-width: 0; }
+.chip {
   display: inline-block;
-  color: var(--accent);
-  font-size: 0.9rem;
+  background: var(--accent-soft);
+  color: var(--accent-text);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 4px 10px;
+  border-radius: 3px;
+  margin-bottom: 10px;
+}
+.row-body h4 { font-family: var(--sans); font-weight: 700; letter-spacing: -0.005em; font-size: 1.15rem; margin-bottom: 10px; }
+.row-body p { font-size: 14px; color: var(--body-text); }
+.project-meta { font-size: 12px; color: var(--muted); margin: 3px 0; }
+.project-meta .meta-label { color: var(--accent); font-weight: 700; }
+.row-body a.project-link {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 13px;
   font-weight: 600;
   text-decoration: none;
-  letter-spacing: 0.06em;
+  color: var(--accent);
+}
+.row-body a.project-link:hover { text-decoration: underline; }
+.coming-soon-link { color: var(--muted) !important; cursor: default; }
+.coming-soon-link:hover { text-decoration: none !important; }
+
+.row-media img { width: 100%; height: 100%; object-fit: cover; }
+.row-media img.contain { object-fit: contain; padding: 16px; background: #fff; }
+.row-media-placeholder {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 11.5px;
   text-transform: uppercase;
-  transition: opacity 0.2s;
+  letter-spacing: 0.05em;
 }
 
-.back-to-top:hover {
-  opacity: 0.75;
-  text-decoration: none;
-}
 
-.footer-links {
+/* ── 12. Archive (compact list for retired projects) ─────── */
+.archive-list { display: flex; flex-direction: column; }
+.archive-row {
   display: flex;
-  gap: 28px;
-  flex-wrap: wrap;
-  justify-content: center;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 16px 0;
+  border-top: 1px solid var(--border);
 }
+.archive-list .archive-row:last-child { border-bottom: 1px solid var(--border); }
+.archive-title { font-family: var(--sans); font-weight: 700; font-size: 14px; color: var(--ink); }
+.archive-sub { color: var(--muted); font-size: 12.5px; margin-top: 2px; }
+.archive-row a.archive-link { font-size: 12.5px; white-space: nowrap; }
 
-.footer-links a {
-  color: #94a3b8;
-  text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 500;
-  transition: color 0.2s;
-}
 
-.footer-links a:hover { color: #e2e8f0; }
-
-.footer-copyright {
-  font-size: 0.82rem;
-  color: #475569;
-  margin: 0;
+/* ── 13. Responsive — Home Page ───────────────────────────── */
+@media (max-width: 760px) {
+  .navbar-nav { gap: 16px; }
+  .navbar-nav a.button { padding: 5px 12px; }
+  .about-row { flex-direction: column; align-items: stretch; }
+  .about-row .about-media { flex: none; width: 100%; }
+  .project-row, .project-row.reverse { flex-direction: column; }
+  .project-row .row-media { flex: none; width: 100%; }
+  .skill-row { grid-template-columns: 1fr; gap: 10px; }
 }
 
 
 /* ============================================================
-   Sub-page Styles  (projects/, resume.html)
+   Sub-pages (projects/, resume.html)
    ============================================================ */
 
-/* ── 16. Site Header (sub-pages) ─────────────────────────── */
-/* Horizontal nav bar — name left, nav right — used on all sub-pages.
-   display: block is required so .header-inner stretches full width.
-   .header-inner, .site-nav, and nav link styles are shared with the sticky
-   header and defined in section 4. */
-.site-header {
-  background-color: var(--navy);
-  color: #e2e8f0;
-  padding: 0 0 50px;  /* bottom padding creates the overlap with <main> below */
-  display: block;
-}
-
-.site-name a {
-  color: #e2e8f0;
-  font-weight: 700;
-  font-size: 1.1rem;
-  text-decoration: none;
-}
-
-.site-name a:hover { text-decoration: underline; }
-
-
-/* ── 17. Project Heading ─────────────────────────────────── */
+/* ── 14. Sub-page Heading ─────────────────────────────────── */
 .project-heading {
-  margin-bottom: 48px;
-  padding-bottom: 24px;
-  border-bottom: 2px solid var(--border);
+  padding: 48px 0 28px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--border);
 }
-
 .project-heading h1 {
-  font-size: 2rem;
+  font-family: var(--sans);
   font-weight: 700;
-  color: var(--navy);
-  margin: 0 0 6px 0;
+  letter-spacing: -0.01em;
+  font-size: clamp(1.6rem, 3.4vw, 2.1rem);
+  line-height: 1.25;
+  margin-bottom: 6px;
 }
-
 .project-heading p {
-  color: var(--text-muted);
-  font-size: 0.95rem;
+  color: var(--muted);
+  font-size: 14px;
   margin: 0;
 }
+.project-heading a {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+.project-heading a:hover { text-decoration: underline; }
+
+/* Sub-page sections sit directly under one another (unlike index.html's
+   sections, which alternate with rows), so the global 64px top+bottom
+   padding doubles up into a 128px gap between them — tighten it here,
+   scoped to .page so index.html's sections are unaffected. */
+.page > section { padding: 12px 0; }
+
+/* The heading's own bottom padding/margin/border stacks on top of that,
+   leaving an oversized gap before the first section — trim just that. */
+.project-heading + section { padding-top: 28px; }
 
 
-/* ── 17b. Section Intro Grid (text left, carousel right) ─── */
+/* ── 14b. Project Pager (prev/next between sub-pages) ────────
+   Sits right under .project-heading. Order follows each project's
+   position within its group in projects.js. A side with no neighbor
+   (start/end of a group) or a neighbor with no page yet renders as
+   disabled text instead of a link. */
+.project-pager {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 16px 0 0;
+  font-size: 13.5px;
+}
+.project-pager .pager-prev,
+.project-pager .pager-next { text-decoration: none; }
+.project-pager .pager-next { margin-left: auto; text-align: right; }
+.project-pager a { color: var(--accent); font-weight: 600; }
+.project-pager a:hover { text-decoration: underline; }
+.project-pager .pager-disabled { color: var(--muted); font-style: italic; }
+
+
+/* ── 15. Sub-page Section Headings ────────────────────────── */
+/* Direct-child combinators keep these scoped to sub-pages — they don't
+   touch the home page's .section-heading h2 or .project-group-title h3,
+   which sit deeper in their own markup. */
+.page > section > h2 {
+  font-family: var(--sans);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  font-size: 1.35rem;
+  margin: 0 0 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+.page section > h3 {
+  font-family: var(--sans);
+  font-weight: 700;
+  letter-spacing: -0.005em;
+  font-size: 1.05rem;
+  color: var(--ink);
+  margin: 0 0 10px;
+}
+.page > section p,
+.accordion-body p { color: var(--body-text); font-size: 15px; }
+.page > section ul,
+.accordion-body ul { color: var(--body-text); font-size: 15px; }
+.version-subtitle { margin: 0 0 20px; color: var(--muted); font-size: 13px; font-style: italic; }
+
+
+/* ── 15b. Section Intro Grid (text left, carousel right) ──── */
 .section-intro-grid {
   display: flex;
   gap: 40px;
   align-items: stretch;
   margin-bottom: 40px;
 }
-
-.section-intro-grid .section-intro {
-  flex: 1;
-  margin: 0;
-}
-
+.section-intro-grid .section-intro { flex: 1; margin: 0; }
 .section-intro-carousel {
   flex: 1;
   min-height: 300px;
   border-radius: var(--radius);
   overflow: hidden;
+  background: var(--surface-2);
 }
-
 .section-intro-carousel .project-image-rotator,
-.section-intro-carousel .image-viewport {
-  width: 100%;
-  height: 100%;
-}
+.section-intro-carousel .image-viewport { width: 100%; height: 100%; }
 
 @media (max-width: 680px) {
   .section-intro-grid { flex-direction: column; }
@@ -802,91 +502,82 @@ footer {
 }
 
 
-/* ── 18. Project Blocks (image + text side-by-side) ─────── */
-/* .project-block      → image left,  text right
-   .project-block.reverse → text left, image right */
-.project-block {
-  display: grid;
-  grid-template-columns: minmax(0, 420px) 1fr;
-  gap: 32px;
-  align-items: start;
-  margin: 48px 0;
-}
-
-.project-block img {
-  width: 100%;
-  height: auto;
-  max-width: 420px;
-  border: 1px solid var(--border);
-  background-color: white;
-}
-
-.project-block-text p { margin: 0; color: var(--text-mid); }
-
-.project-block.reverse { grid-template-columns: 1fr minmax(0, 420px); }
-
-.project-block.reverse figure,
-.project-block.reverse img { order: 2; }
-
-@media (max-width: 768px) {
-  .project-block,
-  .project-block.reverse { grid-template-columns: 1fr; }
-
-  .project-block img { max-width: 100%; }
-
-  .project-block.reverse figure,
-  .project-block.reverse img { order: 0; }
-}
-
-/* Image captions (used inside .project-block with a <figure> wrapper) */
-.project-figure { margin: 0; }
-.project-figure img { display: block; }
-.project-figure figcaption {
-  margin-top: 8px;
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  text-align: center;
-  line-height: 1.4;
-}
-
-
-/* ── 19. Overview Grid & Spec List ───────────────────────── */
-/* Two-column layout: large image/model on the left, spec table on the right. */
+/* ── 16. Overview Grid & Spec List ────────────────────────── */
 .overview-grid {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
   gap: 32px;
   align-items: start;
 }
-
 @media (max-width: 800px) {
   .overview-grid { grid-template-columns: 1fr; }
 }
-
-.overview-specs p { margin-top: 0; margin-bottom: 16px; color: var(--text-mid); }
+.overview-specs p { margin-top: 0; margin-bottom: 16px; color: var(--body-text); }
 
 .spec-list { list-style: none; padding: 0; margin: 0; }
-
 .spec-list li {
   display: grid;
-  grid-template-columns: 160px 1fr;
+  grid-template-columns: 150px 1fr;
   gap: 16px;
   padding: 8px 0;
   border-bottom: 1px solid var(--border);
+  margin-bottom: 0;
 }
-
 .spec-list li:last-child { border-bottom: none; }
-.spec-label { font-weight: 600; color: var(--text); }
-.spec-value { color: var(--text-mid); }
+.spec-label { font-weight: 700; color: var(--ink); }
+.spec-value { color: var(--body-text); }
 
 @media (max-width: 600px) {
   .spec-list li { grid-template-columns: 1fr; gap: 4px; }
 }
 
 
-/* ── 20. Standalone Carousel Block ──────────────────────── */
-/* Provides explicit height so .project-image-rotator has a sizing context on
-   sub-pages. (On the home page the parent .project-card-image provides this.) */
+/* ── 17. Project Blocks (image + text side-by-side) ──────── */
+/* .project-block         → image left,  text right
+   .project-block.reverse → text left, image right */
+.project-block {
+  display: grid;
+  grid-template-columns: minmax(0, 400px) 1fr;
+  gap: 32px;
+  align-items: start;
+  margin: 40px 0;
+}
+.project-block img {
+  width: 100%;
+  height: auto;
+  max-width: 400px;
+  border-radius: var(--radius);
+  background-color: var(--surface);
+}
+.project-block-text p { margin: 0; color: var(--body-text); }
+.project-block.reverse { grid-template-columns: 1fr minmax(0, 400px); }
+.project-block.reverse figure,
+.project-block.reverse img { order: 2; }
+
+@media (max-width: 768px) {
+  .project-block,
+  .project-block.reverse { grid-template-columns: 1fr; }
+  .project-block img { max-width: 100%; }
+  .project-block.reverse figure,
+  .project-block.reverse img { order: 0; }
+}
+
+
+/* ── 18. Image Captions (figure) ──────────────────────────── */
+.project-figure { margin: 0; }
+.project-figure img { display: block; }
+.project-figure figcaption {
+  margin-top: 8px;
+  font-size: 12.5px;
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.4;
+}
+
+
+/* ── 19. Standalone Carousel Block ────────────────────────── */
+/* Gives .project-image-rotator explicit height on sub-pages, where no
+   parent card provides it automatically. */
 .carousel-block {
   height: 340px;
   border-radius: var(--radius);
@@ -895,16 +586,15 @@ footer {
 }
 
 
-/* ── 21. Video Embed ─────────────────────────────────────── */
-/* Maintains 16:9 aspect ratio at any width. */
+/* ── 20. Video Embed ──────────────────────────────────────── */
 .video-wrapper {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
-  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
   background-color: black;
 }
-
 .video-wrapper iframe {
   position: absolute;
   inset: 0;
@@ -912,24 +602,25 @@ footer {
   height: 100%;
   border: none;
 }
+/* Extra breathing room below a video's caption before the next block —
+   scoped to video captions only, not image/model-viewer captions. */
+.video-wrapper + figcaption { margin-bottom: 20px; }
 
 
-/* ── 22. PDF / Resume Embed ──────────────────────────────── */
-/* Targets <iframe> that is a direct child of <section> — the pattern used for
-   PDF and resume embeds. Video iframes sit inside .video-wrapper (a div) and
+/* ── 21. PDF / Resume Embed ───────────────────────────────── */
+/* Targets <iframe> that is a direct child of <section> — the pattern used
+   for PDF and resume embeds. Video iframes sit inside .video-wrapper and
    are unaffected. */
 section > iframe {
   width: 100%;
   height: 900px;
   border: 1px solid var(--border);
+  border-radius: var(--radius);
 }
 
-/* PDF-specific pages: narrower side padding so the iframe gets more horizontal
-   room while still having a small gutter around the viewer. */
 
-/* ── 23. Accordion ───────────────────────────────────────── */
-.accordion { margin-top: 24px; }
-
+/* ── 22. Accordion ─────────────────────────────────────────── */
+.accordion { margin-top: 8px; }
 .accordion-item {
   margin-bottom: 16px;
   border-radius: var(--radius);
@@ -938,37 +629,34 @@ section > iframe {
   background-color: var(--surface);
   border: 1px solid var(--border);
 }
-
 .accordion-header {
   width: 100%;
-  background: var(--navy);
+  background: var(--navbar-bg);
   color: #e2e8f0;
   padding: 16px 24px;
-  font-size: 1.2rem;
-  font-weight: 600;
+  font-family: var(--sans);
+  font-size: 1.1rem;
+  font-weight: 700;
   text-align: left;
   border: none;
   cursor: pointer;
   outline: none;
   position: relative;
   transition: background 0.3s;
-  border-radius: var(--radius) var(--radius) 0 0;
 }
+.accordion-header:hover { background: var(--navbar-mid); }
 
-.accordion-header:hover { background: var(--navy-mid); }
-
-/* Animated amber underline sweeps in when the item is open */
+/* Amber-style underline sweeps in when the item is open (uses --accent) */
 .accordion-header::after {
   content: '';
   display: block;
   height: 3px;
   width: 0;
-  background: var(--accent);
+  background: var(--accent-light);
   position: absolute;
   bottom: 0; left: 0;
   transition: width 0.3s;
 }
-
 .accordion-item.active .accordion-header::after { width: 100%; }
 
 .accordion-body {
@@ -978,21 +666,22 @@ section > iframe {
   background-color: var(--surface);
   padding: 0 24px;
 }
-
 .accordion-body section            { margin: 0; padding: 24px 0; border-bottom: 1px solid var(--border); }
-.accordion-body h3                 { margin-top: 0; margin-bottom: 4px; }
-.version-subtitle                  { margin: 0 0 20px; color: var(--text-muted); font-size: 0.9rem; font-style: italic; }
+.accordion-body section:last-child { border-bottom: none; }
 .accordion-body .project-block     { margin: 24px 0; }
 .accordion-body img                { display: block; }
-.accordion-body section:last-child { border-bottom: none; }
-
 .accordion-item.active .accordion-body { max-height: 5000px; }
 
 
-/* ── 24. 3D Model Viewer ─────────────────────────────────── */
-/* Requires <script type="module" src="...model-viewer.min.js"> in <head>.
-   Set width and height inline on the element or via a parent wrapper. */
+/* ── 23. 3D Model Viewer ───────────────────────────────────── */
+/* Requires <script type="module" src="...model-viewer.min.js"> in <head>. */
 model-viewer {
-  background-color: var(--navy);
-  outline: 1px solid var(--border);
+  background-color: var(--navbar-bg);
+  border-radius: var(--radius);
+}
+
+
+/* ── 24. Responsive — Sub-pages ───────────────────────────── */
+@media (max-width: 680px) {
+  .carousel-block { height: 260px; }
 }

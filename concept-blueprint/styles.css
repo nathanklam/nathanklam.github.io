@@ -1,0 +1,391 @@
+/* ===================================================================
+   CONCEPT: "DRAFTING SHEET"
+   A technical/blueprint aesthetic — grid paper, title blocks, BOM
+   tables, dimension-line headings. Self-contained, does not touch
+   the live site's styles.css.
+=================================================================== */
+
+/* ── 1. Design tokens ─────────────────────────────────────────── */
+:root {
+  --paper:       #f6f3ea;
+  --grid-line:   rgba(11, 61, 92, 0.09);
+  --grid-major:  rgba(11, 61, 92, 0.16);
+  --ink:         #16232e;
+  --blue:        #0b3d62;
+  --blue-mid:    #1e5b86;
+  --blue-pale:   #dfe9ee;
+  --accent:      #d9531e;
+  --surface:     #fffdf7;
+  --muted:       #556270;
+  --mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* ── 2. Reset & base ──────────────────────────────────────────── */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: var(--sans);
+  color: var(--ink);
+  line-height: 1.65;
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(var(--grid-major) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-major) 1px, transparent 1px);
+  background-size: 20px 20px, 20px 20px, 100px 100px, 100px 100px;
+}
+h1, h2, h3, h4 { margin: 0; }
+p { margin: 0 0 14px; }
+a { color: var(--blue-mid); }
+img { max-width: 100%; display: block; }
+
+/* Reusable corner-bracket decoration, used on title block + cards */
+.corner-marks { position: relative; }
+.corner-marks .corner { position: absolute; width: 16px; height: 16px; pointer-events: none; }
+.corner-marks .corner.tl { top: -2px; left: -2px; border-top: 3px solid var(--accent); border-left: 3px solid var(--accent); }
+.corner-marks .corner.tr { top: -2px; right: -2px; border-top: 3px solid var(--accent); border-right: 3px solid var(--accent); }
+.corner-marks .corner.bl { bottom: -2px; left: -2px; border-bottom: 3px solid var(--accent); border-left: 3px solid var(--accent); }
+.corner-marks .corner.br { bottom: -2px; right: -2px; border-bottom: 3px solid var(--accent); border-right: 3px solid var(--accent); }
+
+/* ── 3. Toolbar (sticky header) ───────────────────────────────── */
+.toolbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  height: 50px;
+  background: var(--blue);
+  border-bottom: 2px solid var(--accent);
+  transform: translateY(-100%);
+  transition: transform 0.25s ease;
+  font-family: var(--mono);
+  font-size: 12.5px;
+}
+.toolbar.visible { transform: translateY(0); }
+.toolbar-inner {
+  max-width: 1100px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.toolbar-name {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+.toolbar-nav { display: flex; align-items: center; gap: 6px; position: relative; }
+.toolbar-nav a, .toolbar-nav .drop-trigger {
+  color: #cfe3f2;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  letter-spacing: 0.03em;
+}
+.toolbar-nav a:hover, .toolbar-nav .drop-trigger:hover { color: #fff; background: rgba(255,255,255,0.08); }
+.toolbar-nav a::before, .toolbar-nav .drop-trigger::before { content: '['; color: var(--accent); }
+.toolbar-nav a::after, .toolbar-nav .drop-trigger::after { content: ']'; color: var(--accent); }
+
+/* ── 4. Dropdown ──────────────────────────────────────────────── */
+.tb-dropdown { position: relative; }
+.tb-dropdown-menu {
+  position: absolute;
+  top: 100%; right: 0;
+  background: var(--surface);
+  border: 1px solid var(--blue-mid);
+  min-width: 190px;
+  padding: 6px 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
+  z-index: 50;
+}
+.tb-dropdown:hover .tb-dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+.tb-dropdown-menu a {
+  display: block;
+  padding: 8px 16px;
+  color: var(--ink);
+  font-size: 12px;
+}
+.tb-dropdown-menu a::before, .tb-dropdown-menu a::after { content: ''; }
+.tb-dropdown-menu a:hover { background: var(--blue-pale); }
+
+/* ── 5. Hero / title block ────────────────────────────────────── */
+.hero-wrap { max-width: 1100px; margin: 92px auto 0; padding: 0 32px; }
+.title-block {
+  background: var(--surface);
+  border: 2px solid var(--blue);
+  padding: 34px 40px 26px;
+  position: relative;
+}
+.tb-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 26px;
+  font-family: var(--mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  padding-bottom: 16px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid var(--blue-pale);
+}
+.tb-meta-row span b { color: var(--blue); font-weight: 700; }
+.title-block h1 {
+  font-size: clamp(2.4rem, 5vw, 3.4rem);
+  letter-spacing: 0.02em;
+  color: var(--blue);
+}
+.hero-subtitle {
+  font-family: var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 13px;
+  color: var(--accent);
+  margin: 10px 0 22px;
+}
+.hero-nav { display: flex; flex-wrap: wrap; gap: 4px; font-family: var(--mono); font-size: 13px; }
+.hero-nav a { text-decoration: none; color: var(--blue-mid); padding: 4px 8px; }
+.hero-nav a::before { content: '['; color: var(--accent); }
+.hero-nav a::after { content: ']'; color: var(--accent); }
+.hero-nav a:hover { background: var(--blue-pale); }
+
+/* ── 6. Main container ────────────────────────────────────────── */
+main { max-width: 1100px; margin: 0 auto; padding: 0 32px 40px; }
+
+/* ── 7. Section headings (dimension-line style) ───────────────── */
+.section-heading {
+  display: flex;
+  align-items: center;
+  margin: 64px 0 30px;
+}
+.section-heading .line { flex: 1; height: 1px; background: var(--blue-mid); }
+.section-heading .tick { width: 1px; height: 9px; background: var(--blue-mid); }
+.section-heading h2 {
+  font-family: var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--blue);
+  padding: 0 16px;
+  white-space: nowrap;
+}
+
+/* ── 8. About section ─────────────────────────────────────────── */
+.about-grid { display: flex; gap: 48px; align-items: flex-start; flex-wrap: wrap; }
+.about-text { flex: 1 1 380px; min-width: 280px; }
+.about-note { display: flex; gap: 14px; margin-bottom: 18px; }
+.about-note .callout-num {
+  flex: none;
+  width: 26px; height: 26px;
+  border: 1px solid var(--blue-mid);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--blue);
+  margin-top: 2px;
+}
+.about-note p { margin: 0; }
+.about-images { flex: none; width: 300px; }
+.fig-caption {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-top: 8px;
+  text-align: center;
+}
+
+/* ── 9. Skills — Bill of Materials table ──────────────────────── */
+.bom-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+.bom-table th {
+  background: var(--blue);
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  text-align: left;
+  padding: 10px 16px;
+}
+.bom-table td {
+  border: 1px solid var(--blue-pale);
+  padding: 12px 16px;
+  vertical-align: top;
+}
+.bom-table tbody tr:nth-child(even) { background: var(--blue-pale); }
+.bom-item-no { font-family: var(--mono); color: var(--blue); width: 60px; }
+.bom-category { font-weight: 700; width: 200px; }
+.bom-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.bom-tags span {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  border: 1px solid var(--blue-mid);
+  color: var(--blue-mid);
+  padding: 2px 8px;
+  white-space: nowrap;
+}
+
+/* ── 10. Project groups ───────────────────────────────────────── */
+.project-group { margin-bottom: 56px; }
+.project-group-title {
+  font-size: 1.3rem;
+  color: var(--blue);
+  margin-bottom: 4px;
+}
+.project-group-subtitle {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 26px;
+}
+
+/* ── 11. Project cards ─────────────────────────────────────────── */
+.project-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  border: 1px solid var(--blue-mid);
+  background: var(--surface);
+  margin-bottom: 26px;
+}
+.project-card-image {
+  position: relative;
+  border-right: 1px solid var(--blue-mid);
+  background: var(--blue-pale);
+  overflow: hidden;
+  min-height: 220px;
+}
+.project-card-image img { width: 100%; height: 100%; object-fit: cover; }
+.dwg-tag {
+  position: absolute;
+  top: 8px; left: 8px;
+  z-index: 3;
+  background: var(--blue);
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  padding: 3px 8px;
+}
+.project-info { padding: 24px 28px; }
+.project-info h4 {
+  font-size: 1.02rem;
+  color: var(--ink);
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--accent);
+  display: inline-block;
+}
+.project-info p { color: var(--ink); font-size: 14.5px; }
+.project-meta {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--muted);
+  margin: 6px 0;
+}
+.project-meta .meta-label { color: var(--blue); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+.project-info a { display: inline-block; margin-top: 8px; font-size: 13px; text-decoration: none; font-family: var(--mono); }
+.project-info a:hover { text-decoration: underline; }
+.coming-soon-link { color: var(--muted) !important; cursor: default; }
+.coming-soon-link:hover { text-decoration: none !important; }
+
+/* ── 12. Image placeholder ───────────────────────────────────── */
+.project-image-placeholder {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 10px;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 11.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  min-height: 220px;
+}
+
+/* ── 13. Carousel (blueprint styling) ────────────────────────── */
+.project-image-rotator, .image-viewport { position: relative; width: 100%; height: 100%; }
+.image-viewport img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.4s ease; }
+.image-viewport img.active { opacity: 1; }
+.image-caption-overlay {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  background: rgba(11, 61, 98, 0.88);
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 6px 10px;
+  z-index: 2;
+}
+.carousel-controls {
+  position: absolute;
+  bottom: 26px; left: 0; right: 0;
+  display: flex; align-items: center; justify-content: center;
+  gap: 10px;
+  z-index: 3;
+}
+.carousel-btn {
+  width: 22px; height: 22px;
+  border: 1px solid #fff;
+  background: rgba(11, 61, 98, 0.6);
+  color: #fff;
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+}
+.carousel-btn:hover { background: var(--accent); border-color: var(--accent); }
+.carousel-dots { display: flex; gap: 6px; }
+.carousel-dot { width: 7px; height: 7px; background: rgba(255,255,255,0.5); cursor: pointer; }
+.carousel-dot.active { background: var(--accent); }
+
+/* ── 14. Mobile — card stacking ──────────────────────────────── */
+@media (max-width: 720px) {
+  .project-card { grid-template-columns: 1fr; }
+  .project-card-image { border-right: none; border-bottom: 1px solid var(--blue-mid); aspect-ratio: 16/10; min-height: 0; }
+  .about-images { width: 100%; }
+  .bom-table { font-size: 12px; }
+  .bom-category { width: auto; }
+}
+
+/* ── 15. Footer / closing title block ────────────────────────── */
+footer { margin-top: 60px; }
+.footer-block {
+  max-width: 1100px;
+  margin: 0 auto 40px;
+  padding: 0 32px;
+}
+.footer-title-block {
+  border: 2px solid var(--blue);
+  background: var(--surface);
+  padding: 20px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-family: var(--mono);
+  font-size: 12px;
+}
+.footer-links { display: flex; gap: 14px; }
+.footer-links a { text-decoration: none; color: var(--blue-mid); }
+.footer-links a::before { content: '['; color: var(--accent); }
+.footer-links a::after { content: ']'; color: var(--accent); }
+.back-to-top { color: var(--blue-mid); text-decoration: none; }
+.footer-rev { color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+
+/* image caption / about carousel sizing (fallback if not set inline) */
+.about-images .project-image-rotator { height: var(--about-img-h, 290px); width: var(--about-img-w, 300px); border: 1px solid var(--blue-mid); }

@@ -8,64 +8,30 @@
 </head>
 <body>
 
-<div class="sticky-header" id="stickyHeader">
-  <div class="sticky-inner">
-    <a href="../index.html" class="sticky-name">Nathan Lam</a>
-    <nav class="sticky-nav">
+<div class="navbar">
+  <div class="navbar-inner">
+    <a href="../index.html" class="navbar-name">Nathan Lam</a>
+    <nav class="navbar-nav">
       <a href="../index.html#about">About</a>
       <a href="../index.html#skills">Skills</a>
-      <div class="nav-dropdown">
-        <a href="../index.html#projects" class="nav-dropdown-trigger">Projects</a>
-        <div class="nav-dropdown-menu">
-          <a href="../index.html#combat-robotics">Combat Robotics</a>
-          <a href="../index.html#academic-projects">Academic Projects</a>
-        </div>
-      </div>
+      <a href="../index.html#projects">Projects</a>
       <a href="../resume.html">Resume</a>
-      <div class="nav-dropdown">
-        <span class="nav-dropdown-trigger">Links</span>
-        <div class="nav-dropdown-menu">
-          <a href="https://www.linkedin.com/in/nathanklam/">LinkedIn</a>
-          <a href="mailto:nathan_lam@berkeley.edu">Email</a>
-        </div>
-      </div>
+      <a href="mailto:nathan_lam@berkeley.edu" class="button">Email</a>
     </nav>
   </div>
 </div>
 
-<header class="site-header">
-  <div class="header-inner">
-    <div class="site-name">
-      <a href="../index.html">Nathan Lam</a>
-    </div>
-    <nav class="site-nav">
-      <a href="../index.html#about">About</a>
-      <a href="../index.html#skills">Skills</a>
-      <div class="nav-dropdown">
-        <a href="../index.html#projects" class="nav-dropdown-trigger">Projects</a>
-        <div class="nav-dropdown-menu">
-          <a href="../index.html#combat-robotics">Combat Robotics</a>
-          <a href="../index.html#academic-projects">Academic Projects</a>
-        </div>
-      </div>
-      <a href="../resume.html">Resume</a>
-      <div class="nav-dropdown">
-        <span class="nav-dropdown-trigger">Links</span>
-        <div class="nav-dropdown-menu">
-          <a href="https://www.linkedin.com/in/nathanklam/">LinkedIn</a>
-          <a href="mailto:nathan_lam@berkeley.edu">Email</a>
-        </div>
-      </div>
-    </nav>
-  </div>
-</header>
+<main class="page">
 
-<main>
-
-  <div class="project-heading" style="margin-bottom: 20px">
+  <div class="project-heading">
     <h1>Plastic Antweights</h1>
     <p>Combat Robotics at Berkeley</p>
   </div>
+
+  <nav class="project-pager">
+    <a class="pager-prev" href="master_oogway.html">&larr; Master Oogway</a>
+    <span class="pager-next pager-disabled">I am You (In Progress) &rarr;</span>
+  </nav>
 
   <section id="robots">
     <div class="section-intro-grid">
@@ -130,7 +96,7 @@
               <div class="overview-specs">
                 <p>Skadoosh is the direct successor to Eggsterminator, built around an asymmetrical
                 vertical spinner. Versions 1 and 2 share the same electronics and specs, differing in geometry 
-                and combat outcomes. Version 3 is a planned larger redesign with updated electronics and components. </p>
+                and combat outcomes. Version 3 is a larger redesign, currently in progress, with updated electronics and components. </p>
                 <ul class="spec-list">
                   <li><span class="spec-label">Budget</span>       <span class="spec-value">$100 (Ver 1-2)</span></li>
                   <li><span class="spec-label">Weapon</span>       <span class="spec-value">88.62 g asymmetric vertical spinner; 124 J after 2 s spin-up</span></li>
@@ -156,7 +122,9 @@
               <div class="project-block-text">
                 <p>Building on Eggsterminator's proven foundation, my teammate Nathan Chan and I retained
                 what had worked — the modular angled armor — while redesigning the weapon system to allow
-                greater bite. Nathan led the weapon design and named the robot. We also designed invertibility
+                greater bite. The armor's modularity was meant to allow quick swaps between matches, though
+                V1 never got the chance to put that to use in practice — that payoff came later, at Berkeley
+                Bot Bash with V2. Nathan led the weapon design and named the robot. We also designed invertibility
                 in deliberately this time rather than as an afterthought. The experimental choice was a
                 concave front wedge, inspired by Dorito — a 1 lb control bot we had mentored whose crescent
                 shape outperformed expectations; we adapted the geometry for Skadoosh while aiming to address
@@ -166,10 +134,10 @@
 
             <figure class="project-figure">
               <div class="video-wrapper">
-                <iframe src="https://www.youtube.com/embed/VIDEO_ID_SKADOOSH_R1"
+                <iframe src="https://drive.google.com/file/d/14gkmMKn0rEK9vaX7uA_VP-wgewIkR8SG/preview"
                         title="Skadoosh Version 1 match footage" allowfullscreen></iframe>
               </div>
-              <figcaption>Winter Wreckage, Winter 2026</figcaption>
+              <figcaption>Winter Wreckage, vs. High Roller; Winter 2026</figcaption>
             </figure>
             <p>A notable result: Skadoosh defeated the robot that had won Berkeley Bot Bash the
             previous semester, making it the top-ranked 1 lb in the club at that point. Structurally,
@@ -196,16 +164,16 @@
                 redesign of both the armor panels and the frame. The weapon disk and uprights were largely
                 carried over, though the uprights were made lighter and refined to interface more cleanly
                 with the new frame. This version was also more of a personal project: I handled the full
-                build myself, including soldering the wiring harness from scratch.</p>
+                build myself, including soldering the wiring harness from scratch, and drove it as well.</p>
               </div>
             </div>
 
             <figure class="project-figure">
               <div class="video-wrapper">
-                <iframe src="https://www.youtube.com/embed/VIDEO_ID_SKADOOSH_R2"
+                <iframe src="https://drive.google.com/file/d/1piCR0UMpUktjHJrOgoOncyT8dT6_D-Fi/preview"
                         title="Skadoosh Revision 2 match footage" allowfullscreen></iframe>
               </div>
-              <figcaption>[Competition Name], [Season Year]</figcaption>
+              <figcaption>Carnage at the Cube, vs. Sica; Spring 2026</figcaption>
             </figure>
             <p>V2 finished 3–4 across Carnage at the Cube and Berkeley Bot Bash, with two additional
             informal wins from grudge matches. The weapon and armor held up well. Drive was the main
@@ -220,10 +188,12 @@
             <ul>
               <li>Robot was uncontrollable at times — N20 motors likely insufficient to overcome front wedge drag; brushless drive would help</li>
               <li>Losses came from inverting with the weapon motor unable to self-right; need torque calculations, or ensure the robot always lands with wheels contacting the ground</li>
-              <li>Back plate cracked — needs a separate panel with layer lines perpendicular to impact; also an issue in V1</li>
+              <li>Back plate cracked — needs a separate panel with layer lines perpendicular to impact; also an issue in V1, though getting hit in the back is arguably a driving/positioning issue and may not be high priority to fix</li>
               <li>Weapon motor magnet shattered internally; battle harden or source a more robust motor</li>
               <li>Fork mount fell off mid-match from vibration; needs a stronger scheme or top-plate edge screws moved further inward</li>
               <li>A solder joint disconnected during a match; ensure all connections are solid before the event</li>
+              <li>Not much damage was actually sustained — armor thickness may still be reducible further</li>
+              <li>Need more driving practice overall</li>
             </ul>
 
             <p><strong>Lessons (Berkeley Bot Bash):</strong></p>
@@ -234,25 +204,34 @@
             </ul>
           </section>
 
-          <!-- ── Version 3 (Planned) ── -->
+          <!-- ── Version 3 (In Progress) ── -->
           <section>
-            <h3>Version 3 — Planned</h3>
+            <h3>Version 3 — In Progress</h3>
             <p>V3 is a ground-up redesign driven by V2's drive and weapon-mount failures. The
             drivetrain switches to brushless tangent drive — faster and more powerful than the N20
-            brushed motors, which could not overcome front wedge friction. Tangent drive requires a
-            wider, shorter footprint and may run fast enough that top speed needs to be dialed back in
+            brushed motors, which could not overcome front wedge friction. The extra speed should also
+            help close distance quickly against opponents where that matters most, like "meltybrains".
+            Tangent drive requires a wider, shorter footprint and may run fast enough that top speed needs to be dialed back in
             the controller. Wheel fabrication (possibly cast Vytaflex or Lego-compatible) and the
             exact interference needed are still being worked out. A 4S battery replaces the current 2S
             for higher tip speed and stronger drive; the weapon proved effective on 2S but more tip
             speed helps in weapon-on-weapon exchanges. The weapon motor will be replaced with a Repeat
             Robotics unit, purpose-built for combat and commonly used in the class. Electronics will
-            use a Catalyst ESC (4S-compatible with integrated receiver) paired with a 35A weapon ESC.
+            use a Catalyst ESC (4S-compatible with integrated receiver, roughly equivalent to a 45A
+            ESC) paired with a 35A weapon ESC — the two are supposedly compatible together, but that
+            still needs to be confirmed.
             The weapon disk will be made thinner to allow more shaft to seat deeply into the opposite
             rail's bearing, addressing the repeated pull-out failures in V2.</p>
 
             <p>Additional changes under consideration: steeper armor plate angles (45° to 60°),
             trimming armor height to match the frame to recover weight, and integrating the fork mounts
-            into the armor panels to isolate them from frame damage.</p>
+            into the armor panels to isolate them from frame damage — though that could mean fielding
+            a lot of forks, so it's worth checking whether that's within the rules, with a fallback
+            plan if not.</p>
+
+            <p>V3 is being built over the summer, leaving time to get in more driving
+            practice ahead of the next competition. Out of respect for an existing bot in the same weight class,
+            this robot's name will be slightly changed to "Skadooosh", where an extra "o" is for the robot becoming wider.</p>
           </section>
 
         </div>
@@ -353,7 +332,7 @@
             <h3>Outcomes &amp; Performance</h3>
             <figure class="project-figure">
               <div class="video-wrapper">
-                <iframe src="https://www.youtube.com/embed/VIDEO_ID_EGGST"
+                <iframe src="https://drive.google.com/file/d/1gRiJjG7UEUnwEq5VmYU60Q96Gk-kLz8Q/preview"
                         title="Eggsterminator match footage" allowfullscreen></iframe>
               </div>
               <figcaption>Internal CRB Competition, Fall 2024</figcaption>
@@ -372,6 +351,7 @@
               <li>Weapon must remain operational when inverted</li>
               <li>Shorter wire routing would help — squishing the top plate closed to seal the robot was a recurring issue</li>
               <li>The angled geometry was highly effective; no armor needed replacing throughout the event</li>
+              <li>Angled surfaces cut both ways when flipped — they can help the robot right itself, but only at the cost of taking more hits in the process</li>
             </ul>
             <p><strong>Next steps:</strong> Carry both lessons into a new 1 lb robot design.</p>
           </section>
@@ -386,8 +366,12 @@
 
 <footer>
   <div class="footer-inner">
-    <a href="#" class="back-to-top">↑ Back to Top</a>
-    <p class="footer-copyright">© 2026 Nathan Lam</p>
+    <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">&uarr; Back to top</a>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/nathanklam/">LinkedIn</a>
+      <a href="mailto:nathan_lam@berkeley.edu">Email</a>
+    </div>
+    <span>&copy; 2026 Nathan Lam</span>
   </div>
 </footer>
 
@@ -432,20 +416,6 @@
     header.addEventListener('click', () => {
       header.closest('.accordion-item').classList.toggle('active');
     });
-  });
-</script>
-
-<!-- Sticky header script — same on every sub-page -->
-<script>
-  const stickyHeader = document.getElementById('stickyHeader');
-  const hero = document.querySelector('.site-header');
-
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > hero.offsetHeight) {
-      stickyHeader.classList.add('visible');
-    } else {
-      stickyHeader.classList.remove('visible');
-    }
   });
 </script>
 

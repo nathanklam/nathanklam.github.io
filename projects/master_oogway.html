@@ -8,64 +8,30 @@
 </head>
 <body>
 
-<div class="sticky-header" id="stickyHeader">
-  <div class="sticky-inner">
-    <a href="../index.html" class="sticky-name">Nathan Lam</a>
-    <nav class="sticky-nav">
+<div class="navbar">
+  <div class="navbar-inner">
+    <a href="../index.html" class="navbar-name">Nathan Lam</a>
+    <nav class="navbar-nav">
       <a href="../index.html#about">About</a>
       <a href="../index.html#skills">Skills</a>
-      <div class="nav-dropdown">
-        <a href="../index.html#projects" class="nav-dropdown-trigger">Projects</a>
-        <div class="nav-dropdown-menu">
-          <a href="../index.html#combat-robotics">Combat Robotics</a>
-          <a href="../index.html#academic-projects">Academic Projects</a>
-        </div>
-      </div>
+      <a href="../index.html#projects">Projects</a>
       <a href="../resume.html">Resume</a>
-      <div class="nav-dropdown">
-        <span class="nav-dropdown-trigger">Links</span>
-        <div class="nav-dropdown-menu">
-          <a href="https://www.linkedin.com/in/nathanklam/">LinkedIn</a>
-          <a href="mailto:nathan_lam@berkeley.edu">Email</a>
-        </div>
-      </div>
+      <a href="mailto:nathan_lam@berkeley.edu" class="button">Email</a>
     </nav>
   </div>
 </div>
 
-<header class="site-header">
-  <div class="header-inner">
-    <div class="site-name">
-      <a href="../index.html">Nathan Lam</a>
-    </div>
-    <nav class="site-nav">
-      <a href="../index.html#about">About</a>
-      <a href="../index.html#skills">Skills</a>
-      <div class="nav-dropdown">
-        <a href="../index.html#projects" class="nav-dropdown-trigger">Projects</a>
-        <div class="nav-dropdown-menu">
-          <a href="../index.html#combat-robotics">Combat Robotics</a>
-          <a href="../index.html#academic-projects">Academic Projects</a>
-        </div>
-      </div>
-      <a href="../resume.html">Resume</a>
-      <div class="nav-dropdown">
-        <span class="nav-dropdown-trigger">Links</span>
-        <div class="nav-dropdown-menu">
-          <a href="https://www.linkedin.com/in/nathanklam/">LinkedIn</a>
-          <a href="mailto:nathan_lam@berkeley.edu">Email</a>
-        </div>
-      </div>
-    </nav>
-  </div>
-</header>
-
-<main>
+<main class="page">
 
   <div class="project-heading">
     <h1>15 lb Combat Robot: "Master Oogway"</h1>
     <p>Combat Robotics at Berkeley</p>
   </div>
+
+  <nav class="project-pager">
+    <span class="pager-prev"></span>
+    <a class="pager-next" href="PLANTs.html">Skadoosh &rarr;</a>
+  </nav>
 
   <section id="overview">
     <h2>Overview</h2>
@@ -116,8 +82,8 @@
         <p>The core architecture was established early: a square footprint driven by the choice of
         four-wheel drive, an asymmetric dual-disk vertical spinner as the primary weapon to
         differentiate from prior club builds, belt-driven systems for both drive and weapon, and
-        an all-around angled exterior to deflect incoming hits from any approach angle — carrying
-        forward the principle demonstrated by Eggsterminator at the 1 lb scale.</p>
+        an all-around angled exterior to deflect incoming hits from any approach angle, carrying
+        forward the principle tested by Eggsterminator at the 1 lb scale.</p>
       </div>
     </div>
 
@@ -147,7 +113,7 @@
         key load paths. Even after that pass the robot was still over the limit, requiring further
         removal: a large chunk milled from the back plate, two of the mid armor mounting supports
         eliminated, and significantly fewer fasteners than originally specified. Fusion 360's mass
-        estimates had consistently overshot the actual weight — a problem that affected multiple
+        estimates had consistently overshot the actual weight, a problem that affected multiple
         Berkeley teams that season.</p>
       </div>
     </div>
@@ -158,14 +124,11 @@
         <figcaption>Physical assembly</figcaption>
       </figure>
       <div class="project-block-text">
-        <figure class="project-figure" style="margin:0 0 16px;">
-          <img src="../images/master_oogway/armor_working.jpg" alt="Armor system detail">
-          <figcaption>Armor panel fit-up</figcaption>
-        </figure>
         <p>I handled most of the non-electronics assembly: installing and torquing fasteners
         throughout, working out the nut-strip system for armor mounting, and troubleshooting fits
-        as parts came together. During the competition, repairs included hammering deformed aluminum
-        armor panels flat between matches to make them serviceable again.</p>
+        as parts came together. I was also responsible for milling the back plate to reduce weight below 15 lbs.
+        During the competition, repairs I conducted included hammering deformed aluminum armor panels flat between 
+        matches to make them serviceable again, and performing quick swaps with spares on certain components.</p>
       </div>
     </div>
 
@@ -177,19 +140,19 @@
     <figure class="project-figure">
       <div class="video-wrapper">
         <iframe
-          src="https://www.youtube.com/embed/VIDEO_ID_1"
-          title="Master Oogway match footage"
+          src="https://drive.google.com/file/d/1wCny1Mz97fkO5MieC3_Zo3D06L0bTl4g/preview"
+          title="Master Oogway, SBB 2025"
           allowfullscreen>
         </iframe>
       </div>
-      <figcaption>[Competition Name], [Year]</figcaption>
+      <figcaption>Sacramento Bot Battles, Spring 2025</figcaption>
     </figure>
 
-    <p>[Describe match-by-match results and the overall 3–2 record. In the first match the
-    robot sustained heavy damage but was repaired and made operational again. Middle matches
-    had no major structural issues beyond drive problems. In the final match the robot
-    suffered severe damage but maintained controlled motion to the end; the angled armor
-    deflected impacts that would otherwise have been fatal.]</p>
+    <p>In the first match, the robot sustained heavy damage leading to us forfeiting the match, but was repaired and made operational again. 
+      Middle matches had no major structural issues beyond drive problems. Our matches were won by a few lucky hits, with one instance removing the top plate 
+      of our opponent, exposing the battery, and another causing our opponent to become irrecoverably stuck . 
+      In the final match, against the same robot in our first match, the robot suffered severe damage but maintained controlled motion to the 
+      end; the angled armor deflected impacts that would otherwise have been fatal. Achieved a 3-2 record; was officially awarded "Coolest Bot" and unofficially awarded "Most Destroyed".</p>
 
     <div class="project-block">
       <figure class="project-figure">
@@ -199,15 +162,15 @@
       <div class="project-block-text">
         <p><strong>Lessons learned:</strong></p>
         <ul>
-          <li>Pulley inner diameter must match the motor shaft exactly — any improvised fix only survives a handful of impacts; this was an issue across multiple Berkeley teams that season</li>
+          <li>Pulley inner diameter must match the motor shaft exactly — any improvised fix only survives a handful of impacts; this was an issue across multiple 
+            Berkeley teams that season, and somehow wasn't caught for any of them during design reviews</li>
           <li>Do not rely on Fusion 360 mass estimates — they consistently overshot the actual weight, requiring significant last-minute material removal</li>
           <li>Drive belts needed tensioners — the drivetrain struggled throughout the event</li>
-          <li>Front wheel mounts required a more robust design</li>
           <li>Drive motors should be mounted to the bottom plate for easier access</li>
           <li>A smaller overall footprint would reduce the need to remove material from the back plate and allow more armor mounting points</li>
           <li>Avoid nut-strips where possible — drilling and tapping directly into the part is worth the extra effort for a more reliable connection</li>
           <li>UHMW or carbon fiber could replace aluminum on low-criticality plates (top, bottom) to recover weight while maintaining or improving rigidity</li>
-          <li>Electronics should be rebuilt from scratch to improve routing and serviceability</li>
+          <li>Electronics should be rebuilt from scratch to improve routing, serviceability, and to reduce weight</li>
         </ul>
       </div>
     </div>
@@ -218,8 +181,12 @@
 
 <footer>
   <div class="footer-inner">
-    <a href="#" class="back-to-top">↑ Back to Top</a>
-    <p class="footer-copyright">© 2026 Nathan Lam</p>
+    <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">&uarr; Back to top</a>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/nathanklam/">LinkedIn</a>
+      <a href="mailto:nathan_lam@berkeley.edu">Email</a>
+    </div>
+    <span>&copy; 2026 Nathan Lam</span>
   </div>
 </footer>
 
@@ -264,20 +231,6 @@
     header.addEventListener('click', () => {
       header.closest('.accordion-item').classList.toggle('active');
     });
-  });
-</script>
-
-<!-- Sticky header script — same on every sub-page -->
-<script>
-  const stickyHeader = document.getElementById('stickyHeader');
-  const hero = document.querySelector('.site-header');
-
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > hero.offsetHeight) {
-      stickyHeader.classList.add('visible');
-    } else {
-      stickyHeader.classList.remove('visible');
-    }
   });
 </script>
 

@@ -13,64 +13,22 @@
 <body>
 
 <!-- ═══════════════════════════════════════════════════════════
-     STICKY HEADER — same on every sub-page
+     NAVBAR — same on every page (sticky, no scroll JS needed)
      ═══════════════════════════════════════════════════════════ -->
-<div class="sticky-header" id="stickyHeader">
-  <div class="sticky-inner">
-    <a href="../index.html" class="sticky-name">Nathan Lam</a>
-    <nav class="sticky-nav">
+<div class="navbar">
+  <div class="navbar-inner">
+    <a href="../index.html" class="navbar-name">Nathan Lam</a>
+    <nav class="navbar-nav">
       <a href="../index.html#about">About</a>
       <a href="../index.html#skills">Skills</a>
-      <div class="nav-dropdown">
-        <a href="../index.html#projects" class="nav-dropdown-trigger">Projects</a>
-        <div class="nav-dropdown-menu">
-          <a href="../index.html#combat-robotics">Combat Robotics</a>
-          <a href="../index.html#academic-projects">Academic Projects</a>
-        </div>
-      </div>
+      <a href="../index.html#projects">Projects</a>
       <a href="../resume.html">Resume</a>
-      <div class="nav-dropdown">
-        <span class="nav-dropdown-trigger">Links</span>
-        <div class="nav-dropdown-menu">
-          <a href="https://www.linkedin.com/in/nathanklam/">LinkedIn</a>
-          <a href="mailto:nathan_lam@berkeley.edu">Email</a>
-        </div>
-      </div>
+      <a href="mailto:nathan_lam@berkeley.edu" class="button">Email</a>
     </nav>
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════════
-     SUB-PAGE HEADER — use .site-header, NOT the hero <header>
-     ═══════════════════════════════════════════════════════════ -->
-<header class="site-header">
-  <div class="header-inner">
-    <div class="site-name">
-      <a href="../index.html">Nathan Lam</a>
-    </div>
-    <nav class="site-nav">
-      <a href="../index.html#about">About</a>
-      <a href="../index.html#skills">Skills</a>
-      <div class="nav-dropdown">
-        <a href="../index.html#projects" class="nav-dropdown-trigger">Projects</a>
-        <div class="nav-dropdown-menu">
-          <a href="../index.html#combat-robotics">Combat Robotics</a>
-          <a href="../index.html#academic-projects">Academic Projects</a>
-        </div>
-      </div>
-      <a href="../resume.html">Resume</a>
-      <div class="nav-dropdown">
-        <span class="nav-dropdown-trigger">Links</span>
-        <div class="nav-dropdown-menu">
-          <a href="https://www.linkedin.com/in/nathanklam/">LinkedIn</a>
-          <a href="mailto:nathan_lam@berkeley.edu">Email</a>
-        </div>
-      </div>
-    </nav>
-  </div>
-</header>
-
-<main>
+<main class="page">
 
   <!-- Project title — lives in main content, not in the header -->
   <div class="project-heading">
@@ -327,8 +285,12 @@
 
 <footer>
   <div class="footer-inner">
-    <a href="#" class="back-to-top">↑ Back to Top</a>
-    <p class="footer-copyright">© 2026 Nathan Lam</p>
+    <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">&uarr; Back to top</a>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/nathanklam/">LinkedIn</a>
+      <a href="mailto:nathan_lam@berkeley.edu">Email</a>
+    </div>
+    <span>&copy; 2026 Nathan Lam</span>
   </div>
 </footer>
 
@@ -373,20 +335,6 @@
     header.addEventListener('click', () => {
       header.closest('.accordion-item').classList.toggle('active');
     });
-  });
-</script>
-
-<!-- Sticky header script — same on every sub-page -->
-<script>
-  const stickyHeader = document.getElementById('stickyHeader');
-  const hero = document.querySelector('.site-header');
-
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > hero.offsetHeight) {
-      stickyHeader.classList.add('visible');
-    } else {
-      stickyHeader.classList.remove('visible');
-    }
   });
 </script>
 

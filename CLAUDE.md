@@ -5,105 +5,161 @@
 Static HTML/CSS portfolio site for Nathan Lam, Mechanical Engineering student at UC Berkeley.
 No build step. Open `index.html` directly in a browser or serve with any static file server.
 
+Design: "Editorial Rows" — a light sticky navbar and full-width alternating
+image/text rows, ported from the `concept-bento/` prototype. Home page project
+content is data-driven (see `projects.js` below), not hand-written HTML.
+
 ## File structure
 
 ```
 index.html          — main page (about, skills, all projects)
-styles.css          — all styles for index.html and sub-pages
-resume.html         — resume embed page
-_snippets.html      — copy-paste reference for all home page patterns (not a live page)
+styles.css           — all styles for index.html and sub-pages
+projects.js          — PROJECTS data array + rendering/carousel logic for index.html
+resume.html          — resume embed page
+_snippets.html       — copy-paste reference for home page patterns (not a live page)
 projects/
-  _template.html    — reference template for new project pages (copy this)
-  ME127.html        — composites final report (PDF embed, legacy nav style)
+  _template.html     — reference template for new project pages (copy this)
+  ME127.html          — composites final report (PDF embed)
+  master_oogway.html  — Master Oogway project page
+  PLANTs.html         — Skadoosh / Eggsterminator (1 lb robots) project page
+  contributions.html  — Malware / Syntax Terror contributions page
 images/
-  about/            — personal/competition photos used in the About section
-  main_page/        — card thumbnail images used on index.html project cards
-  master_oogway/    — extra images for Master Oogway carousel
-  e29/              — extra images for E29 carousel
+  about/             — personal/competition photos used in the About section
+  main_page/         — card thumbnail images used by projects.js on index.html
+  master_oogway/, e29/, 1lb_bots/, bot_contributions/ — sub-page images
+concept-bento/        — standalone design prototype this site's styling is based on;
+                         does not link into the live site, kept for reference
+concept-blueprint/     — an earlier, unused design prototype
 ```
 
 ## Color system (CSS custom properties in styles.css)
 
-| Variable        | Value       | Used for                                    |
-|-----------------|-------------|---------------------------------------------|
-| `--navy`        | `#0d1b2a`   | Hero header, sticky header, footer          |
-| `--navy-mid`    | `#1e3a5f`   | Accordion header hover (sub-pages)          |
-| `--accent`      | `#f59e0b`   | Amber — primary accent, combat section bar  |
-| `--blue`        | `#2563eb`   | Blue — secondary accent, academic section   |
-| `--bg`          | `#f1f5f9`   | Page background                             |
-| `--surface`     | `#ffffff`   | Card and main content surface               |
-| `--surface-alt` | `#f8fafc`   | Image column placeholder background         |
+| Variable         | Value       | Used for                                         |
+|-------------------|-------------|--------------------------------------------------|
+| `--bg`            | `#eef1f4`   | Page background                                   |
+| `--surface`       | `#ffffff`   | Accordion/card surfaces                           |
+| `--surface-2`     | `#e1e7ec`   | Image placeholder / carousel background           |
+| `--ink`           | `#161b20`   | Primary text, headings                            |
+| `--body-text`     | `#343c43`   | Paragraph text                                    |
+| `--muted`         | `#66707a`   | Secondary text (meta, subtitles, captions)        |
+| `--accent`        | `#285f82`   | Primary accent — links, chips, navbar border      |
+| `--accent-soft`   | `#dbe7ee`   | Chip / skill-tag background                       |
+| `--accent-text`   | `#1c4a64`   | Chip / skill-tag text                             |
+| `--accent-light`  | `#6fa8c9`   | Navbar "Email" button, accordion open underline   |
+| `--border`        | `#d5dce2`   | Hairline dividers                                 |
+| `--navbar-bg`      | `#161b20`   | Sticky navbar, accordion headers, model-viewer bg |
+
+There is a single accent color (no separate combat/academic accent colors as
+in the previous design) — project groups are differentiated by heading text
+only, not a colored bar.
 
 ## styles.css structure (Table of Contents)
 
-The stylesheet is divided into 24 numbered sections — find the section comment
+The stylesheet is divided into numbered sections — find the section comment
 (`── N. Name ──`) to jump to the right block:
 
 ```
-Home page:
+Shared:
   1.  Design tokens (:root)
   2.  Reset & base
-  3.  Hero header          (.hero-header)
-  4.  Sticky header        (.sticky-header)
-  5.  Dropdown nav         (.nav-dropdown)
-  6.  Main container       (main)
-  7.  Section headings
-  8.  About section
-  9.  Skills section       (.skills-grid)
-  10. Project groups       (.project-group)
-  11. Project cards        (.project-card)
-  12. Image carousel       (.project-image-rotator)
-  13. Image placeholder    (.project-image-placeholder)
-  14. Mobile — card stacking
-  15. Footer
+  3.  Navbar               (.navbar)          — single sticky bar, all pages
+  4.  Page wrapper          (.page)
+  5.  Carousel               (.project-image-rotator)
+  6.  Footer
+
+Home page:
+  7.  Hero                   (.hero)
+  8.  Section heading        (.section-heading)
+  9.  About row               (.about-row)
+  10. Skills list             (.skills-list)
+  11. Project groups & rows   (.project-group / .project-row)
+  12. Archive list            (.archive-list)
+  13. Responsive — home page
 
 Sub-pages (projects/, resume.html):
-  16. Site header          (.site-header)
-  17. Project heading      (.project-heading)
-  18. Project blocks       (.project-block)
-  19. Overview grid & spec list
-  20. Standalone carousel  (.carousel-block)
-  21. Video embed          (.video-wrapper)
-  22. PDF embed            (section > iframe)
-  23. Accordion            (.accordion)
-  24. 3D model viewer      (model-viewer)
+  14. Sub-page heading        (.project-heading)
+  15. Sub-page section headings (scoped via child combinators — see below)
+  16. Overview grid & spec list
+  17. Project blocks          (.project-block)
+  18. Image captions          (.project-figure)
+  19. Standalone carousel     (.carousel-block)
+  20. Video embed             (.video-wrapper)
+  21. PDF embed                (section > iframe)
+  22. Accordion                (.accordion)
+  23. 3D model viewer          (model-viewer)
+  24. Responsive — sub-pages
 ```
 
-## Hero vs. sub-page header — important distinction
+## Navbar — same on every page
 
-The **hero header** (`<header class="hero-header">`) on `index.html` uses
-`display: flex; flex-direction: column; align-items: center` for centered
-column layout. It is scoped to `.hero-header` so it cannot leak onto sub-pages.
+There is one navbar component (`.navbar` / `.navbar-inner` / `.navbar-nav`),
+used identically on `index.html` and every sub-page. It's `position: sticky`
+and always visible — there is **no** separate hero header, no scroll-triggered
+show/hide JS, and no `.site-header` vs `.hero-header` distinction to worry
+about (unlike the previous design).
 
-Sub-pages use `<header class="site-header">` instead — a horizontal bar with
-name left and nav right. `.header-inner` mirrors `.sticky-inner`'s
-`max-width: 1100px; margin: 0 auto; padding: 14px 32px` so both headers
-share identical horizontal extents.
+- On `index.html`, nav links are same-page anchors: `#about`, `#skills`, `#projects`.
+- On sub-pages, they point back to the home page: `../index.html#about`, etc.
+  (`resume.html` sits at the root like `index.html`, so it uses bare
+  `index.html#about` — no `../`.)
+- The archive dropdown (`#archiveDropdown`) only exists on `index.html`; it's
+  hidden by default and revealed by `projects.js` if any project has
+  `status: 'archived'`.
 
-**Never** use a bare `header { }` rule — it would affect both header types.
+**Never** add a second header element to a page — everything (branding,
+nav, contact) lives in the one `.navbar`.
+
+## Home page projects are data-driven (projects.js)
+
+Unlike the rest of the site, project cards on `index.html` are **not**
+hand-written HTML. `index.html` only provides the group shells:
+
+```html
+<div class="project-group" id="combat-robotics" data-group="combat-robotics">
+  <h3 class="project-group-title">Combat Robotics at Berkeley</h3>
+  <p class="project-group-subtitle">...</p>
+  <div class="project-rows"></div>
+</div>
+```
+
+`projects.js` holds a `PROJECTS` array (one object per project) and renders
+each group's `.project-rows` container by matching `group` to `data-group`.
+Rows alternate image-left / image-right automatically within each group.
+
+**To add, edit, or archive a project: edit `projects.js`, not `index.html`.**
+See the field reference in the comment at the top of `projects.js`, or
+`_snippets.html` Section 1 for a copy-paste starting object. Setting
+`status: 'archived'` on a project automatically moves it out of its group
+and into the Archive section + navbar dropdown — nothing else needs to move.
+
+`projects.js` also contains the carousel init logic that used to live inline
+in `index.html`'s `<script>` tag; it runs after rendering so it also
+initializes the static About-section carousel.
 
 ## Disabling "flashy" features
 
 Certain visual effects are marked `/* FLASHY: ... */` in the code for easy removal:
 
-- **Hero dot-grid**: remove `background-image` line in `.hero-header {}` in styles.css
-- **Main content dot-grid**: remove `background-image` line in `main {}` in styles.css
-- **Carousel auto-rotation**: remove the `setInterval` block in the carousel script in index.html
-- **Card hover lift**: remove `transition/transform` from `.project-card` and `.project-card:hover`
-- **Image hover zoom**: remove `transition/transform` from `.project-card-image > img` and the hover rule below it
-- **Image captions**: remove all `<div class="image-caption-overlay">` elements from HTML
-- **Carousel arrows/dots**: remove all `<div class="carousel-controls">` elements from HTML
+- **Carousel auto-rotation**: remove the `resetTimer`/`setInterval` block in the
+  carousel-init script — in `projects.js` (home page) or the inline script at
+  the bottom of each sub-page.
+- **Image captions**: remove all `<div class="image-caption-overlay">` elements from HTML.
+- **Carousel arrows/dots**: remove all `<div class="carousel-controls">` elements from HTML.
+
+This design does not use dot-grid backgrounds or card hover-lift/zoom effects
+(both present in the previous design) — rows and accordion items are static.
 
 ## Carousel structure
 
-Every carousel card follows this HTML pattern inside `.project-card-image`:
+Every carousel follows this HTML pattern:
 
 ```html
 <div class="project-image-rotator">
   <div class="image-viewport">
     <img src="..." alt="..." data-caption="Label shown on image">
     <img src="..." alt="..." data-caption="Second label">
-    <!-- one <img> per slide -->
+    <!-- one <img> per slide; add class="contain" for renders/CAD shots
+         that need letterboxing on white instead of a crop -->
     <div class="image-caption-overlay"></div>   <!-- remove to hide captions -->
     <div class="carousel-controls">
       <button class="carousel-btn carousel-prev" aria-label="Previous image">&#8249;</button>
@@ -116,17 +172,22 @@ Every carousel card follows this HTML pattern inside `.project-card-image`:
 </div>
 ```
 
-The JS at the bottom of index.html (and each sub-page) auto-initializes all
-`.project-image-rotator` elements on that page.
+On `index.html`, carousels inside project rows are generated by `projects.js`
+from a project's `images` array (2+ images → carousel, 1 image → plain
+`<img>`, 0 images → placeholder). The About-section carousel and every
+sub-page carousel are still hand-written HTML using the pattern above, and
+are initialized by the same carousel-init logic (duplicated inline on
+sub-pages, since they don't load `projects.js`).
 
 **Important:** the number of `.carousel-dot` spans must match the number of `<img>` tags.
 
 On sub-pages, wrap the rotator in `<div class="carousel-block">` to give it
-an explicit height (the home page card layout provides this automatically).
+an explicit height. On the home page, `.row-media` / `.about-media` provide
+this automatically.
 
 ## Accordion max-height
 
-The accordion open state uses `max-height: 5000px` in styles.css section 23 as a CSS animation workaround (you can't transition to `height: auto`). If an accordion item's content is unusually tall and gets clipped at the bottom, increase this value.
+The accordion open state uses `max-height: 5000px` in styles.css section 22 as a CSS animation workaround (you can't transition to `height: auto`). If an accordion item's content is unusually tall and gets clipped at the bottom, increase this value.
 
 ## Video embed with caption
 
@@ -146,27 +207,32 @@ To add a caption below a video, wrap `.video-wrapper` in `<figure class="project
 ## Sub-page conventions
 
 - Copy `projects/_template.html` as a starting point for new project pages.
-- Sub-pages use `<header class="site-header">` + `.header-inner` for the top bar.
+- Sub-pages use the same `.navbar` as `index.html` (see above), with `../`-prefixed links, followed by `<main class="page">`.
 - Put the project title in `<div class="project-heading">` at the top of `<main>`,
-  not inside the header.
+  not inside the navbar.
+- Top-level sub-page sections use a plain `<h2>` as a **direct child** of
+  `<section>` (e.g. `<section id="overview"><h2>Overview</h2>...`) — the
+  styling in styles.css section 15 targets `.page > section > h2` specifically
+  so it can't collide with the home page's `.section-heading h2`. Don't wrap
+  sub-page section headings in extra markup.
 - PDF embeds use `<iframe>` as a direct child of `<section>` — the CSS rule
   `section > iframe { height: 900px }` targets exactly this pattern.
 - Video embeds go inside `<div class="video-wrapper">` to maintain 16:9 aspect ratio. Works with YouTube (`https://www.youtube.com/embed/ID`), Google Drive (`https://drive.google.com/file/d/FILE_ID/preview`, file must be shared "Anyone with the link can view"), or any other iframe-embeddable source.
 
 ## About section layout
 
-The About section uses a two-column flex layout:
+The About section uses a two-column flex layout (`.about-row`):
 
 ```html
-<div class="about-grid">
+<div class="about-row">
   <div class="about-text"> … paragraphs … </div>
-  <div class="about-images" style="--about-img-w: 300px; --about-img-h: 290px;">
+  <div class="about-media">
     <!-- .project-image-rotator carousel goes here -->
   </div>
 </div>
 ```
 
-**Resizing the image column:** set `--about-img-w` and `--about-img-h` as inline custom properties directly on `.about-images` in the HTML — no CSS change needed. The CSS reads `var(--about-img-w, 300px)` with a fallback, so the inline values take precedence.
+**Resizing the image column:** set `--about-img-w` and `--about-img-h` as inline custom properties directly on `.about-media` in the HTML (defaults: 320px / 272px) — no CSS change needed.
 
 **Per-image crop control:** use `object-position` inline on each `<img>` to shift where the cover crop sits (e.g. `style="object-position: center 40%;"`). Useful when subjects appear at different heights in their photos.
 
@@ -176,38 +242,38 @@ The About section uses a two-column flex layout:
 
 ## _snippets.html reference
 
-`_snippets.html` at the root is a copy-paste cheat sheet for all home page patterns. Open it in an editor (not a browser) when adding new content. It covers:
+`_snippets.html` at the root is a copy-paste cheat sheet for the remaining
+hand-written home page patterns (project cards are generated from
+`projects.js` now, not copy-pasted). Open it in an editor (not a browser)
+when adding new content. It covers:
 
-1. Project card — carousel image
-2. Project card — single static image
-3. Project card — image placeholder
-4. Link variants — coming-soon vs. real (internal and external)
-5. Skill category block
-6. Project group shell
-7. About section grid
+1. Adding a project (projects.js — PROJECTS array field reference)
+2. Skill row block
+3. Project group shell
+4. About row (text + image carousel)
+
+For sub-page patterns (project-block, overview-grid, carousel-block,
+video-wrapper, accordion, PDF embed, model-viewer), copy
+`projects/_template.html` instead — it demonstrates all of them in context.
 
 ## Coming-soon link convention
 
-Links for projects without a detail page use `class="coming-soon-link"` on a bare `<a>` tag (no `href`).
-When a project page is ready, replace with `<a href="projects/filename.html">View project →</a>`.
+Projects without a detail page use `link: { mode: 'soon', label: '...' }` in
+their `projects.js` entry, which renders as `class="coming-soon-link"` on a
+bare `<a>` tag (no `href`). When a project page is ready, change it to
+`link: { mode: 'external', href: 'projects/filename.html', label: '...' }`.
 
 ## Placeholder images
 
-Cards without images use `.project-image-placeholder`. Replace the entire placeholder `<div>` with
-either a single `<img>` or a `.project-image-rotator` carousel when images become available.
+Projects with no images yet use `images: []` in their `projects.js` entry,
+which renders `.row-media-placeholder`. Once images exist, add them to the
+`images` array — 1 image renders as a static `<img>`, 2+ renders as a carousel.
 
 ## Pending items
 
 - Fill in real URLs for GitHub, LinkedIn, and Email:
-  - Sticky header Links dropdown (index.html)
-  - Footer links (index.html)
-  - Sub-page nav dropdowns (template + any project pages)
-  - Hero nav Email link (index.html)
-- Convert coming-soon links to real hrefs as project pages are created
-  (Master Oogway, Skadoosh/Eggsterminator, Contributions, ESP-RESSO 32, E29 Corner Mount)
-- ESP-RESSO 32 is currently a single static image; can become a carousel when more images exist
-- ME127.html uses the old simplified nav — can be updated to the full dropdown nav from _template.html
-- **Project nav dropdown:** once the majority of project pages exist, add direct links to them
-  in the sticky header Projects dropdown as flat indented items beneath the section anchors
-  (e.g. "↳ Master Oogway" under "Combat Robotics"). Do NOT use a nested/flyout submenu —
-  flatten everything into one dropdown. Update index.html and _template.html together.
+  - Navbar Email button (index.html and every sub-page)
+  - Footer links (index.html and every sub-page)
+- Convert remaining coming-soon links to real hrefs as project pages are created
+  (Planned 3 lb, ESP-RESSO 32, E29 Corner Mount) — edit the `link` field in projects.js.
+- ESP-RESSO 32 is currently a single static image; can become a carousel when more images exist.

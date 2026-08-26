@@ -1,47 +1,122 @@
 <!--
   _snippets.html — Home page copy-paste reference
-  All reusable patterns from index.html. NOT a live page — open in an editor, not a browser.
+  NOT a live page — open in an editor, not a browser.
+
+  As of the "Editorial Rows" redesign, project cards are no longer
+  hand-written HTML — they're generated from the PROJECTS array in
+  projects.js. See Section 1 below for that. Sections 2-4 cover the
+  remaining hand-written home page patterns (skills, project group
+  shells, the about grid). For sub-page patterns (project-block,
+  overview-grid, carousel-block, video-wrapper, accordion, PDF embed,
+  model-viewer), copy projects/_template.html instead.
 
   Contents
   ─────────────────────────────────────────────────────────────────
-  1.  Project card — carousel image
-  2.  Project card — single static image
-  3.  Project card — image placeholder (no image yet)
-  4.  Link variants — coming-soon vs. real
-  5.  Image adjustments — object-position, padding, contain
-  6.  Skill category block
-  7.  Project group shell (section wrapper)
-  8.  About section grid (text + image carousel)
+  1.  Adding a project           (projects.js — PROJECTS array)
+  2.  Skill row block
+  3.  Project group shell
+  4.  About row (text + image carousel)
   ─────────────────────────────────────────────────────────────────
 -->
 
 
 <!-- ═══════════════════════════════════════════════════════════
-     1. PROJECT CARD — CAROUSEL IMAGE
-     Use when you have two or more images for a project.
+     1. ADDING A PROJECT
+     Add one object to the PROJECTS array in projects.js — the
+     row is rendered automatically, alternating image-left /
+     image-right within its group. Do not edit index.html directly
+     to add or remove a project.
 
-     Rules:
-       • One <img> per slide; one <span class="carousel-dot"> per slide.
-         The dot count MUST match the image count or dots will desync.
-       • data-caption on each <img> sets the text overlay for that slide.
-       • Remove <div class="image-caption-overlay"> to hide captions.
-       • Remove <div class="carousel-controls"> to hide arrows and dots.
+     Field reference:
+       id          unique slug — used as the row's element id / anchor
+       group       'combat-robotics' | 'academic-projects'
+                   (must match a [data-group] container in index.html;
+                   add a new .project-group + data-group in index.html
+                   for a new group)
+       status      'active' | 'archived' — archived projects move to
+                   the Archive section/dropdown automatically
+       badge       optional small chip label, e.g. an award (omit field for none)
+       title       project heading — HTML entities allowed (&ldquo; etc.)
+       images      [] for a placeholder,
+                   [one] for a static image,
+                   [two+] for a captioned carousel
+                   each image: { src, alt, caption, contain }
+                   `contain: true` letterboxes CAD renders on white
+                   instead of cropping — use for CAD/render screenshots
+       description one paragraph, plain sentences
+       meta        [[label, value], ...] — rendered as spec lines,
+                   e.g. [['Course', 'ME127 - ...'], ['Tools/Skills', '...']]
+       link        { mode: 'external', href, label } once a project page
+                   exists, or { mode: 'soon', label } before it does
      ═══════════════════════════════════════════════════════════ -->
 
-<div class="project-card">
-  <div class="project-card-image">
+{
+  id: 'project-slug',
+  group: 'combat-robotics',
+  status: 'active',
+  title: 'Project Title (Season Year)',
+  images: [
+    { src: 'images/main_page/FILENAME.png', alt: 'Descriptive alt text', caption: 'Slide label', contain: true }
+  ],
+  description: 'One or two sentences describing the project, what it does, and what made it interesting or challenging.',
+  meta: [['Tools/Skills', 'Fusion 360 · Mill · 3D Printing']],
+  link: { mode: 'soon', label: 'View Project (Coming Soon)' }
+}
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     2. SKILL ROW BLOCK
+     One block per category inside .skills-list.
+     Add or remove <span> tags freely; use &amp; for & in tag text.
+     ═══════════════════════════════════════════════════════════ -->
+
+<div class="skill-row">
+  <h4>Category Name</h4>
+  <div class="skill-tags">
+    <span>Tool or Skill</span>
+    <span>Tool or Skill</span>
+    <span>Tool or Skill</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     3. PROJECT GROUP SHELL
+     Wraps a set of project rows under one heading. The id +
+     data-group must match the `group` field used in projects.js
+     entries — projects.js looks up [data-group] to know where to
+     inject each group's rows.
+     ═══════════════════════════════════════════════════════════ -->
+
+<div class="project-group" id="group-id-here" data-group="group-id-here">
+  <h3 class="project-group-title">Group Heading</h3>
+  <p class="project-group-subtitle">Optional subtitle line — role, dates, affiliation, etc.</p>
+  <div class="project-rows"></div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     4. ABOUT ROW (text + image carousel)
+     Two-column layout: text left, image carousel right — fixed
+     widths set in styles.css (.about-row .about-media), no inline
+     sizing needed. object-position on each <img> controls which
+     part of the photo is cropped into view (e.g. "center 40%").
+     ═══════════════════════════════════════════════════════════ -->
+
+<div class="about-row">
+  <div class="about-text">
+    <p>First paragraph of bio text.</p>
+    <p>Second paragraph of bio text.</p>
+  </div>
+  <div class="about-media">
     <div class="project-image-rotator">
       <div class="image-viewport">
-        <img src="images/main_page/FILENAME.png" alt="Descriptive alt text" data-caption="Slide One Label">
-        <img src="images/main_page/FILENAME.png" alt="Descriptive alt text" data-caption="Slide Two Label">
-        <img src="images/main_page/FILENAME.png" alt="Descriptive alt text" data-caption="Slide Three Label">
-        <!-- Remove the next line to hide the text overlay -->
+        <img src="images/about/FILENAME.JPG" alt="Alt text" data-caption="Caption One" style="object-position: center center;">
+        <img src="images/about/FILENAME.jpg" alt="Alt text" data-caption="Caption Two" style="object-position: center center;">
         <div class="image-caption-overlay"></div>
-        <!-- Remove the next block to hide arrows and dots -->
         <div class="carousel-controls">
           <button class="carousel-btn carousel-prev" aria-label="Previous image">&#8249;</button>
           <div class="carousel-dots">
-            <span class="carousel-dot"></span>
             <span class="carousel-dot"></span>
             <span class="carousel-dot"></span>
           </div>
@@ -50,206 +125,4 @@
       </div>
     </div>
   </div>
-  <div class="project-info">
-    <h4>Project Title (Season Year)</h4>
-    <p>
-      One or two sentences describing the project, what it does, and what made it interesting or challenging.
-    </p>
-    <p class="project-meta">
-      <span class="meta-label">Course:</span> ME1XX — Course Name
-    </p>
-    <p class="project-meta">
-      <span class="meta-label">Tools/Skills:</span> Fusion 360 · Mill · 3D Printing
-    </p>
-    <!-- Link options — see Section 4 below -->
-    <a class="coming-soon-link">View Project (Coming Soon) →</a>
-  </div>
 </div>
-
-
-<!-- ═══════════════════════════════════════════════════════════
-     2. PROJECT CARD — SINGLE STATIC IMAGE
-     Use when only one image is available.
-     When more images exist later, swap the <img> for a
-     .project-image-rotator carousel (see Section 1).
-     ═══════════════════════════════════════════════════════════ -->
-
-<div class="project-card">
-  <div class="project-card-image">
-    <img src="images/main_page/FILENAME.png" alt="Descriptive alt text">
-  </div>
-  <div class="project-info">
-    <h4>Project Title (Season Year)</h4>
-    <p>
-      One or two sentences describing the project.
-    </p>
-    <p class="project-meta">
-      <span class="meta-label">Course:</span> ME1XX — Course Name
-    </p>
-    <p class="project-meta">
-      <span class="meta-label">Tools/Skills:</span> Fusion 360 · Mill · 3D Printing
-    </p>
-    <a class="coming-soon-link">View Project (Coming Soon) →</a>
-  </div>
-</div>
-
-
-<!-- ═══════════════════════════════════════════════════════════
-     3. PROJECT CARD — IMAGE PLACEHOLDER
-     Use when no image exists yet.
-     When an image is ready, replace the entire
-     .project-image-placeholder div with either:
-       • a single <img> (Section 2), or
-       • a .project-image-rotator carousel (Section 1).
-     ═══════════════════════════════════════════════════════════ -->
-
-<div class="project-card">
-  <div class="project-card-image">
-    <div class="project-image-placeholder">
-      <!-- Replace this entire div with an <img> or carousel when an image is ready -->
-      <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
-      </svg>
-      <span>Image Coming Soon</span>
-    </div>
-  </div>
-  <div class="project-info">
-    <h4>Project Title (Season Year)</h4>
-    <p>
-      One or two sentences describing the project.
-    </p>
-    <p class="project-meta">
-      <span class="meta-label">Course:</span> ME1XX — Course Name
-    </p>
-    <p class="project-meta">
-      <span class="meta-label">Tools/Skills:</span> Fusion 360 · Mill · 3D Printing
-    </p>
-    <a class="coming-soon-link">View Project (Coming Soon) →</a>
-  </div>
-</div>
-
-
-<!-- ═══════════════════════════════════════════════════════════
-     4. LINK VARIANTS — COMING-SOON vs. REAL
-     Use exactly one of these at the bottom of .project-info.
-
-     Coming-soon: bare <a> with no href, styled as italic/muted.
-     Real link:   standard <a href="..."> — no special class needed.
-     ═══════════════════════════════════════════════════════════ -->
-
-<!-- Coming-soon (project page not yet built) -->
-<a class="coming-soon-link">View Project (Coming Soon) →</a>
-
-<!-- Real link to a sub-page -->
-<a href="projects/FILENAME.html">View project →</a>
-
-<!-- Real link to an external site -->
-<a href="https://example.com" target="_blank">Link to Project Website →</a>
-
-
-<!-- ═══════════════════════════════════════════════════════════
-     5. IMAGE ADJUSTMENTS — object-position, padding, contain
-     All applied inline on the <img> tag — no CSS changes needed.
-     These can be combined freely on the same image.
-
-     A) REPOSITION THE CROP (object-fit: cover stays, shifts where)
-        Use when the subject is off-centre in the frame.
-        Values: "center center" (default), "center top", "center 40%", "left center", etc.
-
-     B) ADD WHITE PADDING (switches to contain — shows full image, no cropping)
-        Use when content near the image edges is being cut off.
-        Adjust the padding value; asymmetric values (e.g. "8px 20px") work too.
-
-     C) BOTH TOGETHER — shift the contained image within its padded box.
-     ═══════════════════════════════════════════════════════════ -->
-
-<!-- A) Reposition crop only -->
-<img src="images/main_page/FILENAME.png" alt="..." data-caption="..."
-     style="object-position: center 40%;">
-
-<!-- B) White padding — show full image without cropping -->
-<img src="images/main_page/FILENAME.png" alt="..." data-caption="..."
-     style="object-fit: contain; padding: 12px; background: white;">
-
-<!-- C) White padding + repositioned within the padded area -->
-<img src="images/main_page/FILENAME.png" alt="..." data-caption="..."
-     style="object-fit: contain; padding: 12px; background: white; object-position: center top;">
-
-
-<!-- ═══════════════════════════════════════════════════════════
-     6. SKILL CATEGORY BLOCK
-     One block per category inside .skills-grid.
-     Add or remove <span class="skill-tag"> lines freely.
-     Use &amp; in place of & in tag text (e.g. GD&amp;T).
-     ═══════════════════════════════════════════════════════════ -->
-
-<div class="skill-category">
-  <h4 class="skill-category-title">Category Name</h4>
-  <div class="skill-tags">
-    <span class="skill-tag">Tool or Skill</span>
-    <span class="skill-tag">Tool or Skill</span>
-    <span class="skill-tag">Tool or Skill</span>
-  </div>
-</div>
-
-
-<!-- ═══════════════════════════════════════════════════════════
-     7. PROJECT GROUP SHELL
-     Wraps a set of related project cards under one heading.
-     The id on <section> drives the nav dropdown links and the
-     colored accent bar on the group title:
-       #combat-robotics    → amber bar  (--accent)
-       #academic-projects  → blue bar   (--blue)
-     For a new group, add it to styles.css section 10 if a
-     different bar color is needed.
-     ═══════════════════════════════════════════════════════════ -->
-
-<section id="group-id-here">
-  <div class="project-group">
-    <h3 class="project-group-title">Group Heading</h3>
-    <p class="project-group-subtitle">Optional subtitle line — role, dates, affiliation, etc.</p>
-
-    <!-- Project cards go here -->
-
-  </div>
-</section>
-
-
-<!-- ═══════════════════════════════════════════════════════════
-     8. ABOUT SECTION GRID
-     Two-column layout: text left, image carousel right.
-     Resize the image column by editing --about-img-w / --about-img-h
-     inline on .about-images — no CSS file change needed.
-     object-position on each <img> controls which part of the photo
-     is cropped into view (e.g. "center top", "center 40%").
-     ═══════════════════════════════════════════════════════════ -->
-
-<section id="about">
-  <h2>About Me</h2>
-  <div class="about-grid">
-
-    <div class="about-text">
-      <p>First paragraph of bio text.</p>
-      <p>Second paragraph of bio text.</p>
-    </div>
-
-    <div class="about-images" style="--about-img-w: 300px; --about-img-h: 290px;">
-      <div class="project-image-rotator">
-        <div class="image-viewport">
-          <img src="images/about/FILENAME.JPG" alt="Alt text" data-caption="Caption One" style="object-position: center center;">
-          <img src="images/about/FILENAME.jpg" alt="Alt text" data-caption="Caption Two" style="object-position: center center;">
-          <div class="image-caption-overlay"></div>
-          <div class="carousel-controls">
-            <button class="carousel-btn carousel-prev" aria-label="Previous image">&#8249;</button>
-            <div class="carousel-dots">
-              <span class="carousel-dot"></span>
-              <span class="carousel-dot"></span>
-            </div>
-            <button class="carousel-btn carousel-next" aria-label="Next image">&#8250;</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>

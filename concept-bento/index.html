@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nathan Lam | Mechanical Engineering Student @ UC Berkeley</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- CONCEPT VERSION (v2): "Editorial Rows" — light navbar + full-width
+     alternating image/text rows. Project content now lives in
+     projects.js as a small data list instead of hand-written HTML —
+     see that file to add, edit, or archive a project. Standalone,
+     does not link into the live site. -->
+
+<div class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="navbar-name">Nathan Lam</a>
+    <nav class="navbar-nav">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <!-- Hidden by default; projects.js reveals this if any project's
+           status is set to 'archived' in projects.js -->
+      <div class="navbar-dropdown" id="archiveDropdown" style="display:none;">
+        <span class="drop-trigger">Archive</span>
+        <div class="navbar-dropdown-menu"></div>
+      </div>
+      <a href="../resume.html">Resume</a>
+      <a href="mailto:nathan_lam@berkeley.edu" class="button">Email</a>
+    </nav>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="eyebrow">Portfolio</div>
+    <h1>Mechanical engineering student building things that hits hard and survives impacts.</h1>
+    <p>I'm a second-year at UC Berkeley studying Mechanical Engineering with a minor in EECS &mdash; focused on mechanical design, manufacturing, and combat robotics.</p>
+    <div class="hero-links">
+      <a href="https://www.linkedin.com/in/nathanklam/">LinkedIn &rarr;</a>
+      <a href="../resume.html">Resume &rarr;</a>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-heading"><span class="section-index">01</span><h2>About</h2><span class="rule"></span></div>
+
+    <div class="about-row">
+      <div class="about-text">
+        <p>I am a second-year undergraduate student majoring in Mechanical Engineering with a minor in Electrical Engineering and Computer Science.
+        My interests lie in mechanical design, manufacturing, and prototyping, and how these intersect with electronics.</p>
+        <p>My project work emphasizes design-for-manufacturing, modularity, and learning through iterative testing while accounting for weight, manufacturing,
+        and budgetary constraints. This is especially evident for my projects regarding combat robotics, where designs are forced to prove themselves quickly.</p>
+      </div>
+      <div class="about-media">
+        <div class="project-image-rotator">
+          <div class="image-viewport">
+            <img src="../images/about/WW.png" alt="Winter Wreckage competition"       data-caption="Winter Wreckage (2026)"     style="object-position: center 40%;">
+            <img src="../images/about/CatC.png" alt="Carnage at the Cube competition" data-caption="Carnage at the Cube (2026)" style="object-position: center 40%;">
+            <div class="image-caption-overlay"></div>
+            <div class="carousel-controls">
+              <button class="carousel-btn carousel-prev" aria-label="Previous image">&#8249;</button>
+              <div class="carousel-dots"><span class="carousel-dot"></span><span class="carousel-dot"></span></div>
+              <button class="carousel-btn carousel-next" aria-label="Next image">&#8250;</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-heading"><span class="section-index">02</span><h2>Skills &amp; tools</h2><span class="rule"></span></div>
+
+    <div class="skills-list">
+      <div class="skill-row">
+        <h4>CAD &amp; Design</h4>
+        <div class="skill-tags"><span>Fusion 360</span><span>Onshape</span><span>SolidWorks</span></div>
+      </div>
+      <div class="skill-row">
+        <h4>Manufacturing</h4>
+        <div class="skill-tags"><span>Mill</span><span>Lathe</span><span>Drill Press</span><span>3D Printing</span><span>Soldering</span><span>GD&amp;T</span></div>
+      </div>
+      <div class="skill-row">
+        <h4>Programming</h4>
+        <div class="skill-tags"><span>Python</span><span>Java</span><span>MATLAB</span><span>ROS2</span><span>HTML &amp; CSS</span></div>
+      </div>
+      <div class="skill-row">
+        <h4>Analysis &amp; Simulation</h4>
+        <div class="skill-tags"><span>Ansys</span><span>Simulink</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS — populated by projects.js from the PROJECTS list -->
+  <section id="projects">
+    <div class="section-heading"><span class="section-index">03</span><h2>Projects</h2><span class="rule"></span></div>
+
+    <!-- COMBAT ROBOTICS -->
+    <div class="project-group" id="combat-robotics" data-group="combat-robotics">
+      <h3 class="project-group-title">Combat Robotics at Berkeley</h3>
+      <p class="project-group-subtitle">VP Education (2026-2027), 1 lb Project Manager (2025-2026), Team Lead</p>
+      <div class="project-rows"></div>
+    </div>
+
+    <!-- ACADEMIC PROJECTS -->
+    <div class="project-group" id="academic-projects" data-group="academic-projects">
+      <h3 class="project-group-title">Coursework Projects</h3>
+      <div class="project-rows"></div>
+    </div>
+
+    <p class="project-group-subtitle" style="margin-top: 40px;">Additional projects currently in design and fabrication.</p>
+  </section>
+
+  <!-- ARCHIVE — hidden unless projects.js finds a project with status: 'archived' -->
+  <section id="archive" style="display:none;">
+    <div class="section-heading"><span class="section-index">04</span><h2>Archive</h2><span class="rule"></span></div>
+    <div class="archive-list"></div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">&uarr; Back to top</a>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/nathanklam/">LinkedIn</a>
+      <a href="mailto:nathan_lam@berkeley.edu">Email</a>
+    </div>
+    <span>&copy; 2026 Nathan Lam</span>
+  </div>
+</footer>
+
+<script src="projects.js"></script>
+
+</body>
+</html>
