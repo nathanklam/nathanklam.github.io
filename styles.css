@@ -550,6 +550,7 @@ section { padding: 64px 0; }
   background-color: var(--surface);
 }
 .project-block-text p { margin: 0; color: var(--body-text); }
+.project-block-text p + p { margin-top: 12px; }
 .project-block.reverse { grid-template-columns: 1fr minmax(0, 400px); }
 .project-block.reverse figure,
 .project-block.reverse img { order: 2; }
@@ -584,6 +585,9 @@ section { padding: 64px 0; }
   overflow: hidden;
   margin: 24px 0;
 }
+/* Inside a .project-block's image column (wrap in <figure> so .reverse ordering applies) */
+.project-block .carousel-block { margin: 0; height: 300px; }
+.project-block .carousel-block img { max-width: none; height: 100%; }
 
 
 /* ── 20. Video Embed ──────────────────────────────────────── */

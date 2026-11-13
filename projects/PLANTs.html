@@ -46,7 +46,7 @@
       <div class="section-intro-carousel">
         <div class="project-image-rotator">
           <div class="image-viewport">
-            <img src="../images/1lb_bots/team.jpg" alt="team" data-caption="Skadoosh Team: Nathan L (right) & Nathan C (left)">
+            <img src="../images/1lb_bots/team.jpg" alt="team" data-caption="Skadoosh Team: Nathan C (left) & Nathan L (right)">
             <img src="../images/1lb_bots/v_amogus.JPG" alt="vs_amogus" data-caption="Skadoosh vs Amogus, Carnage at the Cube (2026)">
             <img src="../images/1lb_bots/v_turtlepower.JPG" alt="vs_turtle_power" data-caption="Skadoosh vs Turtle Power, Carnage at the Cube (2026)">
             <img src="../images/1lb_bots/v_tofuflipper.jpg" alt="vs_b_annoyed" data-caption="Skadoosh vs Tofu Flipper, Berkeley Bot Bash (2026)">
@@ -69,9 +69,9 @@
 
     <div class="accordion">
 
-      <!-- ── Skadoosh ─────────────────────────────────────────── -->
+      <!-- ── Skadooosh ─────────────────────────────────────────── -->
       <div class="accordion-item">
-        <button class="accordion-header">Skadoosh (Winter 2026–)</button>
+        <button class="accordion-header">Skadooosh (Winter 2026–)</button>
         <div class="accordion-body">
 
           <section>
@@ -90,13 +90,13 @@
                   disable-pan
                   style="width:100%; max-width:600px; height:400px; border-radius:6px;">
                 </model-viewer>
-                <figcaption>Skadoosh v1 — 3D model (drag to rotate)</figcaption>
+                <figcaption>Skadoosh v1 3D model (drag to rotate)</figcaption>
               </figure>
 
               <div class="overview-specs">
                 <p>Skadoosh is the direct successor to Eggsterminator, built around an asymmetrical
                 vertical spinner. Versions 1 and 2 share the same electronics and specs, differing in geometry 
-                and combat outcomes. Version 3 is a larger redesign, currently in progress, with updated electronics and components. </p>
+                and combat outcomes. Version 3 is a larger redesign with updated electronics and components, now built and awaiting competition.</p>
                 <ul class="spec-list">
                   <li><span class="spec-label">Budget</span>       <span class="spec-value">$100 (Ver 1-2)</span></li>
                   <li><span class="spec-label">Weapon</span>       <span class="spec-value">88.62 g asymmetric vertical spinner; 124 J after 2 s spin-up</span></li>
@@ -109,44 +109,53 @@
             </div>
           </section>
 
-          <!-- ── Ver 1 ── -->
+          <!-- ── Version 3 ── -->
           <section>
-            <h3>Version 1 (Winter, 2026)</h3>
-            <p class="version-subtitle">Fought at: Winter Wreckage (Winter 2026)</p>
+            <h3>Version 3 (Summer, 2026)</h3>
+            <p class="version-subtitle">Status: Built, awaiting first competition</p>
 
             <div class="project-block reverse">
               <figure class="project-figure">
-                <img src="../images/1lb_bots/skadoosh_wedge_concept.png" alt="Skadoosh concave front wedge concept">
-                <figcaption>Initial concave front geometry concept</figcaption>
+                <div class="carousel-block">
+                  <div class="project-image-rotator">
+                    <div class="image-viewport">
+                      <!-- Add more slides here (drop class="contain" for photos); add one .carousel-dot per image -->
+                      <img src="../images/main_page/skadoosh_v3.png" alt="Skadoosh Version 3 CAD render" data-caption="Version 3 CAD (Summer 2026)" class="contain">
+                      <div class="image-caption-overlay"></div>
+                      <div class="carousel-controls">
+                        <button class="carousel-btn carousel-prev" aria-label="Previous image">&#8249;</button>
+                        <div class="carousel-dots">
+                          <span class="carousel-dot"></span>
+                        </div>
+                        <button class="carousel-btn carousel-next" aria-label="Next image">&#8250;</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </figure>
               <div class="project-block-text">
-                <p>Building on Eggsterminator's proven foundation, my teammate Nathan Chan and I retained
-                what had worked — the modular angled armor — while redesigning the weapon system to allow
-                greater bite. The armor's modularity was meant to allow quick swaps between matches, though
-                V1 never got the chance to put that to use in practice — that payoff came later, at Berkeley
-                Bot Bash with V2. Nathan led the weapon design and named the robot. We also designed invertibility
-                in deliberately this time rather than as an afterthought. The experimental choice was a
-                concave front wedge, inspired by Dorito — a 1 lb control bot we had mentored whose crescent
-                shape outperformed expectations; we adapted the geometry for Skadoosh while aiming to address
-                its durability issues.</p>
+                <p>V3 is a ground-up redesign driven by V2's drive and weapon-mount failures. The N20
+                brushed motors, which couldn't overcome the friction of the dragging front wedge, are
+                replaced with Tangent Drive 1406 brushless motors. The added speed and power also help
+                close distance quickly where it matters most, such as against meltybrains. Tangent drive
+                calls for a wider, shorter footprint, and the robot may be fast enough that top speed
+                needs to be dialed back in the controller. The wheels are cast from Vytaflex in
+                3D-printed molds.</p>
               </div>
             </div>
 
-            <figure class="project-figure">
-              <div class="video-wrapper">
-                <iframe src="https://drive.google.com/file/d/14gkmMKn0rEK9vaX7uA_VP-wgewIkR8SG/preview"
-                        title="Skadoosh Version 1 match footage" allowfullscreen></iframe>
-              </div>
-              <figcaption>Winter Wreckage, vs. High Roller; Winter 2026</figcaption>
-            </figure>
-            <p>A notable result: Skadoosh defeated the robot that had won Berkeley Bot Bash the
-            previous semester, making it the top-ranked 1 lb in the club at that point. Structurally,
-            the armor panels survived every hit without failing, but the frame cracked consistently —
-            too much material had been allocated to armor at the expense of the chassis. The concave
-            front geometry never produced a clear control advantage and gave opponents a reliable corner
-            to strike. Weapon rails were insufficiently secured and frequently broke alongside the frame,
-            leaving the robot unable to deal damage for stretches of the event. Drive held up adequately;
-            I was not driving.</p>
+            <p>Power moves from 2S to 4S, using two identical 2S packs wired in series. The weapon
+            was already effective on 2S, but the extra tip speed helps in weapon-on-weapon exchanges
+            and strengthens the drive as well. The weapon motor is now a Repeat 2822 Mk 3, purpose-built
+            for combat and common in the class. The electronics pair a Catalyst ESC (4S-compatible
+            with an integrated receiver, roughly equivalent to a 45A ESC) with a 35A weapon ESC.
+            Finally, the weapon disk is thinner, letting the motor shaft seat deeper into the opposite
+            rail's bearing to fix V2's repeated pull-out failures.</p>
+
+            <p>V3 has been prototyped and is waiting on its first competition. Out of respect for an
+            existing bot in the same weight class, it will compete as "Skadooosh", with the extra "o"
+            for the wider chassis. V4 is in the concept stage, exploring further drive improvements
+            and a larger weapon.</p>
           </section>
 
           <!-- ── Version 2 ── -->
@@ -178,7 +187,7 @@
             <p>V2 finished 3–4 across Carnage at the Cube and Berkeley Bot Bash, with two additional
             informal wins from grudge matches. The weapon and armor held up well. Drive was the main
             problem: the robot was often difficult to control, likely because the N20 brushed motors
-            couldn't produce enough force to overcome friction from the dragging front wedge — a problem
+            couldn't produce enough force to overcome friction from the dragging front wedge, a problem
             less apparent in other 2WD robots running more powerful brushless drive. A persistent weapon
             anomaly appeared at both events: the disk would only begin spinning up at half throttle.
             Testing the controller on other robots showed no issues, pointing to a quirk with the weapon
@@ -186,52 +195,62 @@
 
             <p><strong>Lessons (Carnage at the Cube):</strong></p>
             <ul>
-              <li>Robot was uncontrollable at times — N20 motors likely insufficient to overcome front wedge drag; brushless drive would help</li>
+              <li>Robot was uncontrollable at times; N20 motors likely insufficient to overcome front wedge drag; brushless drive would help</li>
               <li>Losses came from inverting with the weapon motor unable to self-right; need torque calculations, or ensure the robot always lands with wheels contacting the ground</li>
-              <li>Back plate cracked — needs a separate panel with layer lines perpendicular to impact; also an issue in V1, though getting hit in the back is arguably a driving/positioning issue and may not be high priority to fix</li>
+              <li>Back plate cracked; needs a separate panel with layer lines perpendicular to impact; also an issue in V1, though getting hit in the back is arguably a driving/positioning issue and may not be high priority to fix</li>
               <li>Weapon motor magnet shattered internally; battle harden or source a more robust motor</li>
               <li>Fork mount fell off mid-match from vibration; needs a stronger scheme or top-plate edge screws moved further inward</li>
               <li>A solder joint disconnected during a match; ensure all connections are solid before the event</li>
-              <li>Not much damage was actually sustained — armor thickness may still be reducible further</li>
+              <li>Not much damage was actually sustained; armor thickness may still be reducible further</li>
               <li>Need more driving practice overall</li>
             </ul>
 
             <p><strong>Lessons (Berkeley Bot Bash):</strong></p>
             <ul>
-              <li>Anti-control configuration caused one wheel to lose ground contact — robot is too front-heavy in that config, shifting the center of mass past the contact point; the concept is still worth pursuing with a geometry fix</li>
+              <li>Anti-control configuration caused one wheel to lose ground contact; robot is too front-heavy in that config, shifting the center of mass past the contact point; the concept is still worth pursuing with a geometry fix</li>
               <li>Weapon motor shaft needs more engagement in the opposite rail bearing; hard impacts caused it to briefly pull free and jam twice, losing all weapon effectiveness</li>
               <li>An armor panel broke off after forgetting to install all fasteners before the match</li>
             </ul>
           </section>
 
-          <!-- ── Version 3 (In Progress) ── -->
+          <!-- ── Ver 1 ── -->
           <section>
-            <h3>Version 3 — In Progress</h3>
-            <p>V3 is a ground-up redesign driven by V2's drive and weapon-mount failures. The
-            drivetrain switches to brushless tangent drive — faster and more powerful than the N20
-            brushed motors, which could not overcome front wedge friction. The extra speed should also
-            help close distance quickly against opponents where that matters most, like "meltybrains".
-            Tangent drive requires a wider, shorter footprint and may run fast enough that top speed needs to be dialed back in
-            the controller. Wheel fabrication (possibly cast Vytaflex or Lego-compatible) and the
-            exact interference needed are still being worked out. A 4S battery replaces the current 2S
-            for higher tip speed and stronger drive; the weapon proved effective on 2S but more tip
-            speed helps in weapon-on-weapon exchanges. The weapon motor will be replaced with a Repeat
-            Robotics unit, purpose-built for combat and commonly used in the class. Electronics will
-            use a Catalyst ESC (4S-compatible with integrated receiver, roughly equivalent to a 45A
-            ESC) paired with a 35A weapon ESC — the two are supposedly compatible together, but that
-            still needs to be confirmed.
-            The weapon disk will be made thinner to allow more shaft to seat deeply into the opposite
-            rail's bearing, addressing the repeated pull-out failures in V2.</p>
+            <h3>Version 1 (Winter, 2026)</h3>
+            <p class="version-subtitle">Fought at: Winter Wreckage (Winter 2026)</p>
 
-            <p>Additional changes under consideration: steeper armor plate angles (45° to 60°),
-            trimming armor height to match the frame to recover weight, and integrating the fork mounts
-            into the armor panels to isolate them from frame damage — though that could mean fielding
-            a lot of forks, so it's worth checking whether that's within the rules, with a fallback
-            plan if not.</p>
+            <div class="project-block reverse">
+              <figure class="project-figure">
+                <img src="../images/1lb_bots/skadoosh_wedge_concept.png" alt="Skadoosh concave front wedge concept">
+                <figcaption>Initial concave front geometry concept</figcaption>
+              </figure>
+              <div class="project-block-text">
+                <p>Building on Eggsterminator's proven foundation, my teammate Nathan Chan and I retained
+                what had worked (the modular angled armor) while redesigning the weapon system to allow
+                greater bite. The armor's modularity was meant to allow quick swaps between matches, though
+                V1 never got the chance to put that to use in practice; that payoff came later, at Berkeley
+                Bot Bash with V2. Nathan led the weapon design and named the robot. We also designed invertibility
+                in deliberately this time rather than as an afterthought. The experimental choice was a
+                concave front wedge, inspired by Dorito, a 1 lb control bot we had mentored whose crescent
+                shape outperformed expectations; we adapted the geometry for Skadoosh while aiming to address
+                its durability issues.</p>
+              </div>
+            </div>
 
-            <p>V3 is being built over the summer, leaving time to get in more driving
-            practice ahead of the next competition. Out of respect for an existing bot in the same weight class,
-            this robot's name will be slightly changed to "Skadooosh", where an extra "o" is for the robot becoming wider.</p>
+            <figure class="project-figure">
+              <div class="video-wrapper">
+                <iframe src="https://drive.google.com/file/d/14gkmMKn0rEK9vaX7uA_VP-wgewIkR8SG/preview"
+                        title="Skadoosh Version 1 match footage" allowfullscreen></iframe>
+              </div>
+              <figcaption>Winter Wreckage, vs. High Roller; Winter 2026</figcaption>
+            </figure>
+            <p>A notable result: Skadoosh defeated the robot that had won Berkeley Bot Bash the
+            previous semester, making it the top-ranked 1 lb in the club at that point. Structurally,
+            the armor panels survived every hit without failing, but the frame cracked consistently:
+            too much material had been allocated to armor at the expense of the chassis. The concave
+            front geometry never produced a clear control advantage and gave opponents a reliable corner
+            to strike. Weapon rails were insufficiently secured and frequently broke alongside the frame,
+            leaving the robot unable to deal damage for stretches of the event. Drive held up adequately;
+            I was not driving.</p>
           </section>
 
         </div>
@@ -258,18 +277,18 @@
                   disable-pan
                   style="width:100%; max-width:600px; height:400px; border-radius:6px;">
                 </model-viewer>
-                <figcaption>Eggsterminator — 3D model (drag to rotate)</figcaption>
+                <figcaption>Eggsterminator 3D model (drag to rotate)</figcaption>
               </figure>
 
               <div class="overview-specs">
                 <p>Eggsterminator is a 1 lb plastic antweight built around survivability. Its direct-drive
-                symmetrical vertical spinner, angled exterior, and modular armor panels —
-                oriented so layer lines resist impact loads — let the robot absorb hits and swap damaged
+                symmetrical vertical spinner, angled exterior, and modular armor panels,
+                oriented so layer lines resist impact loads, let the robot absorb hits and swap damaged
                 sections between matches rather than reprinting whole chassis spares. Most components were
                 standardized by the club's leadership to create a level playing field for the internal
                 competition. An adjusted ruleset allowed 20 g of metal impactors; while other teams used
                 screw shaft tips, smaller screws, or other less optimal choices, we chose large flathead
-                screw heads for maximum impact area — a decision that proved highly destructive.</p>
+                screw heads for maximum impact area, a decision that proved highly destructive.</p>
                 <ul class="spec-list">
                   <li><span class="spec-label">Budget</span>       <span class="spec-value">$100</span></li>
                   <li><span class="spec-label">Weapon</span>       <span class="spec-value">57 g symmetrical spinner with steel screw impactors; 99 J after 2 s spin-up</span></li>
@@ -288,7 +307,7 @@
 
             <div class="project-block reverse">
               <figure class="project-figure">
-                <img src="../images/1lb_bots/eggsterminator_block_cad.png" alt="Eggsterminator block CAD — Design Review 1">
+                <img src="../images/1lb_bots/eggsterminator_block_cad.png" alt="Eggsterminator block CAD (Design Review 1)">
                 <figcaption>Block CAD presented at Design Review 1</figcaption>
               </figure>
               <div class="project-block-text">
@@ -302,7 +321,7 @@
 
             <div class="project-block">
               <figure class="project-figure">
-                <img src="../images/1lb_bots/eggsterminator_dr2.png" alt="Eggsterminator CAD — Design Review 2">
+                <img src="../images/1lb_bots/eggsterminator_dr2.png" alt="Eggsterminator CAD (Design Review 2)">
                 <figcaption>Revised design with modular armor and all-around angled panels</figcaption>
               </figure>
               <div class="project-block-text">
@@ -316,7 +335,7 @@
 
             <div class="project-block reverse">
               <figure class="project-figure">
-                <img src="../images/1lb_bots/eggsterminator_dr3.png" alt="Eggsterminator CAD — Design Review 3">
+                <img src="../images/1lb_bots/eggsterminator_dr3.png" alt="Eggsterminator CAD (Design Review 3)">
                 <figcaption>Design Review 3 deliverable, with thickened weapon rails and toleranced fits</figcaption>
               </figure>
               <div class="project-block-text">
@@ -338,20 +357,20 @@
               <figcaption>Internal CRB Competition, Fall 2024</figcaption>
             </figure>
             <p><strong>Result:</strong> 2nd place; longest winning streak of the competition, "Most Destructive" award.</p>
-            <p><strong>Loss:</strong> Flipped by an opponent and unable to self-right — the robot could drive inverted
+            <p><strong>Loss:</strong> Flipped by an opponent and unable to self-right; the robot could drive inverted
             but the weapon became inoperable, leaving no path to scoring, resulting in a loss by judges decision.</p>
             <p><strong>Improvisation:</strong> We received the wrong screw lengths for the metal impactors and had to
-            manually saw them to the correct length — this did not affect weapon stability during spin. Drive held up
+            manually saw them to the correct length, which did not affect weapon stability during spin. Drive held up
             better than expected thanks to a last-minute assist from club leads, who applied a liquid latex adhesive
             to the wheel edges for traction. We had also had to fabricate our own wheels from yoga mat foam with
             3D-printed hubs, rather than the foam wheels we had originally intended.</p>
             <p><strong>Lessons:</strong></p>
             <ul>
-              <li>Invertibility needs a better plan — the robot must be functional weapon-first when upside down, not just able to drive</li>
+              <li>Invertibility needs a better plan; the robot must be functional weapon-first when upside down, not just able to drive</li>
               <li>Weapon must remain operational when inverted</li>
-              <li>Shorter wire routing would help — squishing the top plate closed to seal the robot was a recurring issue</li>
+              <li>Shorter wire routing would help; squishing the top plate closed to seal the robot was a recurring issue</li>
               <li>The angled geometry was highly effective; no armor needed replacing throughout the event</li>
-              <li>Angled surfaces cut both ways when flipped — they can help the robot right itself, but only at the cost of taking more hits in the process</li>
+              <li>Angled surfaces cut both ways when flipped; they can help the robot right itself, but only at the cost of taking more hits in the process</li>
             </ul>
             <p><strong>Next steps:</strong> Carry both lessons into a new 1 lb robot design.</p>
           </section>
@@ -375,7 +394,7 @@
   </div>
 </footer>
 
-<!-- Carousel script — required for any .project-image-rotator on this page -->
+<!-- Carousel script - required for any .project-image-rotator on this page -->
 <script>
   document.querySelectorAll('.project-image-rotator').forEach(rotator => {
     const images  = rotator.querySelectorAll('.image-viewport img');
@@ -410,7 +429,7 @@
   });
 </script>
 
-<!-- Accordion script — required for any .accordion on this page -->
+<!-- Accordion script - required for any .accordion on this page -->
 <script>
   document.querySelectorAll('.accordion-header').forEach(header => {
     header.addEventListener('click', () => {

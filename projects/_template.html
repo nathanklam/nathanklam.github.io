@@ -13,7 +13,7 @@
 <body>
 
 <!-- ═══════════════════════════════════════════════════════════
-     NAVBAR — same on every page (sticky, no scroll JS needed)
+     NAVBAR - same on every page (sticky, no scroll JS needed)
      ═══════════════════════════════════════════════════════════ -->
 <div class="navbar">
   <div class="navbar-inner">
@@ -30,14 +30,14 @@
 
 <main class="page">
 
-  <!-- Project title — lives in main content, not in the header -->
+  <!-- Project title - lives in main content, not in the header -->
   <div class="project-heading">
     <h1>Project Title</h1>
     <p>Course Name &middot; Term Year</p>
   </div>
 
   <!-- ═══════════════════════════════════════════════════════════
-       1. OVERVIEW — spec list + main visual
+       1. OVERVIEW - spec list + main visual
        Left column: either a static image OR a 3D model viewer.
        Right column: short summary paragraph + spec table.
        ═══════════════════════════════════════════════════════════ -->
@@ -72,7 +72,7 @@
           <li><span class="spec-label">Weight</span>     <span class="spec-value">X kg / X lb</span></li>
           <li><span class="spec-label">Dimensions</span> <span class="spec-value">X × X × X mm</span></li>
           <li><span class="spec-label">Material</span>   <span class="spec-value">6061 Aluminum</span></li>
-          <li><span class="spec-label">Course</span>     <span class="spec-value">ME 1XX — Course Name</span></li>
+          <li><span class="spec-label">Course</span>     <span class="spec-value">ME 1XX: Course Name</span></li>
           <li><span class="spec-label">Timeline</span>   <span class="spec-value">Month–Month 20XX</span></li>
           <li><span class="spec-label">Tools</span>      <span class="spec-value">Fusion 360 · Mill · 3D Printing</span></li>
         </ul>
@@ -154,7 +154,7 @@
     <h2>Demo</h2>
     <p>Short description of what the video shows.</p>
 
-    <!-- Embedded video (YouTube) — no caption -->
+    <!-- Embedded video (YouTube) - no caption -->
     <div class="video-wrapper">
       <iframe
         src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
@@ -181,7 +181,7 @@
     -->
 
     <!--
-      With caption — wrap in <figure> instead:
+      With caption - wrap in <figure> instead:
 
       YouTube:
       <figure class="project-figure">
@@ -218,7 +218,7 @@
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════
-       5. ACCORDION — collapsible technical detail sections
+       5. ACCORDION - collapsible technical detail sections
        Each .accordion-item opens/closes on header click.
        project-block works inside accordion-body for image+text.
        ═══════════════════════════════════════════════════════════ -->
@@ -261,7 +261,7 @@
         <div class="accordion-body">
           <section>
             <h3>Sub-heading</h3>
-            <p>Third section. Accordion items are independent — opening one does not close others.</p>
+            <p>Third section. Accordion items are independent; opening one does not close others.</p>
           </section>
         </div>
       </div>
@@ -270,7 +270,7 @@
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════
-       6. PDF — download link + inline embed
+       6. PDF - download link + inline embed
        Good for reports, papers, or spec sheets.
        ═══════════════════════════════════════════════════════════ -->
   <section id="report">
@@ -294,7 +294,7 @@
   </div>
 </footer>
 
-<!-- Carousel script — required for any .project-image-rotator on this page -->
+<!-- Carousel script - required for any .project-image-rotator on this page -->
 <script>
   document.querySelectorAll('.project-image-rotator').forEach(rotator => {
     const images  = rotator.querySelectorAll('.image-viewport img');
@@ -329,7 +329,7 @@
   });
 </script>
 
-<!-- Accordion script — required for any .accordion on this page -->
+<!-- Accordion script - required for any .accordion on this page -->
 <script>
   document.querySelectorAll('.accordion-header').forEach(header => {
     header.addEventListener('click', () => {

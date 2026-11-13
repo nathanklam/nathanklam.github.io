@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nathan Lam | Portfolio (Print)</title>
+  <!--
+    Print layout for the portfolio PDF. Content is NOT written here:
+      - projects come from projects.js (same PROJECTS array as the home page)
+      - hero, About, Skills, and group titles are read from index.html
+    So editing those files updates this page automatically. To regenerate
+    Nathan_Lam_Portfolio.pdf, run:  python build_portfolio_pdf.py
+    (This page must be served over http, not opened as a file://, because
+    it fetches index.html. The build script handles that.)
+  -->
+  <style>
+    :root {
+      --ink:         #161b20;
+      --body-text:   #343c43;
+      --muted:       #66707a;
+      --accent:      #285f82;
+      --accent-soft: #dbe7ee;
+      --accent-text: #1c4a64;
+      --border:      #d5dce2;
+      --surface-2:   #e1e7ec;
+      --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    @page {
+      size: letter;
+      margin: 0.55in 0.6in 0.6in;
+      @bottom-left  { content: "Nathan Lam | Portfolio"; font: 8pt var(--sans); color: #66707a; }
+      @bottom-right { content: counter(page) " / " counter(pages); font: 8pt var(--sans); color: #66707a; }
+    }
+    @page :first {
+      @bottom-left { content: none; }
+    }
+
+    * { box-sizing: border-box; }
+    html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    body {
+      margin: 0;
+      font-family: var(--sans);
+      font-size: 9.5pt;
+      line-height: 1.5;
+      color: var(--body-text);
+      background: #fff;
+    }
+    h1, h2, h3, h4, p { margin: 0; }
+    a { color: var(--accent); text-decoration: none; }
+    img { display: block; max-width: 100%; }
+
+    /* On screen, show the document as a sheet so it previews like the PDF */
+    @media screen {
+      body { background: #e1e7ec; padding: 24px 16px; }
+      .doc { max-width: 8.5in; margin: 0 auto; background: #fff; padding: 0.55in 0.6in; box-shadow: 0 10px 30px rgba(22,27,32,.12); }
+    }
+
+    .notice {
+      max-width: 8.5in; margin: 0 auto 16px; padding: 12px 16px;
+      background: #fff4d6; border: 1px solid #e8cf87; border-radius: 6px; color: #5a4300;
+    }
+    @media print { .notice { display: none; } }
+
+    /* ── Header ── */
+    .header { border-bottom: 2px solid var(--accent); padding-bottom: 14px; margin-bottom: 18px; }
+    .header .eyebrow { font-size: 8pt; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+    .header h1 { font-size: 26pt; color: var(--ink); letter-spacing: -.01em; line-height: 1.15; margin: 2px 0 6px; }
+    .header .tagline { font-size: 11.5pt; color: var(--ink); font-weight: 500; line-height: 1.4; }
+    .header .sub { color: var(--muted); margin-top: 4px; }
+    .contact { display: flex; flex-wrap: wrap; gap: 4px 18px; margin-top: 10px; font-size: 9pt; }
+    .contact span { color: var(--muted); }
+    .contact b { color: var(--ink); font-weight: 600; }
+
+    /* ── Section headings ── */
+    .section { margin-bottom: 18px; }
+    .section-title {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 8.5pt; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--accent); font-weight: 700; margin-bottom: 10px;
+      break-after: avoid;
+    }
+    .section-title::after { content: ""; flex: 1; height: 1px; background: var(--border); }
+
+    /* ── About ── */
+    .about p { margin-bottom: 8px; }
+    figcaption { font-size: 7.5pt; color: var(--muted); margin-top: 3px; }
+
+    /* ── Skills ── */
+    .skills { display: grid; grid-template-columns: 1.6in 1fr; row-gap: 5px; column-gap: 14px; }
+    .skills dt { font-weight: 600; color: var(--ink); }
+    .skills dd { margin: 0; }
+
+    /* ── Project groups ── */
+    .group { margin-top: 6px; }
+    .group-title { font-size: 13pt; color: var(--ink); break-after: avoid; }
+    .group-sub { color: var(--muted); font-size: 9pt; margin-top: 1px; break-after: avoid; }
+    .group-head { margin-bottom: 10px; break-after: avoid; }
+    .start-projects { margin-top: 4px; }
+
+    .project {
+      display: grid; grid-template-columns: 2.7in 1fr; gap: 16px;
+      padding: 10px 0; border-top: 1px solid var(--border);
+      break-inside: avoid;
+    }
+    .project.no-media { grid-template-columns: 1fr; }
+    .project h3 { font-size: 11pt; color: var(--ink); line-height: 1.3; margin-bottom: 5px; }
+    p.desc { margin-bottom: 7px; }
+    .chip {
+      display: inline-block; font-size: 7.5pt; font-weight: 600;
+      background: var(--accent-soft); color: var(--accent-text);
+      padding: 2px 8px; border-radius: 99px; margin-bottom: 5px;
+    }
+    .meta { font-size: 8.5pt; margin-bottom: 2px; }
+    .meta b { color: var(--ink); font-weight: 600; }
+    .link { font-size: 8.5pt; margin-top: 5px; word-break: break-all; }
+    .link .muted { color: var(--muted); }
+
+    .media { display: grid; gap: 6px; }
+    .media.multi { grid-template-columns: 1fr 1fr; }
+    .media figure { margin: 0; }
+    .media img {
+      width: 100%; height: 1.65in; object-fit: cover;
+      border-radius: 4px; background: var(--surface-2);
+    }
+    .media.multi img { height: 0.85in; }
+    .media img.contain { object-fit: contain; background: #fff; border: 1px solid var(--border); }
+
+    /* ── Archive / additional projects ── */
+    .archive-item { padding: 8px 0; border-top: 1px solid var(--border); break-inside: avoid; }
+    .archive-item h3 { font-size: 10pt; color: var(--ink); margin-bottom: 3px; }
+
+    .footer-note { margin-top: 18px; padding-top: 8px; border-top: 1px solid var(--border); font-size: 8pt; color: var(--muted); }
+  </style>
+</head>
+<body>
+
+<div class="notice" id="notice" hidden></div>
+<main class="doc" id="doc"></main>
+
+<script src="projects.js"></script>
+<script>
+  // Absolute site URL, used to print links that are relative on the site
+  const SITE_URL = 'https://nathanklam.github.io/';
+
+  // Group order and fallback titles; real titles/subtitles come from index.html
+  const GROUPS = [
+    { id: 'combat-robotics',   title: 'Combat Robotics at Berkeley' },
+    { id: 'academic-projects', title: 'Coursework Projects' },
+    { id: 'side-projects',     title: 'Side Projects' }
+  ];
+
+  function absUrl(href) {
+    if (/^(https?:|mailto:)/.test(href)) return href;
+    return SITE_URL + href.replace(/^\.?\//, '');
+  }
+  function prettyUrl(href) {
+    return href.replace(/^https?:\/\//, '').replace(/^mailto:/, '').replace(/\/$/, '');
+  }
+
+  function mediaHTML(project) {
+    const imgs = (project.images || []).slice(0, 4);
+    if (!imgs.length) return '';
+    const figs = imgs.map(im => `<figure>
+        <img src="${im.src}" alt="${im.alt}"${im.contain ? ' class="contain"' : ''}>
+        ${imgs.length > 1 && im.caption ? `<figcaption>${im.caption}</figcaption>` : ''}
+      </figure>`).join('');
+    return `<div class="media${imgs.length > 1 ? ' multi' : ''}">${figs}</div>`;
+  }
+
+  function linkHTML(link) {
+    if (!link) return '';
+    if (link.mode === 'external') {
+      const url = absUrl(link.href);
+      return `<p class="link"><span class="muted">More:</span> <a href="${url}">${prettyUrl(url)}</a></p>`;
+    }
+    return '';
+  }
+
+  function metaHTML(meta) {
+    return (meta || []).map(([label, value]) => `<p class="meta"><b>${label}:</b> ${value}</p>`).join('');
+  }
+
+  function projectHTML(p) {
+    const media = mediaHTML(p);
+    return `<article class="project${media ? '' : ' no-media'}">
+      ${media}
+      <div>
+        ${p.badge ? `<span class="chip">${p.badge}</span>` : ''}
+        <h3>${p.title}</h3>
+        <p class="desc">${p.description}</p>
+        ${metaHTML(p.meta)}
+        ${linkHTML(p.link)}
+      </div>
+    </article>`;
+  }
+
+  function archiveHTML(p) {
+    return `<div class="archive-item">
+      <h3>${p.title}</h3>
+      <p class="desc">${p.description}</p>
+      ${metaHTML(p.meta)}
+    </div>`;
+  }
+
+  async function loadIndex() {
+    const res = await fetch('index.html', { cache: 'no-store' });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    return new DOMParser().parseFromString(await res.text(), 'text/html');
+  }
+
+  function text(el) { return el ? el.textContent.trim().replace(/\s+/g, ' ') : ''; }
+
+  async function render() {
+    let idx = null;
+    try {
+      idx = await loadIndex();
+    } catch (e) {
+      const n = document.getElementById('notice');
+      n.hidden = false;
+      n.textContent = 'Could not read index.html (this page needs to be served over http, not opened as a file). ' +
+        'Header, About, and Skills are missing below. Run "python build_portfolio_pdf.py" to build the PDF.';
+    }
+
+    let html = '';
+
+    // Header, About, Skills (from index.html)
+    if (idx) {
+      const hero = idx.querySelector('.hero');
+      const mail = idx.querySelector('a[href^="mailto:"]');
+      const linkedin = idx.querySelector('a[href*="linkedin.com"]');
+      const contact = [
+        mail ? `<span><b>Email</b> ${prettyUrl(mail.getAttribute('href'))}</span>` : '',
+        linkedin ? `<span><b>LinkedIn</b> ${prettyUrl(linkedin.getAttribute('href'))}</span>` : '',
+        `<span><b>Web</b> ${prettyUrl(SITE_URL)}</span>`
+      ].join('');
+
+      html += `<header class="header">
+        <div class="eyebrow">${text(hero.querySelector('.eyebrow')) || 'Portfolio'}</div>
+        <h1>${text(idx.querySelector('.navbar-name')) || 'Nathan Lam'}</h1>
+        <p class="tagline">${text(hero.querySelector('h1'))}</p>
+        <p class="sub">${text(hero.querySelector('p'))}</p>
+        <div class="contact">${contact}</div>
+      </header>`;
+
+      const aboutText = idx.querySelector('#about .about-text');
+      // About photos are intentionally left out of the print version
+      if (aboutText) {
+        html += `<section class="section">
+          <div class="section-title">About</div>
+          <div class="about">${aboutText.innerHTML}</div>
+        </section>`;
+      }
+
+      const skillRows = [...idx.querySelectorAll('#skills .skill-row')];
+      if (skillRows.length) {
+        html += `<section class="section">
+          <div class="section-title">${text(idx.querySelector('#skills h2')) || 'Skills'}</div>
+          <dl class="skills">${skillRows.map(r => `<dt>${r.querySelector('h4').innerHTML}</dt>
+            <dd>${[...r.querySelectorAll('.skill-tags span')].map(s => s.innerHTML).join(' &middot; ')}</dd>`).join('')}</dl>
+        </section>`;
+      }
+    }
+
+    // Projects (from projects.js)
+    const active = PROJECTS.filter(p => p.status !== 'archived');
+    const archived = PROJECTS.filter(p => p.status === 'archived');
+
+    html += `<section class="section start-projects">`;
+    let first = true;
+    GROUPS.forEach(g => {
+      const items = active.filter(p => p.group === g.id);
+      if (!items.length) return;
+      const shell = idx && idx.querySelector(`[data-group="${g.id}"]`);
+      const title = text(shell && shell.querySelector('.project-group-title')) || g.title;
+      const sub = text(shell && shell.querySelector('.project-group-subtitle'));
+      let heading = '';
+      if (g.id === 'side-projects') heading = 'Side Projects';
+      else if (first) heading = 'Projects &amp; Experience';
+      first = false;
+      html += `<div class="group">
+        ${heading ? `<div class="section-title">${heading}</div>` : ''}
+        <div class="group-head">
+          ${g.id === 'side-projects' ? '' : `<h2 class="group-title">${title}</h2>`}
+          ${sub ? `<p class="group-sub">${sub}</p>` : ''}
+        </div>
+        ${items.map(projectHTML).join('')}
+      </div>`;
+    });
+    html += `</section>`;
+
+    if (archived.length) {
+      html += `<section class="section">
+        <div class="section-title">Additional Projects</div>
+        ${archived.map(archiveHTML).join('')}
+      </section>`;
+    }
+
+    html += `<p class="footer-note">Full project write-ups, photos, videos, and 3D models: ${prettyUrl(SITE_URL)}</p>`;
+
+    document.getElementById('doc').innerHTML = html;
+  }
+
+  render();
+</script>
+</body>
+</html>

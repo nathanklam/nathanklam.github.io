@@ -23,14 +23,29 @@ projects/
   master_oogway.html  — Master Oogway project page
   PLANTs.html         — Skadoosh / Eggsterminator (1 lb robots) project page
   contributions.html  — Malware / Syntax Terror contributions page
+  side_projects.html  — personal CAD / replacement parts (one <section> per part)
 images/
   about/             — personal/competition photos used in the About section
   main_page/         — card thumbnail images used by projects.js on index.html
   master_oogway/, e29/, 1lb_bots/, bot_contributions/ — sub-page images
+models/              — .glb 3D models for <model-viewer> (stored via Git LFS, see below)
+Nathan_Lam_Resume.pdf      — embedded by resume.html
+Composites_Final_Report.pdf — embedded by projects/ME127.html
+portfolio_print.html — print layout for the portfolio PDF; content is pulled from
+                         projects.js and index.html (hero, About, Skills, group titles)
+build_portfolio_pdf.py — `python build_portfolio_pdf.py` regenerates
+                         Nathan_Lam_Portfolio.pdf (rerun after content changes)
+.gitattributes       — forces LF line endings; routes *.glb through Git LFS
 concept-bento/        — standalone design prototype this site's styling is based on;
                          does not link into the live site, kept for reference
 concept-blueprint/     — an earlier, unused design prototype
 ```
+
+## Writing style
+
+**No em-dashes in site content** (visible text, alt text, captions, projects.js
+strings, or code comments in the live pages). Use a comma, colon, semicolon,
+parentheses, or a new sentence instead. Don't use `&mdash;` either.
 
 ## Color system (CSS custom properties in styles.css)
 
@@ -125,6 +140,10 @@ hand-written HTML. `index.html` only provides the group shells:
 `projects.js` holds a `PROJECTS` array (one object per project) and renders
 each group's `.project-rows` container by matching `group` to `data-group`.
 Rows alternate image-left / image-right automatically within each group.
+There are currently three groups: `combat-robotics` and `academic-projects`
+(both under the Projects section), and `side-projects`, which has its own
+home page section (`#side-projects`, 04) between Projects and Archive (05).
+The side-projects group has no `.project-group-title`; the section heading covers it.
 
 **To add, edit, or archive a project: edit `projects.js`, not `index.html`.**
 See the field reference in the comment at the top of `projects.js`, or
@@ -188,6 +207,19 @@ this automatically.
 ## Accordion max-height
 
 The accordion open state uses `max-height: 5000px` in styles.css section 22 as a CSS animation workaround (you can't transition to `height: auto`). If an accordion item's content is unusually tall and gets clipped at the bottom, increase this value.
+
+## 3D models (model-viewer + Git LFS)
+
+`.glb` files in `models/` are tracked with Git LFS (see `.gitattributes`), so
+GitHub Pages serves an LFS pointer file, not the model, at the relative path.
+Live sub-pages therefore point `<model-viewer src>` at the LFS media URL:
+
+```
+https://media.githubusercontent.com/media/nathanklam/nathanklam.github.io/main/models/NAME.glb
+```
+
+`_template.html` still shows a relative `../models/your-model.glb`; that only
+works locally. Swap it for the media URL when publishing a new page.
 
 ## Video embed with caption
 
@@ -263,6 +295,13 @@ their `projects.js` entry, which renders as `class="coming-soon-link"` on a
 bare `<a>` tag (no `href`). When a project page is ready, change it to
 `link: { mode: 'external', href: 'projects/filename.html', label: '...' }`.
 
+## Carousel inside a project-block
+
+A `.carousel-block` can sit in a `.project-block`'s image column: wrap it in
+`<figure class="project-figure">` so `.reverse` ordering still applies. Inside
+a project-block it drops its margin and is 300px tall. The Skadoosh V3 section
+in `projects/PLANTs.html` is an example (a one-slide carousel, ready for more).
+
 ## Placeholder images
 
 Projects with no images yet use `images: []` in their `projects.js` entry,
@@ -276,4 +315,5 @@ which renders `.row-media-placeholder`. Once images exist, add them to the
   - Footer links (index.html and every sub-page)
 - Convert remaining coming-soon links to real hrefs as project pages are created
   (Planned 3 lb, ESP-RESSO 32, E29 Corner Mount) — edit the `link` field in projects.js.
+  E29 Corner Mount is currently `status: 'archived'`, so it shows in the Archive section.
 - ESP-RESSO 32 is currently a single static image; can become a carousel when more images exist.

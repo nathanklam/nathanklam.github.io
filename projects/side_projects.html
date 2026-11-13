@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Side Projects | Nathan Lam</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<div class="navbar">
+  <div class="navbar-inner">
+    <a href="../index.html" class="navbar-name">Nathan Lam</a>
+    <nav class="navbar-nav">
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#skills">Skills</a>
+      <a href="../index.html#projects">Projects</a>
+      <a href="../resume.html">Resume</a>
+      <a href="mailto:nathan_lam@berkeley.edu" class="button">Email</a>
+    </nav>
+  </div>
+</div>
+
+<main class="page">
+
+  <div class="project-heading">
+    <h1>Side Projects</h1>
+    <p>Personal CAD &amp; Replacement Parts</p>
+  </div>
+
+  <section id="overview">
+    <p>Outside of coursework and combat robotics, I also use CAD for everyday problems and
+    personal projects: designing replacement parts for things that broke and modeling ideas
+    just for fun. These are smaller one-offs, but each one still meant measuring, fitting, and
+    iterating until the part worked.</p>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       ONE <section> PER PROJECT - copy this whole block for each.
+       Newest first. Keep each to a few sentences:
+         Problem  - why it needed to exist
+         Approach - what was tricky (fit, tolerances, print orientation...)
+         Result   - how it turned out
+       ═══════════════════════════════════════════════════════════ -->
+  <section id="ac-knob">
+    <h2>Air Conditioner Knob Replacement (2026)</h2>
+    <p class="version-subtitle">Replacement part &middot; Calipers, CAD, 3D printing</p>
+
+    <div class="project-block reverse">
+      <figure class="project-figure">
+        <div class="carousel-block">
+          <div class="project-image-rotator">
+            <div class="image-viewport">
+              <!-- Add more slides here (drop class="contain" for photos); add one .carousel-dot per image -->
+              <img src="../images/side_projects/4941ar7134e%20Replacement.png" alt="CAD render of the replacement air conditioner knob" data-caption="Replacement knob CAD" class="contain">
+              <div class="image-caption-overlay"></div>
+              <div class="carousel-controls">
+                <button class="carousel-btn carousel-prev" aria-label="Previous image">&#8249;</button>
+                <div class="carousel-dots">
+                  <span class="carousel-dot"></span>
+                </div>
+                <button class="carousel-btn carousel-next" aria-label="Next image">&#8250;</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </figure>
+      <div class="project-block-text">
+        <p><strong>Problem:</strong> A friend's air conditioning unit had a broken control knob,
+        and the part (4941AR7134E) is no longer sold.</p>
+        <p><strong>Approach:</strong> Working from the broken piece they gave me, I measured each
+        feature with calipers and remodeled the knob in CAD so it could be 3D printed.</p>
+        <p><strong>Result:</strong> A printable replacement that restores the unit's controls
+        without needing the discontinued original.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="caduceus">
+    <h2>Caduceus Costume Prop (2026)</h2>
+    <p class="version-subtitle">For fun &middot; CAD, 3D printing</p>
+
+    <div class="project-block reverse">
+      <figure class="project-figure">
+        <div class="carousel-block">
+          <div class="project-image-rotator">
+            <div class="image-viewport">
+              <img src="../images/side_projects/caduceus-printed_web.jpg" alt="Printed Caduceus parts laid out" data-caption="Printed parts" class="contain">
+              <img src="../images/side_projects/caduceus-rapier.png" alt="Rapier version CAD" data-caption="Rapier version CAD" class="contain">
+              <img src="../images/side_projects/caduceus-bastard_sword.png" alt="Bastard sword version CAD over in-game reference" data-caption="Bastard sword version CAD" class="contain">
+              <img src="../images/side_projects/caduceus-hatchet.png" alt="Hatchet version CAD" data-caption="Hatchet version CAD" class="contain">
+              <img src="../images/side_projects/caduceus-stiletto.png" alt="Stiletto version CAD" data-caption="Stiletto version CAD" class="contain">
+              <div class="image-caption-overlay"></div>
+              <div class="carousel-controls">
+                <button class="carousel-btn carousel-prev" aria-label="Previous image">&#8249;</button>
+                <div class="carousel-dots">
+                  <span class="carousel-dot"></span>
+                  <span class="carousel-dot"></span>
+                  <span class="carousel-dot"></span>
+                  <span class="carousel-dot"></span>
+                  <span class="carousel-dot"></span>
+                </div>
+                <button class="carousel-btn carousel-next" aria-label="Next image">&#8250;</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </figure>
+      <div class="project-block-text">
+        <p><strong>Goal:</strong> A costume prop based on the Caduceus from a video game, built
+        around a single grip with a bayonet mount so the same grip can lock onto several
+        different weapon versions.</p>
+        <p><strong>Modeling:</strong> Using Onshape, I worked from in-game reference images, scaling them to
+        real-world proportions and tracing the profiles with splines. The organic shapes pushed
+        me into features I don't normally reach for, especially lofts.</p>
+      </div>
+    </div>
+
+    <p><strong>Design for assembly:</strong> Every part is 3D printed, so each section has to
+    fit within the printer's height limit. The main design goal is that the prop splits cleanly
+    into printable sections that are easy to assemble and take apart again, for both printing
+    and transport.</p>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">&uarr; Back to top</a>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/nathanklam/">LinkedIn</a>
+      <a href="mailto:nathan_lam@berkeley.edu">Email</a>
+    </div>
+    <span>&copy; 2026 Nathan Lam</span>
+  </div>
+</footer>
+
+<!-- Carousel script - required for any .project-image-rotator on this page -->
+<script>
+  document.querySelectorAll('.project-image-rotator').forEach(rotator => {
+    const images  = rotator.querySelectorAll('.image-viewport img');
+    const dots    = rotator.querySelectorAll('.carousel-dot');
+    const caption = rotator.querySelector('.image-caption-overlay');
+    const prev    = rotator.querySelector('.carousel-prev');
+    const next    = rotator.querySelector('.carousel-next');
+    let current   = 0;
+
+    function goTo(i) {
+      images[current].classList.remove('active');
+      dots[current]?.classList.remove('active');
+      current = (i + images.length) % images.length;
+      images[current].classList.add('active');
+      dots[current]?.classList.add('active');
+      if (caption) caption.textContent = images[current].dataset.caption || '';
+    }
+
+    goTo(0);
+    // FLASHY: remove this block (resetTimer + setInterval call below) to stop auto-rotation
+    let timer;
+    function resetTimer() {
+      clearInterval(timer);
+      timer = setInterval(() => goTo(current + 1), 4000);
+    }
+
+    dots.forEach((dot, i) => dot.addEventListener('click', () => { goTo(i); resetTimer(); }));
+    prev?.addEventListener('click', () => { goTo(current - 1); resetTimer(); });
+    next?.addEventListener('click', () => { goTo(current + 1); resetTimer(); });
+
+    resetTimer();
+  });
+</script>
+
+</body>
+</html>

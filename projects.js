@@ -1,7 +1,7 @@
 /* ===================================================================
    PROJECT DATA
    Each project is one object with a unique `id`. To retire a project
-   to the Archive, change its `status` from 'active' to 'archived' —
+   to the Archive, change its `status` from 'active' to 'archived' -
    nothing else needs to move. It will automatically disappear from
    its group's row list and appear as a compact entry under the
    "Archive" dropdown in the navbar. If no projects are archived, the
@@ -9,7 +9,7 @@
 
    Fields:
      id          unique slug, used as the row's element id / anchor
-     group       'combat-robotics' | 'academic-projects'
+     group       'combat-robotics' | 'academic-projects' | 'side-projects'
                  (must match a [data-group] container in index.html)
      status      'active' | 'archived'
      badge       optional small chip label (e.g. an award)
@@ -30,7 +30,7 @@ const PROJECTS = [
     id: 'master-oogway',
     group: 'combat-robotics',
     status: 'active',
-    badge: 'Coolest Bot; Most Destroyed — Sacramento 2025',
+    badge: 'Coolest Bot; Most Destroyed (Sacramento 2025)',
     title: '&ldquo;Master Oogway&rdquo; (Spring 2025)',
     images: [
       { src: 'images/main_page/master_oogway_CAD.png', alt: 'Master Oogway CAD overview', contain: true }
@@ -43,7 +43,7 @@ const PROJECTS = [
     id: 'skadoosh',
     group: 'combat-robotics',
     status: 'active',
-    badge: 'Most Destructive (Eggsterminator) — Berkeley 2024',
+    badge: 'Most Destructive, Eggsterminator (Berkeley 2024)',
     title: '1lb PLANTs &ldquo;Skadoosh&rdquo; (Winter 2026-), &ldquo;Eggsterminator&rdquo; (Fall 2024)',
     images: [
       { src: 'images/main_page/eggsterminator.png', alt: 'Eggsterminator 1lb robot', caption: 'Eggsterminator (Fall 2024)', contain: true },
@@ -51,7 +51,7 @@ const PROJECTS = [
       { src: 'images/main_page/skadoosh_v2.jpg',    alt: 'Skadoosh 1lb robot',       caption: 'Skadoosh v2 (Spring 2026)' },
       { src: 'images/main_page/skadoosh_v3.png',    alt: 'Skadoosh 1lb robot',       caption: 'Skadoosh v3 (Summer 2026)',  contain: true }
     ],
-    description: 'Eggsterminator was a 1 lb plastic combat robot focused on survivability through angled geometry and print-oriented design, earning Most Destructive in an internal competition. Skadoosh builds on this foundation with an improved weapon system and experimental front-wedge geometry. The third iteration is in assembly, returning to tested and proven design methodology.',
+    description: 'Eggsterminator was a 1 lb plastic combat robot focused on survivability through angled geometry and print-oriented design, earning Most Destructive in an internal competition. Skadoosh builds on this foundation with an improved weapon system and experimental front-wedge geometry. The third iteration is built and awaiting competition, returning to tested and proven design methodology.',
     meta: [['Tools/Skills', 'Onshape · Fusion 360 · 3D Printing · Soldering']],
     link: { mode: 'external', href: 'projects/PLANTs.html', label: 'View Robots' }
   },
@@ -62,7 +62,7 @@ const PROJECTS = [
     badge: 'In Design',
     title: 'Planned 3 lb, "I am You" (Summer 2026-)',
     images: [],
-    description: 'Horizontal midcutter robot design in progress. The goal is to integrate a microcontroller and IMU to add semi-autonomy functionality. Our first milestone is to automatically maximize bite.',
+    description: 'Horizontal undercutter robot design in progress. The goal is to integrate a microcontroller and IMU to add semi-autonomy functionality. Our first milestone is to automatically maximize bite.',
     meta: [['Tools/Skills', 'Onshape']],
     link: { mode: 'soon', label: 'View Robot (Coming Soon)' }
   },
@@ -75,7 +75,7 @@ const PROJECTS = [
       { src: 'images/main_page/malware.png',       alt: 'Malware 30lb robot',      caption: 'Malware (30 lb)',      contain: true },
       { src: 'images/main_page/syntax_terror.png', alt: 'Syntax Terror 3lb robot', caption: 'Syntax Terror (3 lb)', contain: true }
     ],
-    description: "Contributed to the mechanical design and fabrication of multiple team robots, including the student organization's flagship 30 lb robot with a high-energy spinner and a 3 lb robot exploring shuffling swerve locomotion. Provided additional manual machining support to multiple robot teams, such as Global Pounding and Traiano (12 lb robots).",
+    description: "Contributed to the mechanical design and fabrication of multiple team robots, including the student organization's flagship 30 lb robot with a high-energy spinner and a 3 lb robot exploring shuffling swerve locomotion. Provided additional manual machining support to multiple robot teams, such as Global Pounding and Traiano (12 lb robots), and reviewed other teams' designs for mechanical feasibility and manufacturability ahead of build.",
     meta: [['Tools/Skills', 'Onshape · Mill · Lathe']],
     link: { mode: 'soon', label: 'View Contributions (Coming Soon)' }
     //link: { mode: 'external', href: 'projects/contributions.html', label: 'View Contributions' }
@@ -88,7 +88,7 @@ const PROJECTS = [
     images: [
       { src: 'images/main_page/mec106a.png', alt: 'MEC106A' }
     ],
-    description: 'A robotic culinary plating assistant using a UR7e arm with an attached camera to capture a completed dish from multiple viewpoints, reconstruct a 3D model of the arrangement, identify food items, and generate an accurate pick-and-place plan to recreate it.',
+    description: 'A robotic culinary plating assistant using a UR7e arm with an attached camera to capture a completed dish from multiple viewpoints, reconstruct a 3D model of the arrangement, identify food items, and generate an accurate pick-and-place plan to recreate it. Also tested autonomy algorithms developed by software-focused teammates to validate the pick-and-place plan against the real arm.',
     meta: [
       ['Course', 'MEC106A - Introduction to Robotics'],
       ['Tools/Skills', 'ROS2 · YOLO · Python · HTML · CSS']
@@ -118,7 +118,7 @@ const PROJECTS = [
     images: [
       { src: 'images/main_page/espresso32.png', alt: 'ESP-RESSO 32 embedded system' }
     ],
-    description: 'An embedded system using ESP32 microcontrollers to monitor and allow repeatability of moka pot brewing via multiple sensors and real-time feedback. Prioritized functional reliability over aesthetics.',
+    description: 'An embedded system using two communicating ESP32 microcontrollers to monitor and allow repeatability of moka pot brewing: one senses temperature, weight, and magnetic field data, while the other receives and displays system status. Prioritized functional reliability over aesthetics.',
     meta: [
       ['Course', 'ME100 - Electronics for IoT'],
       ['Tools/Skills', 'Python · Fusion 360']
@@ -129,7 +129,7 @@ const PROJECTS = [
     id: 'e29-corner-mount',
     group: 'academic-projects',
     status: 'archived',
-    title: 'Caster Wheel Modular Mounting System &mdash; Corner Mount (Spring 2025)',
+    title: 'Caster Wheel Modular Mounting System: Corner Mount (Spring 2025)',
     images: [
       { src: 'images/main_page/e29_corner_mount.png', alt: 'E29 Corner Mount design', caption: 'Corner Mount Design', contain: true },
       { src: 'images/e29/e29_deliverable.png',        alt: 'E29 deliverable',         caption: 'Deliverable' },
@@ -141,11 +141,21 @@ const PROJECTS = [
       ['Tools/Skills', 'Fusion 360 · SolidWorks']
     ],
     link: { mode: 'soon', label: 'View Project (Coming Soon)' }
+  },
+  {
+    id: 'cad-side-projects',
+    group: 'side-projects',
+    status: 'active',
+    title: 'Personal CAD &amp; Replacement Parts',
+    images: [],   // add 2+ images here to turn this into a carousel
+    description: 'Outside of coursework and combat robotics, I also use CAD and 3D printing for everyday problems and personal projects, from designing replacement parts for things that broke to modeling ideas just for fun.',
+    meta: [],
+    link: { mode: 'external', href: 'projects/side_projects.html', label: 'View Side Projects' }
   }
 ];
 
 /* ===================================================================
-   RENDERING — you shouldn't need to touch anything below this line
+   RENDERING - you shouldn't need to touch anything below this line
    when adding, editing, or archiving a project above.
 =================================================================== */
 

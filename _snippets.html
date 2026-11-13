@@ -1,9 +1,9 @@
 <!--
-  _snippets.html — Home page copy-paste reference
-  NOT a live page — open in an editor, not a browser.
+  _snippets.html - Home page copy-paste reference
+  NOT a live page - open in an editor, not a browser.
 
   As of the "Editorial Rows" redesign, project cards are no longer
-  hand-written HTML — they're generated from the PROJECTS array in
+  hand-written HTML - they're generated from the PROJECTS array in
   projects.js. See Section 1 below for that. Sections 2-4 cover the
   remaining hand-written home page patterns (skills, project group
   shells, the about grid). For sub-page patterns (project-block,
@@ -12,7 +12,7 @@
 
   Contents
   ─────────────────────────────────────────────────────────────────
-  1.  Adding a project           (projects.js — PROJECTS array)
+  1.  Adding a project           (projects.js - PROJECTS array)
   2.  Skill row block
   3.  Project group shell
   4.  About row (text + image carousel)
@@ -22,29 +22,29 @@
 
 <!-- ═══════════════════════════════════════════════════════════
      1. ADDING A PROJECT
-     Add one object to the PROJECTS array in projects.js — the
+     Add one object to the PROJECTS array in projects.js - the
      row is rendered automatically, alternating image-left /
      image-right within its group. Do not edit index.html directly
      to add or remove a project.
 
      Field reference:
-       id          unique slug — used as the row's element id / anchor
+       id          unique slug - used as the row's element id / anchor
        group       'combat-robotics' | 'academic-projects'
                    (must match a [data-group] container in index.html;
                    add a new .project-group + data-group in index.html
                    for a new group)
-       status      'active' | 'archived' — archived projects move to
+       status      'active' | 'archived' - archived projects move to
                    the Archive section/dropdown automatically
        badge       optional small chip label, e.g. an award (omit field for none)
-       title       project heading — HTML entities allowed (&ldquo; etc.)
+       title       project heading - HTML entities allowed (&ldquo; etc.)
        images      [] for a placeholder,
                    [one] for a static image,
                    [two+] for a captioned carousel
                    each image: { src, alt, caption, contain }
                    `contain: true` letterboxes CAD renders on white
-                   instead of cropping — use for CAD/render screenshots
+                   instead of cropping - use for CAD/render screenshots
        description one paragraph, plain sentences
-       meta        [[label, value], ...] — rendered as spec lines,
+       meta        [[label, value], ...] - rendered as spec lines,
                    e.g. [['Course', 'ME127 - ...'], ['Tools/Skills', '...']]
        link        { mode: 'external', href, label } once a project page
                    exists, or { mode: 'soon', label } before it does
@@ -84,20 +84,20 @@
      3. PROJECT GROUP SHELL
      Wraps a set of project rows under one heading. The id +
      data-group must match the `group` field used in projects.js
-     entries — projects.js looks up [data-group] to know where to
+     entries - projects.js looks up [data-group] to know where to
      inject each group's rows.
      ═══════════════════════════════════════════════════════════ -->
 
 <div class="project-group" id="group-id-here" data-group="group-id-here">
   <h3 class="project-group-title">Group Heading</h3>
-  <p class="project-group-subtitle">Optional subtitle line — role, dates, affiliation, etc.</p>
+  <p class="project-group-subtitle">Optional subtitle line - role, dates, affiliation, etc.</p>
   <div class="project-rows"></div>
 </div>
 
 
 <!-- ═══════════════════════════════════════════════════════════
      4. ABOUT ROW (text + image carousel)
-     Two-column layout: text left, image carousel right — fixed
+     Two-column layout: text left, image carousel right - fixed
      widths set in styles.css (.about-row .about-media), no inline
      sizing needed. object-position on each <img> controls which
      part of the photo is cropped into view (e.g. "center 40%").
